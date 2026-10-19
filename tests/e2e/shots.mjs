@@ -6,12 +6,13 @@ const browser = await chromium.launch({ executablePath: exe, args: ['--use-gl=an
 const page = await browser.newPage({ viewport: { width: 1280, height: 760 }, deviceScaleFactor: 1 });
 const logs = [];
 page.on('console', (m) => logs.push(`[${m.type()}] ${m.text()}`));
-page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}`));
+page.on('response', (r) => { if (r.status() >= 400) logs.push('[http ' + r.status() + '] ' + r.url()); });
+page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message} ${(e.stack ?? '').split('\n').slice(1, 4).join(' | ')}`));
 await page.goto(url);
 await page.waitForTimeout(+wait);
 for (const a of actions) {
   const [kind, arg, ms = '1500'] = a.split('|');
-  if (kind === 'click') await page.click(arg).catch((e) => logs.push('click fail ' + arg + ' ' + e.message));
+  if (kind === 'click') await page.click(arg, { timeout: 5000 }).catch((e) => logs.push('click fail ' + arg + ' ' + e.message));
   if (kind === 'key') await page.keyboard.press(arg);
   if (kind === 'fill') await page.fill(arg, ms);
   if (kind === 'goto') await page.goto(arg);
