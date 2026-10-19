@@ -1,0 +1,104 @@
+# Local or single-host deployment: PostgreSQL 16, API, workers, rooms, player (nginx) and portal.
+#   cp .env.example .env   # set the secrets
+#   docker compose -f infra/compose.yaml --env-file .env up --build
+# Then: player http://localhost:8080 · portal http://localhost:3000 · API http://localhost:4000
+# The hosting provider and region are open (docs/OPEN-QUESTIONS.md #2); nothing here is cloud-specific.
+name: rihla
+
+x-service: &service
+  build: { context: .., dockerfile: infra/docker/services.Dockerfile }
+  restart: unless-stopped
+  environment: &env
+    NODE_ENV: production
+    DATABASE_URL: postgres://rihla:${POSTGRES_PASSWORD}@postgres:5432/rihla
+    JWT_SECRET: ${JWT_SECRET}
+    ROOM_TOKEN_SECRET: ${ROOM_TOKEN_SECRET}
+    INTERNAL_SECRET: ${INTERNAL_SECRET}
+    PLAYER_URL: ${PLAYER_URL:-http://localhost:8080}
+    PORTAL_URL: ${PORTAL_URL:-http://localhost:3000}
+    SHORT_URL: ${SHORT_URL:-http://localhost:8080/s}
+    STORAGE_DIR: /data/packs
+    COOKIE_SECURE: ${COOKIE_SECURE:-0}
+  depends_on:
+    postgres: { condition: service_healthy }
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rihla
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: rihla
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U rihla -d rihla']
+      interval: 5s
+      retries: 20
+
+  # whichever container mounts the packs volume first decides its owner; make it the API's user
+  packs-init:
+    <<: *service
+    restart: 'no'
+    user: root
+    entrypoint: ['chown', 'node:node', '/data/packs']
+    volumes: [packs:/data/packs]
+    depends_on: []
+
+  api:
+    <<: *service
+    build: { context: .., dockerfile: infra/docker/services.Dockerfile, args: { APP: api } }
+    environment: { <<: *env, APP: api }
+    depends_on:
+      postgres: { condition: service_healthy }
+      packs-init: { condition: service_completed_successfully }
+    ports: ['4000:4000']
+    volumes: [packs:/data/packs]
+    healthcheck:
+      test: ['CMD', 'node', '-e', "fetch('http://localhost:4000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 5s
+      retries: 30
+
+  workers:
+    <<: *service
+    environment: { <<: *env, APP: workers }
+    depends_on:
+      api: { condition: service_healthy }
+
+  rooms:
+    <<: *service
+    environment: { <<: *env, APP: rooms, API_URL: http://api:4000, PORT: '2567' }
+    ports: ['2567:2567']
+
+  # one-off: demo school, teacher, class, publisher, and both packs published (skip in production)
+  seed:
+    <<: *service
+    restart: 'no'
+    profiles: [demo]
+    environment: { <<: *env, APP: seed }
+    volumes: [packs:/data/packs]
+    depends_on:
+      api: { condition: service_healthy }
+
+  player:
+    build: { context: .., dockerfile: infra/docker/player.Dockerfile }
+    restart: unless-stopped
+    ports: ['8080:8080']
+    volumes: [packs:/usr/share/nginx/packs:ro]
+    depends_on: [api, rooms]
+
+  portal:
+    build:
+      context: ..
+      dockerfile: infra/docker/portal.Dockerfile
+      args:
+        API_URL: http://api:4000
+        NEXT_PUBLIC_PLAYER_URL: ${PLAYER_URL:-http://localhost:8080}
+        NEXT_PUBLIC_ROOMS_URL: ${ROOMS_PUBLIC_URL:-ws://localhost:8080/rooms}
+    restart: unless-stopped
+    ports: ['${PORTAL_PORT:-3000}:3000']
+    depends_on: [api]
+
+volumes:
+  pgdata:
+  packs:

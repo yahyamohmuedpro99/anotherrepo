@@ -14,3 +14,4 @@ storage/
 *.tsbuildinfo
 tests/e2e/test-results/
 tests/e2e/playwright-report/
+.proxy-ca.crt
