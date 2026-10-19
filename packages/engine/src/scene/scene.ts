@@ -303,18 +303,21 @@ export class SceneRuntime {
     }
     const sp = key ? spawns[key] : undefined;
     const pos = new THREE.Vector3();
+    let yaw = sp?.yaw;
     if (sp?.near) {
       const ent = this.byId.get(sp.near.entity);
       if (ent) {
-        const dir = sp.near.dir ? tmp.set(...sp.near.dir).normalize() : sp.near.side === 'sun' ? tmp.copy(ent.pos).negate().normalize() : tmp.copy(ent.pos).normalize();
+        const dir = sp.near.dir ? tmp.set(...sp.near.dir).normalize() : sp.near.side === 'sun' && ent.pos.lengthSq() > 1e-6 ? tmp.copy(ent.pos).negate().normalize() : ent.pos.lengthSq() > 1e-6 ? tmp.copy(ent.pos).normalize() : tmp.set(1, 0.2, 0.4).normalize();
         pos.copy(ent.pos).addScaledVector(dir, sp.near.distance ?? ent.standoff);
+        // camera behind the ship, looking back at the body it just left
+        if (yaw === undefined) yaw = Math.atan2(dir.x, dir.z) + 0.5;
       }
     } else if (sp?.at) {
       const at = sp.at;
       if (at.length === 2) pos.set(at[0], this.isTerrain ? this.height(at[0], at[1]) : 0, at[1]);
       else pos.set(at[0], this.isTerrain ? this.height(at[0], at[2]) + at[1] : at[1], at[2]);
     }
-    return { pos, yaw: sp?.yaw, spawn: sp, id: key };
+    return { pos, yaw, spawn: sp, id: key };
   }
 
   /* ---------------------------------------------------------------- per frame */
@@ -417,6 +420,22 @@ export class SceneRuntime {
       }
     }
     for (const f of this.ctx.anims) f(dt, this.T);
+    // gas giants: the cloud deck scrolls and puffs drift with the wind, wrapping around the camera
+    const deck = this.terrain.deck;
+    if (deck) {
+      deck.texture.offset.x += dt * deck.scroll;
+      if (deck.puffs) {
+        const attr = deck.puffs.geometry.attributes.position as THREE.BufferAttribute, a = attr.array as Float32Array, ws = deck.scroll * 1000;
+        for (let i = 0; i < a.length; i += 3) {
+          a[i] = a[i]! + dt * ws;
+          if (a[i]! - cam.x > 300) a[i] = a[i]! - 600;
+          else if (a[i]! - cam.x < -300) a[i] = a[i]! + 600;
+          if (a[i + 2]! - cam.z > 300) a[i + 2] = a[i + 2]! - 600;
+          else if (a[i + 2]! - cam.z < -300) a[i + 2] = a[i + 2]! + 600;
+        }
+        attr.needsUpdate = true;
+      }
+    }
   }
 
   /** Called after environment update so night-only effects see the current night amount. */

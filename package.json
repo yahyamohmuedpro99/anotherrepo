@@ -11,8 +11,9 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "pack:check": "pnpm --filter @rihla/pack-schema exec rihla-pack check packs/giza-plateau packs/solar-system",
-    "pack:build": "pnpm --filter @rihla/pack-schema exec rihla-pack build packs/giza-plateau packs/solar-system --out dist/packs",
+    "pack:check": "pnpm --filter @rihla/pack-schema build && node packages/pack-schema/dist/cli.js check packs/giza-plateau packs/solar-system",
+    "pack:build": "pnpm --filter @rihla/pack-schema build && node packages/pack-schema/dist/cli.js build packs/giza-plateau packs/solar-system --out dist/packs",
+    "pack:port": "node tools/port/giza.mjs && node tools/port/solar.mjs",
     "e2e": "pnpm --filter @rihla/e2e test",
     "format": "prettier --write ."
   },

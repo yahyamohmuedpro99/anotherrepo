@@ -1,0 +1,29 @@
+{
+ "id": "item.neptune",
+ "type": "mcq",
+ "prompt": "quiz.neptune.q",
+ "options": [
+  {
+   "id": "item.neptune.o0",
+   "text": "quiz.neptune.o0",
+   "correct": true
+  },
+  {
+   "id": "item.neptune.o1",
+   "text": "quiz.neptune.o1"
+  },
+  {
+   "id": "item.neptune.o2",
+   "text": "quiz.neptune.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

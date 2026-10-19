@@ -1,0 +1,11 @@
+{
+ "id": "gal-sun",
+ "lines": [
+  {
+   "who": "gal.sun",
+   "glyph": "✦",
+   "text": "gal.sun.fact"
+  }
+ ],
+ "ttl": 30
+}

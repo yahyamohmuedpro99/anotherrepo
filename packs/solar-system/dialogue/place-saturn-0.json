@@ -1,0 +1,18 @@
+{
+ "id": "place-saturn-0",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.saturn.0"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.saturn.0.fact"
+  }
+ ],
+ "ttl": 30
+}

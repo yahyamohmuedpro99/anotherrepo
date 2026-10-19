@@ -1,0 +1,29 @@
+{
+ "id": "item.venus",
+ "type": "mcq",
+ "prompt": "quiz.venus.q",
+ "options": [
+  {
+   "id": "item.venus.o0",
+   "text": "quiz.venus.o0",
+   "correct": true
+  },
+  {
+   "id": "item.venus.o1",
+   "text": "quiz.venus.o1"
+  },
+  {
+   "id": "item.venus.o2",
+   "text": "quiz.venus.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

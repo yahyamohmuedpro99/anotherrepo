@@ -1,0 +1,18 @@
+{
+ "id": "find-venus-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.venus.1"
+  }
+ ],
+ "ttl": 30
+}

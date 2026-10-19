@@ -1,0 +1,29 @@
+{
+ "id": "find-earth-0-had",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.earth.0"
+  },
+  {
+   "speaker": "nour",
+   "text": {
+    "key": "r.already",
+    "params": {
+     "n": {
+      "text": "name.earth"
+     }
+    }
+   }
+  }
+ ],
+ "ttl": 30
+}

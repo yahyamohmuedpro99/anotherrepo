@@ -1,0 +1,29 @@
+{
+ "id": "item.earth",
+ "type": "mcq",
+ "prompt": "quiz.earth.q",
+ "options": [
+  {
+   "id": "item.earth.o0",
+   "text": "quiz.earth.o0",
+   "correct": true
+  },
+  {
+   "id": "item.earth.o1",
+   "text": "quiz.earth.o1"
+  },
+  {
+   "id": "item.earth.o2",
+   "text": "quiz.earth.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

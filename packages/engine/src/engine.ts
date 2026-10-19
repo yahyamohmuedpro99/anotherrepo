@@ -96,6 +96,7 @@ export class Engine implements EngineApi {
   private raf = 0;
   private last = 0;
   private acc = { slow: 0, act: 0, save: 0, perf: 0, frame: 0 };
+  private realDt = 0;
   private introT = 0;
   private blend: { from: THREE.Vector3; look: THREE.Vector3; t: number } | null = null;
   private entityTags = new Map<string, { tag: Tag; ent: EntityRT }>();
@@ -1322,7 +1323,9 @@ export class Engine implements EngineApi {
     const elapsed = (now - this.last) / 1000;
     const minFrame = 1 / this.quality.maxFps;
     if (elapsed < minFrame * 0.9) return;
+    // Simulation steps are capped so a stalled tab does not teleport the player; fps is measured on real time.
     const dt = Math.min(0.05, elapsed);
+    this.realDt = Math.min(1, elapsed);
     this.last = now;
     if (!this.paused) this.clock += dt;
     this.step(dt);
@@ -1343,7 +1346,7 @@ export class Engine implements EngineApi {
         const e = sc.byId.get(id);
         return e ? { pos: e.pos, standoff: e.standoff } : null;
       });
-      this.probe?.tick(dt);
+      this.probe?.tick(this.realDt);
     }
     if (running) sc.update(dt, this.camera, this.check);
     const focus = this.player.pos;
@@ -1393,7 +1396,7 @@ export class Engine implements EngineApi {
       if (this.state.takeDirty()) this.save();
     }
     if (this.opts.perf) {
-      this.acc.perf += dt;
+      this.acc.perf += this.realDt;
       this.acc.frame++;
       if (this.acc.perf > 0.5) {
         const info = this.renderer.info;

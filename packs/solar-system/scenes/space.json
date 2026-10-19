@@ -1,0 +1,2340 @@
+{
+ "id": "space",
+ "kind": "space",
+ "title": "pack.title",
+ "environment": {
+  "background": "#02030a",
+  "pointLight": {
+   "color": "#fff1dc",
+   "intensity": 3.3,
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  "ambient": {
+   "color": "#3a4466",
+   "intensity": 0.35
+  },
+  "stars": {
+   "count": 4200,
+   "radius": 6000,
+   "size": 1.4,
+   "bright": 500,
+   "band": 5000
+  },
+  "dust": {
+   "count": 420,
+   "color": "#a8bcff",
+   "size": 0.5,
+   "box": 160,
+   "drift": [
+    0,
+    0
+   ]
+  }
+ },
+ "player": {
+  "controller": "spacecraft",
+  "avatar": "ship",
+  "speed": 45,
+  "boost": 150,
+  "camera": {
+   "dist": 16,
+   "min": 8,
+   "max": 140,
+   "minPitch": -1.3,
+   "pitch": 0.18
+  },
+  "bounds": {
+   "center": [
+    0,
+    0
+   ],
+   "radius": 1500
+  }
+ },
+ "spawns": {
+  "start": {
+   "near": {
+    "entity": "earth",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 16,
+    "pitch": 0.18
+   }
+  },
+  "near-sun": {
+   "near": {
+    "entity": "sun",
+    "dir": [
+     1,
+     0.2,
+     0.4
+    ]
+   },
+   "camera": {
+    "dist": 26,
+    "pitch": 0.2
+   }
+  },
+  "near-mercury": {
+   "near": {
+    "entity": "mercury",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 14,
+    "pitch": 0.2
+   }
+  },
+  "near-venus": {
+   "near": {
+    "entity": "venus",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 14,
+    "pitch": 0.2
+   }
+  },
+  "near-earth": {
+   "near": {
+    "entity": "earth",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 14,
+    "pitch": 0.2
+   }
+  },
+  "near-moon": {
+   "near": {
+    "entity": "moon",
+    "side": "sun",
+    "dir": [
+     0.3,
+     0.25,
+     1
+    ]
+   },
+   "camera": {
+    "dist": 14,
+    "pitch": 0.2
+   }
+  },
+  "near-mars": {
+   "near": {
+    "entity": "mars",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 14,
+    "pitch": 0.2
+   }
+  },
+  "near-jupiter": {
+   "near": {
+    "entity": "jupiter",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 30.8,
+    "pitch": 0.2
+   }
+  },
+  "near-saturn": {
+   "near": {
+    "entity": "saturn",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 26.4,
+    "pitch": 0.2
+   }
+  },
+  "near-uranus": {
+   "near": {
+    "entity": "uranus",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 15.4,
+    "pitch": 0.2
+   }
+  },
+  "near-neptune": {
+   "near": {
+    "entity": "neptune",
+    "side": "sun"
+   },
+   "camera": {
+    "dist": 14.96,
+    "pitch": 0.2
+   }
+  }
+ },
+ "defaultSpawn": "start",
+ "intro": {
+  "center": [
+   0,
+   0,
+   0
+  ],
+  "radius": 420,
+  "height": 150,
+  "speed": 0.03,
+  "phase": 0.97
+ },
+ "entities": [
+  {
+   "id": "sun",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 30,
+     "style": "sun",
+     "star": true,
+     "glow": [
+      [
+       "#ffcf6b",
+       150,
+       0.85
+      ],
+      [
+       "#ff8a2a",
+       340,
+       0.35
+      ]
+     ],
+     "segments": 48
+    }
+   },
+   "label": {
+    "text": "body.sun",
+    "style": "body",
+    "dot": "#ffb347",
+    "max": 4000,
+    "check": {
+     "stamp": "sun"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 45,
+    "push": 2.2,
+    "warn": "space.sunHot"
+   },
+   "standoff": 69,
+   "carry": 3,
+   "poi": "poi.sun",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 124.2,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.observe",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.sun",
+      "sub": "orbit.sunTeaser",
+      "swatch": "#ffb347"
+     },
+     "do": [
+      {
+       "do": "control.if",
+       "when": {
+        "stamp": "sun"
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "sun-facts-done"
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "sun-facts"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 89.7,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-sun"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-sun"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-sun"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mercury",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 2.2,
+     "style": "mercury",
+     "textureSize": 256,
+     "spin": 0.2
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 88,
+    "period": 80,
+    "phase": 0.5
+   },
+   "label": {
+    "text": "body.mercury",
+    "style": "body",
+    "dot": "#a39c94",
+    "max": 4000,
+    "check": {
+     "stamp": "mercury"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 3.8,
+    "push": 1
+   },
+   "standoff": 12.72,
+   "carry": 3,
+   "poi": "poi.mercury",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 22.9,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.land",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.mercury",
+      "sub": {
+       "key": "orbit.weight",
+       "params": {
+        "w": {
+         "literal": 23
+        }
+       }
+      },
+      "swatch": "#a39c94"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-mercury",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.mercury"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 16.54,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-mercury"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-mercury"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-mercury"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-mercury",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 88,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "venus",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 3.6,
+     "style": "venus",
+     "textureSize": 256,
+     "spin": -0.05
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 128,
+    "period": 120,
+    "phase": 2.1
+   },
+   "label": {
+    "text": "body.venus",
+    "style": "body",
+    "dot": "#e3c08a",
+    "max": 4000,
+    "check": {
+     "stamp": "venus"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 5.2,
+    "push": 1
+   },
+   "standoff": 16.36,
+   "carry": 3,
+   "poi": "poi.venus",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 29.45,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.land",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.venus",
+      "sub": {
+       "key": "orbit.weight",
+       "params": {
+        "w": {
+         "literal": 55
+        }
+       }
+      },
+      "swatch": "#e3c08a"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-venus",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.venus"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 21.27,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-venus"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-venus"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-venus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-venus",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 128,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "earth",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 3.8,
+     "style": "earth",
+     "textureSize": 384,
+     "spin": 0.5,
+     "clouds": true,
+     "atmosphere": {
+      "color": "#5ea8ff",
+      "scale": 3.1,
+      "opacity": 0.35
+     }
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 172,
+    "period": 165,
+    "phase": 4
+   },
+   "label": {
+    "text": "body.earth",
+    "style": "body",
+    "dot": "#3f7fd0",
+    "max": 4000,
+    "check": {
+     "stamp": "earth"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 5.4,
+    "push": 1
+   },
+   "standoff": 16.88,
+   "carry": 3,
+   "poi": "poi.earth",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 30.38,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.land",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.earth",
+      "sub": {
+       "key": "orbit.weight",
+       "params": {
+        "w": {
+         "literal": 60
+        }
+       }
+      },
+      "swatch": "#3f7fd0"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-earth",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.earth"
+         }
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-earth",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 172,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "moon",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 1.1,
+     "style": "moon",
+     "textureSize": 256,
+     "spin": 0
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": "earth",
+    "radius": 34,
+    "period": 40,
+    "phase": 0,
+    "amp": 1.2,
+    "lookAt": "motion"
+   },
+   "label": {
+    "text": "body.moon",
+    "style": "small",
+    "dot": "#b9b6ae",
+    "max": 120,
+    "check": {
+     "stamp": "moon"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 2.7,
+    "push": 1
+   },
+   "standoff": 9.86,
+   "carry": 3,
+   "poi": "poi.moon",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 17.75,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.land",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.moon",
+      "sub": {
+       "key": "orbit.weight",
+       "params": {
+        "w": {
+         "literal": 10
+        }
+       }
+      },
+      "swatch": "#b9b6ae"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-moon",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.moon"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 12.82,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-moon"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-moon"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-moon"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mars",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 2.7,
+     "style": "mars",
+     "textureSize": 256,
+     "spin": 0.45
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 222,
+    "period": 220,
+    "phase": 5.4
+   },
+   "label": {
+    "text": "body.mars",
+    "style": "body",
+    "dot": "#c1532c",
+    "max": 4000,
+    "check": {
+     "stamp": "mars"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 4.3,
+    "push": 1
+   },
+   "standoff": 14.02,
+   "carry": 3,
+   "poi": "poi.mars",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 25.24,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.land",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.mars",
+      "sub": {
+       "key": "orbit.weight",
+       "params": {
+        "w": {
+         "literal": 23
+        }
+       }
+      },
+      "swatch": "#c1532c"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-mars",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.mars"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 18.23,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-mars"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-mars"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-mars"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-mars",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 222,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "jupiter",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 14,
+     "style": "jupiter",
+     "textureSize": 384,
+     "spin": 0.9
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 335,
+    "period": 480,
+    "phase": 1.2
+   },
+   "label": {
+    "text": "body.jupiter",
+    "style": "body",
+    "dot": "#d8a878",
+    "max": 4000,
+    "check": {
+     "stamp": "jupiter"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 15.6,
+    "push": 1
+   },
+   "standoff": 43.4,
+   "carry": 3,
+   "poi": "poi.jupiter",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 78.12,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.landGas",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.jupiter",
+      "sub": "orbit.gasTeaser",
+      "swatch": "#d8a878"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-jupiter",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.jupiter"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 56.42,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-jupiter"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-jupiter"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-jupiter"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-jupiter",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 335,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "saturn",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 12,
+     "style": "saturn",
+     "textureSize": 384,
+     "spin": 0.8,
+     "rings": {
+      "inner": 1.3,
+      "outer": 2.3,
+      "tilt": 0.47
+     }
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 450,
+    "period": 640,
+    "phase": 3
+   },
+   "label": {
+    "text": "body.saturn",
+    "style": "body",
+    "dot": "#e3cf9a",
+    "max": 4000,
+    "check": {
+     "stamp": "saturn"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 13.6,
+    "push": 1
+   },
+   "standoff": 38.2,
+   "carry": 3,
+   "poi": "poi.saturn",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 68.76,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.landGas",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.saturn",
+      "sub": "orbit.gasTeaser",
+      "swatch": "#e3cf9a"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-saturn",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.saturn"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 49.66,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-saturn"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-saturn"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-saturn"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-saturn",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 450,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "uranus",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 7,
+     "style": "uranus",
+     "textureSize": 256,
+     "spin": 0.5,
+     "tilt": 1.71
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 550,
+    "period": 820,
+    "phase": 4.6
+   },
+   "label": {
+    "text": "body.uranus",
+    "style": "body",
+    "dot": "#9fdde3",
+    "max": 4000,
+    "check": {
+     "stamp": "uranus"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 8.6,
+    "push": 1
+   },
+   "standoff": 25.2,
+   "carry": 3,
+   "poi": "poi.uranus",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 45.36,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.landGas",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.uranus",
+      "sub": "orbit.gasTeaser",
+      "swatch": "#9fdde3"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-uranus",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.uranus"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 32.76,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-uranus"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-uranus"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-uranus"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-uranus",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 550,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "neptune",
+   "kind": "body",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "body",
+    "params": {
+     "radius": 6.8,
+     "style": "neptune",
+     "textureSize": 256,
+     "spin": 0.55
+    }
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     0,
+     0
+    ],
+    "radius": 640,
+    "period": 1000,
+    "phase": 0.2
+   },
+   "label": {
+    "text": "body.neptune",
+    "style": "body",
+    "dot": "#3b62d6",
+    "max": 4000,
+    "check": {
+     "stamp": "neptune"
+    }
+   },
+   "solid": {
+    "type": "sphere",
+    "r": 8.4,
+    "push": 1
+   },
+   "standoff": 24.68,
+   "carry": 3,
+   "poi": "poi.neptune",
+   "triggers": [
+    {
+     "on": "interact",
+     "radius": 44.42,
+     "style": "card",
+     "when": {
+      "autopilot": false
+     },
+     "label": "orbit.landGas",
+     "card": {
+      "kicker": "orbit.of",
+      "title": "body.neptune",
+      "sub": "orbit.gasTeaser",
+      "swatch": "#3b62d6"
+     },
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-neptune",
+       "spawn": "lander",
+       "transition": "fade",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.neptune"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 32.08,
+     "when": {
+      "all": [
+       {
+        "autopilot": false
+       },
+       {
+        "not": {
+         "flag": "radio-neptune"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "set.flag",
+       "flag": "radio-neptune"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "radio-neptune"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "orbit-neptune",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "orbit-line",
+    "params": {
+     "radius": 640,
+     "color": "#4a5f96",
+     "opacity": 0.35
+    }
+   }
+  },
+  {
+   "id": "belt",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "belt",
+    "params": {
+     "count": 700,
+     "rMin": 262,
+     "width": 36,
+     "seed": 71,
+     "color": "#8d8172"
+    }
+   },
+   "motion": {
+    "type": "spin",
+    "axis": "y",
+    "speed": 0.004
+   }
+  },
+  {
+   "id": "ast-0",
+   "kind": "pickup",
+   "at": [
+    265.58,
+    1,
+    82.15
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "golden-asteroid"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     1,
+     0
+    ],
+    "radius": 278,
+    "period": 1570.8,
+    "phase": 0.3,
+    "direction": -1
+   },
+   "label": {
+    "text": "ast.name",
+    "style": "gold",
+    "max": 160,
+    "when": {
+     "not": {
+      "counter": "ast",
+      "has": "0"
+     }
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 7,
+     "when": {
+      "not": {
+       "counter": "ast",
+       "has": "0"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "ast",
+       "value": "0"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "ast:0"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "ast.scanned",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "any": [
+         {
+          "counter": "ast",
+          "gte": 5
+         },
+         {
+          "counter": "ast",
+          "lt": 2
+         }
+        ]
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "ast-fact"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ast-1",
+   "kind": "pickup",
+   "at": [
+    5.78,
+    1,
+    277.94
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "golden-asteroid"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     1,
+     0
+    ],
+    "radius": 278,
+    "period": 1570.8,
+    "phase": 1.55,
+    "direction": -1
+   },
+   "label": {
+    "text": "ast.name",
+    "style": "gold",
+    "max": 160,
+    "when": {
+     "not": {
+      "counter": "ast",
+      "has": "1"
+     }
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 7,
+     "when": {
+      "not": {
+       "counter": "ast",
+       "has": "1"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "ast",
+       "value": "1"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "ast:1"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "ast.scanned",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "any": [
+         {
+          "counter": "ast",
+          "gte": 5
+         },
+         {
+          "counter": "ast",
+          "lt": 2
+         }
+        ]
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "ast-fact"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ast-2",
+   "kind": "pickup",
+   "at": [
+    -261.94,
+    1,
+    93.13
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "golden-asteroid"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     1,
+     0
+    ],
+    "radius": 278,
+    "period": 1570.8,
+    "phase": 2.8,
+    "direction": -1
+   },
+   "label": {
+    "text": "ast.name",
+    "style": "gold",
+    "max": 160,
+    "when": {
+     "not": {
+      "counter": "ast",
+      "has": "2"
+     }
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 7,
+     "when": {
+      "not": {
+       "counter": "ast",
+       "has": "2"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "ast",
+       "value": "2"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "ast:2"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "ast.scanned",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "any": [
+         {
+          "counter": "ast",
+          "gte": 5
+         },
+         {
+          "counter": "ast",
+          "lt": 2
+         }
+        ]
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "ast-fact"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ast-3",
+   "kind": "pickup",
+   "at": [
+    -159.8,
+    1,
+    -227.48
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "golden-asteroid"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     1,
+     0
+    ],
+    "radius": 278,
+    "period": 1570.8,
+    "phase": 4.1,
+    "direction": -1
+   },
+   "label": {
+    "text": "ast.name",
+    "style": "gold",
+    "max": 160,
+    "when": {
+     "not": {
+      "counter": "ast",
+      "has": "3"
+     }
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 7,
+     "when": {
+      "not": {
+       "counter": "ast",
+       "has": "3"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "ast",
+       "value": "3"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "ast:3"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "ast.scanned",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "any": [
+         {
+          "counter": "ast",
+          "gte": 5
+         },
+         {
+          "counter": "ast",
+          "lt": 2
+         }
+        ]
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "ast-fact"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ast-4",
+   "kind": "pickup",
+   "at": [
+    165.49,
+    1,
+    -223.38
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "golden-asteroid"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": [
+     0,
+     1,
+     0
+    ],
+    "radius": 278,
+    "period": 1570.8,
+    "phase": 5.35,
+    "direction": -1
+   },
+   "label": {
+    "text": "ast.name",
+    "style": "gold",
+    "max": 160,
+    "when": {
+     "not": {
+      "counter": "ast",
+      "has": "4"
+     }
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 7,
+     "when": {
+      "not": {
+       "counter": "ast",
+       "has": "4"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "ast",
+       "value": "4"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "ast:4"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "ast.scanned",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "any": [
+         {
+          "counter": "ast",
+          "gte": 5
+         },
+         {
+          "counter": "ast",
+          "lt": 2
+         }
+        ]
+       },
+       "then": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "ast-fact"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iss",
+   "kind": "craft",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "iss"
+   },
+   "motion": {
+    "type": "orbit",
+    "center": "earth",
+    "radius": 7.5,
+    "period": 14,
+    "amp": 2,
+    "lookAt": "motion"
+   },
+   "label": {
+    "text": "craft.iss",
+    "style": "craft",
+    "max": 70,
+    "y": 3,
+    "check": {
+     "counter": "craft",
+     "has": "iss"
+    }
+   },
+   "standoff": 4,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 5.5,
+     "when": {
+      "not": {
+       "counter": "craft",
+       "has": "iss"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "craft",
+       "value": "iss"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "craft:iss"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "craft.got",
+        "params": {
+         "n": {
+          "text": "craft.iss"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "craft-iss"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jwst",
+   "kind": "craft",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "jwst"
+   },
+   "motion": {
+    "type": "anchor",
+    "entity": "earth",
+    "radial": 48,
+    "up": 4,
+    "lookAt": [
+     0,
+     0,
+     0
+    ]
+   },
+   "label": {
+    "text": "craft.jwst",
+    "style": "craft",
+    "max": 500,
+    "y": 3,
+    "check": {
+     "counter": "craft",
+     "has": "jwst"
+    }
+   },
+   "standoff": 6,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 8,
+     "when": {
+      "not": {
+       "counter": "craft",
+       "has": "jwst"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "craft",
+       "value": "jwst"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "craft:jwst"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "craft.got",
+        "params": {
+         "n": {
+          "text": "craft.jwst"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "craft-jwst"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "voyager",
+   "kind": "craft",
+   "at": [
+    -760,
+    40,
+    -260
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "voyager"
+   },
+   "motion": {
+    "type": "bob",
+    "amp": 0,
+    "lookAt": [
+     0,
+     0,
+     0
+    ]
+   },
+   "label": {
+    "text": "craft.voyager",
+    "style": "craft",
+    "max": 500,
+    "y": 3,
+    "check": {
+     "counter": "craft",
+     "has": "voyager"
+    }
+   },
+   "standoff": 7,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 9,
+     "when": {
+      "not": {
+       "counter": "craft",
+       "has": "voyager"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "craft",
+       "value": "voyager"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "craft:voyager"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "craft.got",
+        "params": {
+         "n": {
+          "text": "craft.voyager"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "craft-voyager"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "comet",
+   "kind": "craft",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "comet"
+   },
+   "motion": {
+    "type": "ellipse",
+    "a": 380,
+    "b": 205,
+    "e": 0.84,
+    "rot": 0.7,
+    "period": 260,
+    "amp": 12,
+    "tailAwayFrom": [
+     0,
+     0,
+     0
+    ]
+   },
+   "label": {
+    "text": "craft.comet",
+    "style": "craft",
+    "max": 900,
+    "y": 5,
+    "check": {
+     "counter": "craft",
+     "has": "comet"
+    }
+   },
+   "standoff": 8,
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 11,
+     "when": {
+      "not": {
+       "counter": "craft",
+       "has": "comet"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "craft",
+       "value": "comet"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "craft:comet"
+      },
+      {
+       "do": "show.toast",
+       "text": {
+        "key": "craft.got",
+        "params": {
+         "n": {
+          "text": "craft.comet"
+         }
+        }
+       },
+       "kind": "gold",
+       "ms": 3000
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "craft-comet"
+      }
+     ]
+    },
+    {
+     "on": "enter",
+     "radius": 260,
+     "when": {
+      "not": {
+       "counter": "craft",
+       "has": "comet"
+      }
+     },
+     "do": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "comet-alert"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "hud": {
+  "hints": {
+   "default": {
+    "touch": "hint.spaceT",
+    "desk": "hint.spaceD"
+   }
+  },
+  "travelBar": [
+   {
+    "entity": "sun",
+    "check": {
+     "stamp": "sun"
+    }
+   },
+   {
+    "entity": "mercury",
+    "check": {
+     "stamp": "mercury"
+    }
+   },
+   {
+    "entity": "venus",
+    "check": {
+     "stamp": "venus"
+    }
+   },
+   {
+    "entity": "earth",
+    "check": {
+     "stamp": "earth"
+    }
+   },
+   {
+    "entity": "moon",
+    "check": {
+     "stamp": "moon"
+    }
+   },
+   {
+    "entity": "mars",
+    "check": {
+     "stamp": "mars"
+    }
+   },
+   {
+    "entity": "jupiter",
+    "check": {
+     "stamp": "jupiter"
+    }
+   },
+   {
+    "entity": "saturn",
+    "check": {
+     "stamp": "saturn"
+    }
+   },
+   {
+    "entity": "uranus",
+    "check": {
+     "stamp": "uranus"
+    }
+   },
+   {
+    "entity": "neptune",
+    "check": {
+     "stamp": "neptune"
+    }
+   }
+  ],
+  "buttons": [
+   {
+    "id": "galaxy",
+    "label": "space.galaxyBtn",
+    "icon": "galaxy",
+    "do": [
+     {
+      "do": "go.scene",
+      "scene": "galaxy",
+      "transition": "zoom-out"
+     }
+    ]
+   },
+   {
+    "id": "boost",
+    "label": "space.boost",
+    "icon": "bolt",
+    "hold": "boost"
+   }
+  ],
+  "quest": true
+ }
+}

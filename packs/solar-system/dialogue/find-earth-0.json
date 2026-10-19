@@ -1,0 +1,18 @@
+{
+ "id": "find-earth-0",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.earth.0"
+  }
+ ],
+ "ttl": 30
+}

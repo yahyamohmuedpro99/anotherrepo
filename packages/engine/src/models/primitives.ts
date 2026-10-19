@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { ringGeometry } from './space.js';
 import type { CompositeModel, ModelRef, Part, Scatter } from '@rihla/pack-schema';
 import { TAU, rng } from '../math/noise.js';
 import { haloTexture } from '../world/textures.js';
@@ -40,7 +41,8 @@ export function partGeometry(p: Part): THREE.BufferGeometry {
       g = new THREE.CircleGeometry(num(a[0], 1), num(a[1], 24));
       break;
     case 'ring':
-      g = new THREE.RingGeometry(num(a[0], 0.5), num(a[1], 1), num(a[2], 32));
+      // radial UVs (u = inner→outer) so banded textures such as planetary rings map correctly
+      g = ringGeometry(num(a[0], 0.5), num(a[1], 1), num(a[2], 32));
       break;
     case 'icosahedron':
       g = new THREE.IcosahedronGeometry(num(a[0], 1), num(a[1], 0));

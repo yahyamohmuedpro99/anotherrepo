@@ -1,0 +1,903 @@
+{
+ "id": "world-neptune",
+ "kind": "deck",
+ "title": "body.neptune",
+ "environment": {
+  "sky": {
+   "style": "simple-gradient",
+   "day": {
+    "top": "#13307e",
+    "hor": "#5f86de",
+    "bot": "#2c4fae",
+    "fog": "#3e64c8",
+    "sunColor": "#ffffff",
+    "sunIntensity": 1.2,
+    "hemiSky": "#a9c0ff",
+    "hemiGround": "#1c2c6a",
+    "hemiIntensity": 1,
+    "exposure": 1.1
+   },
+   "sunDisk": 0.03,
+   "sunDiskColor": "#ffffff"
+  },
+  "sunDir": [
+   -0.5,
+   0.5,
+   0.3
+  ],
+  "fog": {
+   "near": 40,
+   "far": 600
+  },
+  "shadows": {
+   "extent": 60,
+   "far": 500,
+   "distance": 200
+  },
+  "winds": {
+   "count": 260,
+   "color": "#dfe8ff",
+   "speed": 90
+  },
+  "skyObjects": [
+   {
+    "model": {
+     "gen": "body",
+     "params": {
+      "radius": 70,
+      "style": "triton",
+      "fog": false,
+      "textureSize": 256,
+      "segments": 40
+     }
+    },
+    "dir": [
+     -0.55,
+     0.3,
+     -0.78
+    ],
+    "distance": 1600,
+    "spin": 0.01
+   }
+  ]
+ },
+ "terrain": {
+  "type": "deck",
+  "bands": [
+   "#3f66d8",
+   "#2f50b8",
+   "#5a80e6",
+   "#2443a0",
+   "#4a70dc"
+  ],
+  "seed": 29,
+  "scroll": 0.02,
+  "puffs": "#5f86de"
+ },
+ "player": {
+  "controller": "jetpack",
+  "avatar": "astronaut",
+  "walk": 10,
+  "run": 20,
+  "eye": 1.6,
+  "camera": {
+   "dist": 11,
+   "min": 4,
+   "max": 40,
+   "minPitch": 0.02,
+   "pitch": 0.3
+  },
+  "bounds": {
+   "center": [
+    0,
+    0
+   ],
+   "radius": 500,
+   "minY": 1.2,
+   "maxY": 60,
+   "lowWarn": "surf.tooDeep"
+  },
+  "tapToWalk": false
+ },
+ "spawns": {
+  "lander": {
+   "at": [
+    2.5,
+    6,
+    1.5
+   ],
+   "yaw": 2.356,
+   "camera": {
+    "dist": 11,
+    "pitch": 0.3,
+    "yaw": 2.356
+   }
+  }
+ },
+ "defaultSpawn": "lander",
+ "enter": {
+  "descent": {
+   "entity": "neptune.lander",
+   "height": 55,
+   "seconds": 2.6
+  },
+  "once": [
+   {
+    "do": "control.if",
+    "when": {
+     "not": {
+      "flag": "radio-neptune"
+     }
+    },
+    "then": [
+     {
+      "do": "set.flag",
+      "flag": "radio-neptune"
+     },
+     {
+      "do": "control.delay",
+      "seconds": 2.9,
+      "then": [
+       {
+        "do": "show.dialogue",
+        "dialogue": "radio-neptune"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "materials": {
+  "white": {
+   "color": "#e8eaee",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "grey": {
+   "color": "#b9bcc1",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "dark": {
+   "color": "#3b3d42",
+   "roughness": 0.7
+  },
+  "foil": {
+   "color": "#d4a63c",
+   "roughness": 0.35,
+   "metalness": 0.8
+  },
+  "goldp": {
+   "color": "#e2b04a",
+   "roughness": 0.3,
+   "metalness": 0.8
+  },
+  "roverw": {
+   "color": "#e8e6e0",
+   "roughness": 0.6,
+   "metalness": 0.2
+  },
+  "track": {
+   "color": "#6e3420",
+   "roughness": 1
+  },
+  "venm": {
+   "color": "#9a9488",
+   "roughness": 0.5,
+   "metalness": 0.6
+  },
+  "vend": {
+   "color": "#4a4640",
+   "roughness": 0.8
+  },
+  "basalt": {
+   "color": "#3a2a20",
+   "roughness": 1,
+   "flatShading": true
+  },
+  "wood": {
+   "color": "#7a4f2c",
+   "roughness": 0.9
+  },
+  "sail": {
+   "color": "#f4eee2",
+   "roughness": 0.9,
+   "doubleSide": true
+  },
+  "lava": {
+   "color": "#ff6a1a",
+   "emissive": "#ff4a00",
+   "emissiveIntensity": 2,
+   "roughness": 0.6,
+   "pulse": {
+    "min": 1,
+    "max": 2.2,
+    "speed": 2.2
+   }
+  },
+  "ice": {
+   "color": "#dff4ff",
+   "emissive": "#4a7aa8",
+   "emissiveIntensity": 0.35,
+   "roughness": 0.15,
+   "metalness": 0.2
+  },
+  "ice-chunk": {
+   "color": "#eef6ff",
+   "roughness": 0.3,
+   "metalness": 0.1,
+   "flatShading": true
+  },
+  "palm-trunk": {
+   "color": "#7a5c3e",
+   "roughness": 1,
+   "flatShading": true
+  },
+  "palm-crown": {
+   "color": "#4c7a33",
+   "roughness": 0.9,
+   "flatShading": true,
+   "doubleSide": true
+  }
+ },
+ "entities": [
+  {
+   "id": "neptune.lander",
+   "kind": "prop",
+   "at": [
+    -5,
+    6,
+    -4
+   ],
+   "ground": false,
+   "scale": 0.9,
+   "model": {
+    "gen": "ship",
+    "params": {
+     "name": "engine.shipName",
+     "upright": true
+    }
+   },
+   "motion": {
+    "type": "bob",
+    "amp": 0.3,
+    "speed": 1.2
+   }
+  },
+  {
+   "id": "neptune.find-0",
+   "kind": "pickup",
+   "at": [
+    -29.18,
+    8.26,
+    -19.59
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "0"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "0"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "0"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "neptune"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-0-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-0-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-neptune-0"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune.find-1",
+   "kind": "pickup",
+   "at": [
+    25.85,
+    11.5,
+    -13.34
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "1"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "1"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "1"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "neptune"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-1-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-1-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-neptune-1"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune.find-2",
+   "kind": "pickup",
+   "at": [
+    -4.52,
+    13.08,
+    35.32
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "2"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "2"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "2"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "neptune"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-2-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-neptune-2-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-neptune-2"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune.place-0",
+   "kind": "pickup",
+   "at": [
+    60,
+    8,
+    60
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": true
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "lm",
+    "has": "neptune:0"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 6,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "lm",
+       "has": "neptune:0"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "lm",
+       "value": "neptune:0"
+      },
+      {
+       "do": "add.counter",
+       "counter": "lm-neptune",
+       "value": "0"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "lm:neptune:0"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "place-neptune-0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune.place-label-0",
+   "kind": "label",
+   "at": [
+    60,
+    8,
+    60
+   ],
+   "ground": false,
+   "label": {
+    "text": "lm.neptune.0",
+    "style": "gold",
+    "max": 420,
+    "y": 2.6,
+    "check": {
+     "counter": "lm",
+     "has": "neptune:0"
+    }
+   },
+   "tap": [
+    {
+     "do": "travel.to",
+     "target": "neptune.place-0",
+     "mode": "walk"
+    }
+   ]
+  },
+  {
+   "id": "neptune.piece-darkspot",
+   "kind": "prop",
+   "at": [
+    60,
+    0.5,
+    60
+   ],
+   "ground": false,
+   "model": {
+    "gen": "part",
+    "part": {
+     "shape": "circle",
+     "args": [
+      48,
+      48
+     ],
+     "geoRot": [
+      -1.5707963267948966,
+      0,
+      0
+     ],
+     "material": {
+      "type": "basic",
+      "map": {
+       "gen": "radial-spot"
+      },
+      "transparent": true,
+      "depthWrite": false
+     },
+     "shadow": false
+    }
+   },
+   "motion": {
+    "type": "spin",
+    "axis": "y",
+    "speed": -0.3
+   }
+  },
+  {
+   "id": "neptune.place-1",
+   "kind": "pickup",
+   "at": [
+    -55,
+    12,
+    -50
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": true
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "lm",
+    "has": "neptune:1"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 6,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "lm",
+       "has": "neptune:1"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "lm",
+       "value": "neptune:1"
+      },
+      {
+       "do": "add.counter",
+       "counter": "lm-neptune",
+       "value": "1"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "lm:neptune:1"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "place-neptune-1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune.place-label-1",
+   "kind": "label",
+   "at": [
+    -55,
+    12,
+    -50
+   ],
+   "ground": false,
+   "label": {
+    "text": "lm.neptune.1",
+    "style": "gold",
+    "max": 420,
+    "y": 2.6,
+    "check": {
+     "counter": "lm",
+     "has": "neptune:1"
+    }
+   },
+   "tap": [
+    {
+     "do": "travel.to",
+     "target": "neptune.place-1",
+     "mode": "walk"
+    }
+   ]
+  }
+ ],
+ "hud": {
+  "hints": {
+   "default": {
+    "touch": "hint.gasT",
+    "desk": "hint.gasD"
+   }
+  },
+  "infoCard": {
+   "kicker": "surf.cloudsOf",
+   "title": "body.neptune",
+   "rows": [
+    {
+     "label": "surf.gravity",
+     "value": {
+      "key": "surf.gval",
+      "params": {
+       "g": {
+        "literal": 1.14
+       }
+      }
+     }
+    },
+    {
+     "label": "surf.temp",
+     "value": "stat.neptune.temp"
+    },
+    {
+     "label": "surf.day",
+     "value": "stat.neptune.day"
+    },
+    {
+     "label": "surf.year",
+     "value": "stat.neptune.year"
+    }
+   ],
+   "note": {
+    "key": "orbit.weight",
+    "params": {
+     "w": {
+      "literal": 68
+     }
+    }
+   },
+   "progress": [
+    {
+     "counter": "finds",
+     "of": 3,
+     "label": "surf.discoveries",
+     "style": "dots"
+    },
+    {
+     "counter": "lm-neptune",
+     "of": 2,
+     "label": "surf.places",
+     "style": "diamonds"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "surf.guide",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "not": {
+       "all": [
+        {
+         "counter": "finds",
+         "gte": 3
+        },
+        {
+         "counter": "lm-neptune",
+         "gte": 2
+        }
+       ]
+      }
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": {
+        "nearest": "pickup"
+       },
+       "mode": "walk"
+      }
+     ]
+    },
+    {
+     "label": "surf.nextStop",
+     "icon": "bolt",
+     "style": "teal",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "all": [
+          {
+           "stamp": "earth"
+          },
+          {
+           "stamp": "moon"
+          },
+          {
+           "stamp": "mars"
+          },
+          {
+           "stamp": "venus"
+          },
+          {
+           "stamp": "mercury"
+          },
+          {
+           "stamp": "sun"
+          },
+          {
+           "stamp": "jupiter"
+          },
+          {
+           "stamp": "saturn"
+          },
+          {
+           "stamp": "uranus"
+          },
+          {
+           "stamp": "neptune"
+          },
+          {
+           "stamp": "galaxy"
+          }
+         ]
+        }
+       },
+       {
+        "not": {
+         "all": [
+          {
+           "stamp": "earth"
+          },
+          {
+           "stamp": "moon"
+          },
+          {
+           "stamp": "mars"
+          },
+          {
+           "stamp": "venus"
+          },
+          {
+           "stamp": "mercury"
+          },
+          {
+           "stamp": "sun"
+          },
+          {
+           "stamp": "jupiter"
+          },
+          {
+           "stamp": "saturn"
+          },
+          {
+           "stamp": "uranus"
+          },
+          {
+           "not": {
+            "stamp": "neptune"
+           }
+          }
+         ]
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "quest.go",
+       "quest": "mission",
+       "button": 0
+      }
+     ]
+    }
+   ]
+  },
+  "buttons": [
+   {
+    "id": "down",
+    "label": "surf.down",
+    "icon": "down",
+    "hold": "down"
+   },
+   {
+    "id": "up",
+    "label": "surf.up",
+    "icon": "up",
+    "hold": "up"
+   },
+   {
+    "id": "takeoff",
+    "label": "surf.takeoff",
+    "icon": "rocket",
+    "do": [
+     {
+      "do": "go.scene",
+      "scene": "space",
+      "spawn": "near-neptune",
+      "transition": "fade"
+     }
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "id": "place-earth-0",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.earth.0"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.earth.0.fact"
+  }
+ ],
+ "ttl": 30
+}

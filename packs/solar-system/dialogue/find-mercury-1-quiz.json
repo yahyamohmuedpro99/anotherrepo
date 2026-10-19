@@ -1,0 +1,91 @@
+{
+ "id": "find-mercury-1-quiz",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.mercury.1"
+  },
+  {
+   "speaker": "nour",
+   "text": "r.quizReady"
+  }
+ ],
+ "endLabel": "quiz.btn",
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.mercury",
+   "onCorrect": [
+    {
+     "do": "give.stamp",
+     "stamp": "mercury"
+    },
+    {
+     "do": "add.counter",
+     "counter": "stamps",
+     "value": "mercury"
+    },
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "stamp": "earth"
+       },
+       {
+        "stamp": "moon"
+       },
+       {
+        "stamp": "mars"
+       },
+       {
+        "stamp": "venus"
+       },
+       {
+        "stamp": "mercury"
+       },
+       {
+        "stamp": "sun"
+       },
+       {
+        "stamp": "jupiter"
+       },
+       {
+        "stamp": "saturn"
+       },
+       {
+        "stamp": "uranus"
+       },
+       {
+        "stamp": "neptune"
+       },
+       {
+        "stamp": "galaxy"
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-all"
+      }
+     ],
+     "else": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-world-mercury"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

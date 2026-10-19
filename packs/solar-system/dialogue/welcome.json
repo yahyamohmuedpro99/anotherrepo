@@ -1,0 +1,17 @@
+{
+ "id": "welcome",
+ "lines": [
+  {
+   "speaker": "nour",
+   "text": {
+    "key": "r.welcome",
+    "params": {
+     "n": {
+      "player": "name"
+     }
+    }
+   }
+  }
+ ],
+ "ttl": 25
+}

@@ -1,0 +1,13 @@
+{
+ "id": "stop-mars",
+ "who": "body.mars",
+ "glyph": "◉",
+ "title": "body.mars",
+ "body": "card.mars",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

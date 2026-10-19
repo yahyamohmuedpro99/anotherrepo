@@ -1,0 +1,29 @@
+{
+ "id": "item.mars",
+ "type": "mcq",
+ "prompt": "quiz.mars.q",
+ "options": [
+  {
+   "id": "item.mars.o0",
+   "text": "quiz.mars.o0",
+   "correct": true
+  },
+  {
+   "id": "item.mars.o1",
+   "text": "quiz.mars.o1"
+  },
+  {
+   "id": "item.mars.o2",
+   "text": "quiz.mars.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

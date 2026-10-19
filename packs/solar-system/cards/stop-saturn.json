@@ -1,0 +1,13 @@
+{
+ "id": "stop-saturn",
+ "who": "body.saturn",
+ "glyph": "◉",
+ "title": "body.saturn",
+ "body": "card.saturn",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

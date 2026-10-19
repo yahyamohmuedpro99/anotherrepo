@@ -1,0 +1,18 @@
+{
+ "id": "place-jupiter-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.jupiter.1"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.jupiter.1.fact"
+  }
+ ],
+ "ttl": 30
+}

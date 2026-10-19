@@ -1,0 +1,894 @@
+{
+ "id": "world-uranus",
+ "kind": "deck",
+ "title": "body.uranus",
+ "environment": {
+  "sky": {
+   "style": "simple-gradient",
+   "day": {
+    "top": "#4d9bb0",
+    "hor": "#c8f1f2",
+    "bot": "#9fd8dd",
+    "fog": "#b5e5e8",
+    "sunColor": "#ffffff",
+    "sunIntensity": 1.3,
+    "hemiSky": "#d9fbff",
+    "hemiGround": "#4d8a92",
+    "hemiIntensity": 1,
+    "exposure": 1.1
+   },
+   "sunDisk": 0.05,
+   "sunDiskColor": "#ffffff"
+  },
+  "sunDir": [
+   -0.5,
+   0.5,
+   0.3
+  ],
+  "fog": {
+   "near": 40,
+   "far": 600
+  },
+  "shadows": {
+   "extent": 60,
+   "far": 500,
+   "distance": 200
+  },
+  "skyObjects": [
+   {
+    "model": {
+     "gen": "part",
+     "part": {
+      "shape": "ring",
+      "args": [
+       700,
+       760,
+       96
+      ],
+      "material": {
+       "type": "basic",
+       "color": "#dff7ff",
+       "transparent": true,
+       "opacity": 0.35,
+       "doubleSide": true,
+       "depthWrite": false,
+       "fog": false
+      }
+     }
+    },
+    "dir": [
+     0,
+     0,
+     -1
+    ],
+    "distance": 1500,
+    "offset": [
+     300,
+     400,
+     -1500
+    ],
+    "rot": [
+     0.1,
+     0.4,
+     0
+    ]
+   }
+  ]
+ },
+ "terrain": {
+  "type": "deck",
+  "bands": [
+   "#bfeef0",
+   "#a6e1e6",
+   "#c9f2f2",
+   "#9ad7dd",
+   "#b5e9ec"
+  ],
+  "seed": 23,
+  "scroll": 0.004,
+  "puffs": "#c8f1f2"
+ },
+ "player": {
+  "controller": "jetpack",
+  "avatar": "astronaut",
+  "walk": 10,
+  "run": 20,
+  "eye": 1.6,
+  "camera": {
+   "dist": 11,
+   "min": 4,
+   "max": 40,
+   "minPitch": 0.02,
+   "pitch": 0.3
+  },
+  "bounds": {
+   "center": [
+    0,
+    0
+   ],
+   "radius": 500,
+   "minY": 1.2,
+   "maxY": 60,
+   "lowWarn": "surf.tooDeep"
+  },
+  "tapToWalk": false
+ },
+ "spawns": {
+  "lander": {
+   "at": [
+    2.5,
+    6,
+    1.5
+   ],
+   "yaw": 2.356,
+   "camera": {
+    "dist": 11,
+    "pitch": 0.3,
+    "yaw": 2.356
+   }
+  }
+ },
+ "defaultSpawn": "lander",
+ "enter": {
+  "descent": {
+   "entity": "uranus.lander",
+   "height": 55,
+   "seconds": 2.6
+  },
+  "once": [
+   {
+    "do": "control.if",
+    "when": {
+     "not": {
+      "flag": "radio-uranus"
+     }
+    },
+    "then": [
+     {
+      "do": "set.flag",
+      "flag": "radio-uranus"
+     },
+     {
+      "do": "control.delay",
+      "seconds": 2.9,
+      "then": [
+       {
+        "do": "show.dialogue",
+        "dialogue": "radio-uranus"
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "materials": {
+  "white": {
+   "color": "#e8eaee",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "grey": {
+   "color": "#b9bcc1",
+   "roughness": 0.6,
+   "metalness": 0.3
+  },
+  "dark": {
+   "color": "#3b3d42",
+   "roughness": 0.7
+  },
+  "foil": {
+   "color": "#d4a63c",
+   "roughness": 0.35,
+   "metalness": 0.8
+  },
+  "goldp": {
+   "color": "#e2b04a",
+   "roughness": 0.3,
+   "metalness": 0.8
+  },
+  "roverw": {
+   "color": "#e8e6e0",
+   "roughness": 0.6,
+   "metalness": 0.2
+  },
+  "track": {
+   "color": "#6e3420",
+   "roughness": 1
+  },
+  "venm": {
+   "color": "#9a9488",
+   "roughness": 0.5,
+   "metalness": 0.6
+  },
+  "vend": {
+   "color": "#4a4640",
+   "roughness": 0.8
+  },
+  "basalt": {
+   "color": "#3a2a20",
+   "roughness": 1,
+   "flatShading": true
+  },
+  "wood": {
+   "color": "#7a4f2c",
+   "roughness": 0.9
+  },
+  "sail": {
+   "color": "#f4eee2",
+   "roughness": 0.9,
+   "doubleSide": true
+  },
+  "lava": {
+   "color": "#ff6a1a",
+   "emissive": "#ff4a00",
+   "emissiveIntensity": 2,
+   "roughness": 0.6,
+   "pulse": {
+    "min": 1,
+    "max": 2.2,
+    "speed": 2.2
+   }
+  },
+  "ice": {
+   "color": "#dff4ff",
+   "emissive": "#4a7aa8",
+   "emissiveIntensity": 0.35,
+   "roughness": 0.15,
+   "metalness": 0.2
+  },
+  "ice-chunk": {
+   "color": "#eef6ff",
+   "roughness": 0.3,
+   "metalness": 0.1,
+   "flatShading": true
+  },
+  "palm-trunk": {
+   "color": "#7a5c3e",
+   "roughness": 1,
+   "flatShading": true
+  },
+  "palm-crown": {
+   "color": "#4c7a33",
+   "roughness": 0.9,
+   "flatShading": true,
+   "doubleSide": true
+  }
+ },
+ "entities": [
+  {
+   "id": "uranus.lander",
+   "kind": "prop",
+   "at": [
+    -5,
+    6,
+    -4
+   ],
+   "ground": false,
+   "scale": 0.9,
+   "model": {
+    "gen": "ship",
+    "params": {
+     "name": "engine.shipName",
+     "upright": true
+    }
+   },
+   "motion": {
+    "type": "bob",
+    "amp": 0.3,
+    "speed": 1.2
+   }
+  },
+  {
+   "id": "uranus.find-0",
+   "kind": "pickup",
+   "at": [
+    6.61,
+    14.34,
+    -23.54
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "0"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "0"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "0"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "uranus"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-0-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-0-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-uranus-0"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus.find-1",
+   "kind": "pickup",
+   "at": [
+    42.94,
+    15.73,
+    15.83
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "1"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "1"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "1"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "uranus"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-1-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-1-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-uranus-1"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus.find-2",
+   "kind": "pickup",
+   "at": [
+    -21.44,
+    12.86,
+    16.65
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": false
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "finds",
+    "has": "2"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 4,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "finds",
+       "has": "2"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "finds",
+       "value": "2"
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "counter": "finds",
+        "gte": 3
+       },
+       "then": [
+        {
+         "do": "control.if",
+         "when": {
+          "stamp": "uranus"
+         },
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-2-had"
+          }
+         ],
+         "else": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "find-uranus-2-quiz"
+          }
+         ]
+        }
+       ],
+       "else": [
+        {
+         "do": "show.dialogue",
+         "dialogue": "find-uranus-2"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus.place-0",
+   "kind": "pickup",
+   "at": [
+    55,
+    12,
+    -35
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": true
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "lm",
+    "has": "uranus:0"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 6,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "lm",
+       "has": "uranus:0"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "lm",
+       "value": "uranus:0"
+      },
+      {
+       "do": "add.counter",
+       "counter": "lm-uranus",
+       "value": "0"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "lm:uranus:0"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "place-uranus-0"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus.place-label-0",
+   "kind": "label",
+   "at": [
+    55,
+    12,
+    -35
+   ],
+   "ground": false,
+   "label": {
+    "text": "lm.uranus.0",
+    "style": "gold",
+    "max": 420,
+    "y": 2.6,
+    "check": {
+     "counter": "lm",
+     "has": "uranus:0"
+    }
+   },
+   "tap": [
+    {
+     "do": "travel.to",
+     "target": "uranus.place-0",
+     "mode": "walk"
+    }
+   ]
+  },
+  {
+   "id": "uranus.place-1",
+   "kind": "pickup",
+   "at": [
+    -60,
+    14,
+    45
+   ],
+   "ground": false,
+   "model": {
+    "gen": "beacon",
+    "params": {
+     "gold": true
+    }
+   },
+   "pick": true,
+   "hideWhen": {
+    "counter": "lm",
+    "has": "uranus:1"
+   },
+   "triggers": [
+    {
+     "on": "enter",
+     "radius": 6,
+     "mode": "3d",
+     "when": {
+      "not": {
+       "counter": "lm",
+       "has": "uranus:1"
+      }
+     },
+     "do": [
+      {
+       "do": "add.counter",
+       "counter": "lm",
+       "value": "uranus:1"
+      },
+      {
+       "do": "add.counter",
+       "counter": "lm-uranus",
+       "value": "1"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "lm:uranus:1"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "place-uranus-1"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus.place-label-1",
+   "kind": "label",
+   "at": [
+    -60,
+    14,
+    45
+   ],
+   "ground": false,
+   "label": {
+    "text": "lm.uranus.1",
+    "style": "gold",
+    "max": 420,
+    "y": 2.6,
+    "check": {
+     "counter": "lm",
+     "has": "uranus:1"
+    }
+   },
+   "tap": [
+    {
+     "do": "travel.to",
+     "target": "uranus.place-1",
+     "mode": "walk"
+    }
+   ]
+  },
+  {
+   "id": "uranus.piece-voyager2",
+   "kind": "prop",
+   "at": [
+    -56,
+    16,
+    45
+   ],
+   "ground": false,
+   "model": {
+    "gen": "composite",
+    "ref": "voyager2"
+   },
+   "motion": {
+    "type": "bob",
+    "amp": 0.5,
+    "speed": 0.8
+   }
+  }
+ ],
+ "hud": {
+  "hints": {
+   "default": {
+    "touch": "hint.gasT",
+    "desk": "hint.gasD"
+   }
+  },
+  "infoCard": {
+   "kicker": "surf.cloudsOf",
+   "title": "body.uranus",
+   "rows": [
+    {
+     "label": "surf.gravity",
+     "value": {
+      "key": "surf.gval",
+      "params": {
+       "g": {
+        "literal": 0.89
+       }
+      }
+     }
+    },
+    {
+     "label": "surf.temp",
+     "value": "stat.uranus.temp"
+    },
+    {
+     "label": "surf.day",
+     "value": "stat.uranus.day"
+    },
+    {
+     "label": "surf.year",
+     "value": "stat.uranus.year"
+    }
+   ],
+   "note": {
+    "key": "orbit.weight",
+    "params": {
+     "w": {
+      "literal": 53
+     }
+    }
+   },
+   "progress": [
+    {
+     "counter": "finds",
+     "of": 3,
+     "label": "surf.discoveries",
+     "style": "dots"
+    },
+    {
+     "counter": "lm-uranus",
+     "of": 2,
+     "label": "surf.places",
+     "style": "diamonds"
+    }
+   ],
+   "buttons": [
+    {
+     "label": "surf.guide",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "not": {
+       "all": [
+        {
+         "counter": "finds",
+         "gte": 3
+        },
+        {
+         "counter": "lm-uranus",
+         "gte": 2
+        }
+       ]
+      }
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": {
+        "nearest": "pickup"
+       },
+       "mode": "walk"
+      }
+     ]
+    },
+    {
+     "label": "surf.nextStop",
+     "icon": "bolt",
+     "style": "teal",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "all": [
+          {
+           "stamp": "earth"
+          },
+          {
+           "stamp": "moon"
+          },
+          {
+           "stamp": "mars"
+          },
+          {
+           "stamp": "venus"
+          },
+          {
+           "stamp": "mercury"
+          },
+          {
+           "stamp": "sun"
+          },
+          {
+           "stamp": "jupiter"
+          },
+          {
+           "stamp": "saturn"
+          },
+          {
+           "stamp": "uranus"
+          },
+          {
+           "stamp": "neptune"
+          },
+          {
+           "stamp": "galaxy"
+          }
+         ]
+        }
+       },
+       {
+        "not": {
+         "all": [
+          {
+           "stamp": "earth"
+          },
+          {
+           "stamp": "moon"
+          },
+          {
+           "stamp": "mars"
+          },
+          {
+           "stamp": "venus"
+          },
+          {
+           "stamp": "mercury"
+          },
+          {
+           "stamp": "sun"
+          },
+          {
+           "stamp": "jupiter"
+          },
+          {
+           "stamp": "saturn"
+          },
+          {
+           "not": {
+            "stamp": "uranus"
+           }
+          }
+         ]
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "quest.go",
+       "quest": "mission",
+       "button": 0
+      }
+     ]
+    }
+   ]
+  },
+  "buttons": [
+   {
+    "id": "down",
+    "label": "surf.down",
+    "icon": "down",
+    "hold": "down"
+   },
+   {
+    "id": "up",
+    "label": "surf.up",
+    "icon": "up",
+    "hold": "up"
+   },
+   {
+    "id": "takeoff",
+    "label": "surf.takeoff",
+    "icon": "rocket",
+    "do": [
+     {
+      "do": "go.scene",
+      "scene": "space",
+      "spawn": "near-uranus",
+      "transition": "fade"
+     }
+    ]
+   }
+  ]
+ }
+}

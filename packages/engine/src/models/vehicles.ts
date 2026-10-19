@@ -162,7 +162,7 @@ export function buildBalloon(ctx: BuildCtx, colors?: string[]): Built {
 }
 
 /** The Horus spaceship (horus-voyage), with its name painted on both sides. */
-export function buildShip(ctx: BuildCtx, nameKey?: string): Built {
+export function buildShip(ctx: BuildCtx, nameKey?: string, upright?: boolean): Built {
   const g = new THREE.Group();
   const hull = ctx.materials.get({ color: '#eef0f3', roughness: 0.45, metalness: 0.25 });
   const gold = ctx.materials.get({ color: '#d9a441', roughness: 0.35, metalness: 0.7 });
@@ -245,5 +245,12 @@ export function buildShip(ctx: BuildCtx, nameKey?: string): Built {
       (flame2.material as THREE.SpriteMaterial).opacity = clamp(f * 0.7, 0, 1);
     },
   };
+  if (upright) {
+    // Parked lander: standing on its tail, slightly turned.
+    const holder = new THREE.Group();
+    g.rotation.set(-Math.PI / 2, 0, 0.5);
+    holder.add(g);
+    return { object: holder, rig, extra: { flame, flame2 } };
+  }
   return { object: g, rig, extra: { flame, flame2 } };
 }

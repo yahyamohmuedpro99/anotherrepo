@@ -1,0 +1,539 @@
+{
+ "id": "mission",
+ "title": "mission.title",
+ "kicker": "mission.kicker",
+ "icon": "rocket",
+ "mode": "ordered",
+ "steps": [
+  {
+   "id": "earth",
+   "label": "name.earth",
+   "target": "earth",
+   "done": {
+    "stamp": "earth"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-earth",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.earth"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "earth",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "moon",
+   "label": "name.moon",
+   "target": "moon",
+   "done": {
+    "stamp": "moon"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-moon",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.moon"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "moon",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mars",
+   "label": "name.mars",
+   "target": "mars",
+   "done": {
+    "stamp": "mars"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-mars",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.mars"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "mars",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "venus",
+   "label": "name.venus",
+   "target": "venus",
+   "done": {
+    "stamp": "venus"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-venus",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.venus"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "venus",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mercury",
+   "label": "name.mercury",
+   "target": "mercury",
+   "done": {
+    "stamp": "mercury"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-mercury",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.mercury"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "mercury",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sun",
+   "label": "name.sun",
+   "target": "sun",
+   "done": {
+    "stamp": "sun"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "space",
+       "spawn": "near-sun",
+       "transition": "warp"
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "sun",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "jupiter",
+   "label": "name.jupiter",
+   "target": "jupiter",
+   "done": {
+    "stamp": "jupiter"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-jupiter",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.jupiter"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "jupiter",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "saturn",
+   "label": "name.saturn",
+   "target": "saturn",
+   "done": {
+    "stamp": "saturn"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-saturn",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.saturn"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "saturn",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "uranus",
+   "label": "name.uranus",
+   "target": "uranus",
+   "done": {
+    "stamp": "uranus"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-uranus",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.uranus"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "uranus",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "neptune",
+   "label": "name.neptune",
+   "target": "neptune",
+   "done": {
+    "stamp": "neptune"
+   },
+   "buttons": [
+    {
+     "label": "mission.warpLand",
+     "icon": "bolt",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "world-neptune",
+       "spawn": "lander",
+       "transition": "warp",
+       "toast": {
+        "key": "r.landingAt",
+        "params": {
+         "n": {
+          "text": "name.neptune"
+         }
+        }
+       }
+      }
+     ]
+    },
+    {
+     "label": "mission.flyThere",
+     "icon": "compass",
+     "style": "gold",
+     "when": {
+      "scene": "space"
+     },
+     "do": [
+      {
+       "do": "travel.to",
+       "target": "neptune",
+       "mode": "auto"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy",
+   "label": "name.galaxy",
+   "done": {
+    "stamp": "galaxy"
+   },
+   "buttons": [
+    {
+     "label": "mission.openGal",
+     "icon": "galaxy",
+     "style": "teal",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "galaxy",
+       "transition": "zoom-out"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "done": {
+  "all": [
+   {
+    "stamp": "earth"
+   },
+   {
+    "stamp": "moon"
+   },
+   {
+    "stamp": "mars"
+   },
+   {
+    "stamp": "venus"
+   },
+   {
+    "stamp": "mercury"
+   },
+   {
+    "stamp": "sun"
+   },
+   {
+    "stamp": "jupiter"
+   },
+   {
+    "stamp": "saturn"
+   },
+   {
+    "stamp": "uranus"
+   },
+   {
+    "stamp": "neptune"
+   },
+   {
+    "stamp": "galaxy"
+   }
+  ]
+ },
+ "goal": {
+  "next": "mission.next",
+  "noTarget": "mission.next",
+  "done": "mission.done"
+ },
+ "progress": {
+  "counter": "stamps",
+  "of": 11,
+  "style": "dots"
+ },
+ "objectives": [
+  "obj.sun",
+  "obj.worlds",
+  "obj.types",
+  "obj.gravity",
+  "obj.galaxy"
+ ],
+ "scenes": [
+  "space"
+ ]
+}

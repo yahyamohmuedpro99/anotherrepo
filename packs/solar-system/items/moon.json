@@ -1,0 +1,29 @@
+{
+ "id": "item.moon",
+ "type": "mcq",
+ "prompt": "quiz.moon.q",
+ "options": [
+  {
+   "id": "item.moon.o0",
+   "text": "quiz.moon.o0",
+   "correct": true
+  },
+  {
+   "id": "item.moon.o1",
+   "text": "quiz.moon.o1"
+  },
+  {
+   "id": "item.moon.o2",
+   "text": "quiz.moon.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

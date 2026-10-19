@@ -1,0 +1,91 @@
+{
+ "id": "find-earth-2-quiz",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.earth.2"
+  },
+  {
+   "speaker": "nour",
+   "text": "r.quizReady"
+  }
+ ],
+ "endLabel": "quiz.btn",
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.earth",
+   "onCorrect": [
+    {
+     "do": "give.stamp",
+     "stamp": "earth"
+    },
+    {
+     "do": "add.counter",
+     "counter": "stamps",
+     "value": "earth"
+    },
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "stamp": "earth"
+       },
+       {
+        "stamp": "moon"
+       },
+       {
+        "stamp": "mars"
+       },
+       {
+        "stamp": "venus"
+       },
+       {
+        "stamp": "mercury"
+       },
+       {
+        "stamp": "sun"
+       },
+       {
+        "stamp": "jupiter"
+       },
+       {
+        "stamp": "saturn"
+       },
+       {
+        "stamp": "uranus"
+       },
+       {
+        "stamp": "neptune"
+       },
+       {
+        "stamp": "galaxy"
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-all"
+      }
+     ],
+     "else": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-world-earth"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

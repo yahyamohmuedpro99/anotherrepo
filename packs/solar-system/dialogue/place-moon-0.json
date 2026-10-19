@@ -1,0 +1,18 @@
+{
+ "id": "place-moon-0",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.moon.0"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.moon.0.fact"
+  }
+ ],
+ "ttl": 30
+}

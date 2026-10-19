@@ -1,0 +1,176 @@
+{
+ "id": "iss",
+ "parts": [
+  {
+   "shape": "box",
+   "args": [
+    3,
+    0.12,
+    0.12
+   ],
+   "material": "white"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    -1.2,
+    0,
+    -0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    -1.2,
+    0,
+    0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    -0.7,
+    0,
+    -0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    -0.7,
+    0,
+    0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    0.7,
+    0,
+    -0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    0.7,
+    0,
+    0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    1.2,
+    0,
+    -0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.42,
+    0.02,
+    1.4
+   ],
+   "at": [
+    1.2,
+    0,
+    0.8
+   ],
+   "material": "panel"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.14,
+    0.14,
+    1.2,
+    10
+   ],
+   "geoRot": [
+    1.5707963267948966,
+    0,
+    0
+   ],
+   "material": "white"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.12,
+    0.12,
+    0.8,
+    10
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    0,
+    0,
+    0.5
+   ],
+   "material": "white"
+  }
+ ],
+ "materials": {
+  "white": {
+   "color": "#e8eaee",
+   "roughness": 0.5,
+   "metalness": 0.4
+  },
+  "panel": {
+   "color": "#24356e",
+   "roughness": 0.3,
+   "metalness": 0.6,
+   "emissive": "#0a1430",
+   "emissiveIntensity": 0.5
+  }
+ },
+ "scale": 0.9
+}

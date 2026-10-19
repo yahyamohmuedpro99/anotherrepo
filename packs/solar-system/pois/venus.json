@@ -1,0 +1,20 @@
+{
+ "id": "poi.venus",
+ "scene": "world-venus",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 300,
+ "title": "body.venus",
+ "card": "stop-venus",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "spawn": {
+  "spawn": "lander"
+ },
+ "items": [
+  "item.venus"
+ ]
+}

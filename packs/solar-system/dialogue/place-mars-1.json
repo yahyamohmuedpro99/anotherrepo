@@ -1,0 +1,18 @@
+{
+ "id": "place-mars-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.mars.1"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.mars.1.fact"
+  }
+ ],
+ "ttl": 30
+}

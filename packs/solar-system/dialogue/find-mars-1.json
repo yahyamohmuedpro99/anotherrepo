@@ -1,0 +1,18 @@
+{
+ "id": "find-mars-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.mars.1"
+  }
+ ],
+ "ttl": 30
+}

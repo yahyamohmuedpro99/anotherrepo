@@ -1,0 +1,20 @@
+{
+ "id": "poi.sun",
+ "scene": "space",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 400,
+ "title": "body.sun",
+ "card": "stop-sun",
+ "objectives": [
+  "obj.sun"
+ ],
+ "spawn": {
+  "spawn": "near-sun"
+ },
+ "items": [
+  "item.sun"
+ ]
+}

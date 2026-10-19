@@ -1,0 +1,13 @@
+{
+ "id": "stop-moon",
+ "who": "body.moon",
+ "glyph": "◉",
+ "title": "body.moon",
+ "body": "card.moon",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

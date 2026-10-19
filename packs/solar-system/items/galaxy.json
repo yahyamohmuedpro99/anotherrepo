@@ -1,0 +1,29 @@
+{
+ "id": "item.galaxy",
+ "type": "mcq",
+ "prompt": "quiz.galaxy.q",
+ "options": [
+  {
+   "id": "item.galaxy.o0",
+   "text": "quiz.galaxy.o0",
+   "correct": true
+  },
+  {
+   "id": "item.galaxy.o1",
+   "text": "quiz.galaxy.o1"
+  },
+  {
+   "id": "item.galaxy.o2",
+   "text": "quiz.galaxy.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.galaxy"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

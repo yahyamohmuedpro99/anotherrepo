@@ -1,0 +1,141 @@
+{
+ "id": "after-world-saturn",
+ "lines": [
+  {
+   "speaker": "nour",
+   "text": {
+    "key": "r.afterQuiz",
+    "params": {
+     "n": {
+      "next": "mission"
+     }
+    }
+   },
+   "options": [
+    {
+     "text": {
+      "key": "r.warpTo",
+      "params": {
+       "n": {
+        "next": "mission"
+       }
+      }
+     },
+     "prime": true,
+     "when": {
+      "not": {
+       "all": [
+        {
+         "stamp": "sun"
+        },
+        {
+         "stamp": "mercury"
+        },
+        {
+         "stamp": "venus"
+        },
+        {
+         "stamp": "earth"
+        },
+        {
+         "stamp": "moon"
+        },
+        {
+         "stamp": "mars"
+        },
+        {
+         "stamp": "jupiter"
+        },
+        {
+         "stamp": "saturn"
+        },
+        {
+         "stamp": "uranus"
+        },
+        {
+         "stamp": "neptune"
+        }
+       ]
+      }
+     },
+     "do": [
+      {
+       "do": "quest.go",
+       "quest": "mission",
+       "button": 0
+      }
+     ]
+    },
+    {
+     "text": "r.openGal",
+     "prime": true,
+     "when": {
+      "all": [
+       {
+        "all": [
+         {
+          "stamp": "sun"
+         },
+         {
+          "stamp": "mercury"
+         },
+         {
+          "stamp": "venus"
+         },
+         {
+          "stamp": "earth"
+         },
+         {
+          "stamp": "moon"
+         },
+         {
+          "stamp": "mars"
+         },
+         {
+          "stamp": "jupiter"
+         },
+         {
+          "stamp": "saturn"
+         },
+         {
+          "stamp": "uranus"
+         },
+         {
+          "stamp": "neptune"
+         }
+        ]
+       },
+       {
+        "not": {
+         "stamp": "galaxy"
+        }
+       }
+      ]
+     },
+     "do": [
+      {
+       "do": "quest.go",
+       "quest": "mission",
+       "button": 0
+      }
+     ]
+    },
+    {
+     "text": "r.toSpace",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "space",
+       "spawn": "near-saturn",
+       "transition": "fade"
+      }
+     ]
+    },
+    {
+     "text": "r.stay",
+     "do": []
+    }
+   ]
+  }
+ ]
+}

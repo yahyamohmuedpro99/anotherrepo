@@ -1,0 +1,13 @@
+{
+ "id": "stop-earth",
+ "who": "body.earth",
+ "glyph": "◉",
+ "title": "body.earth",
+ "body": "card.earth",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

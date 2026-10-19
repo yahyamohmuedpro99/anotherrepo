@@ -1,0 +1,14 @@
+{
+ "id": "stop-jupiter",
+ "who": "body.jupiter",
+ "glyph": "◉",
+ "title": "body.jupiter",
+ "body": "card.jupiter",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

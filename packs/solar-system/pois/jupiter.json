@@ -1,0 +1,21 @@
+{
+ "id": "poi.jupiter",
+ "scene": "world-jupiter",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 300,
+ "title": "body.jupiter",
+ "card": "stop-jupiter",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "spawn": {
+  "spawn": "lander"
+ },
+ "items": [
+  "item.jupiter"
+ ]
+}

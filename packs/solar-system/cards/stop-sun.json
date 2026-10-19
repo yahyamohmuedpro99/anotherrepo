@@ -1,0 +1,13 @@
+{
+ "id": "stop-sun",
+ "who": "body.sun",
+ "glyph": "◉",
+ "title": "body.sun",
+ "body": "card.sun",
+ "objectives": [
+  "obj.sun"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

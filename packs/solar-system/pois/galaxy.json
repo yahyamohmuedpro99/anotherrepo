@@ -1,0 +1,20 @@
+{
+ "id": "poi.galaxy",
+ "scene": "galaxy",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 400,
+ "title": "body.galaxy",
+ "card": "stop-galaxy",
+ "objectives": [
+  "obj.galaxy"
+ ],
+ "spawn": {
+  "spawn": "view"
+ },
+ "items": [
+  "item.galaxy"
+ ]
+}

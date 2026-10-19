@@ -1,0 +1,30 @@
+{
+ "id": "item.jupiter",
+ "type": "mcq",
+ "prompt": "quiz.jupiter.q",
+ "options": [
+  {
+   "id": "item.jupiter.o0",
+   "text": "quiz.jupiter.o0",
+   "correct": true
+  },
+  {
+   "id": "item.jupiter.o1",
+   "text": "quiz.jupiter.o1"
+  },
+  {
+   "id": "item.jupiter.o2",
+   "text": "quiz.jupiter.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

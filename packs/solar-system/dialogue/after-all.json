@@ -1,0 +1,15 @@
+{
+ "id": "after-all",
+ "lines": [
+  {
+   "speaker": "nour",
+   "text": "r.afterAll"
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "open.panel",
+   "panel": "passport"
+  }
+ ]
+}

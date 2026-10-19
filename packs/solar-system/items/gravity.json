@@ -1,0 +1,16 @@
+{
+ "id": "item.gravity",
+ "type": "numeric",
+ "prompt": "item.gravity.q",
+ "answer": 10,
+ "tolerance": 1,
+ "unit": "item.kg",
+ "hint": "item.gravity.h",
+ "objectives": [
+  "obj.gravity"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

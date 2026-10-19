@@ -1,0 +1,29 @@
+{
+ "id": "find-jupiter-0-had",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.jupiter.0"
+  },
+  {
+   "speaker": "nour",
+   "text": {
+    "key": "r.already",
+    "params": {
+     "n": {
+      "text": "name.jupiter"
+     }
+    }
+   }
+  }
+ ],
+ "ttl": 30
+}

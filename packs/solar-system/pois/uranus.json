@@ -1,0 +1,21 @@
+{
+ "id": "poi.uranus",
+ "scene": "world-uranus",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 300,
+ "title": "body.uranus",
+ "card": "stop-uranus",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "spawn": {
+  "spawn": "lander"
+ },
+ "items": [
+  "item.uranus"
+ ]
+}

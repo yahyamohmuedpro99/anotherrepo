@@ -1,0 +1,84 @@
+{
+ "id": "gal-sun-quiz",
+ "lines": [
+  {
+   "who": "gal.sun",
+   "glyph": "✦",
+   "text": "gal.sun.fact"
+  },
+  {
+   "speaker": "nour",
+   "text": "gal.quizReady"
+  }
+ ],
+ "endLabel": "quiz.btn",
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.galaxy",
+   "onCorrect": [
+    {
+     "do": "give.stamp",
+     "stamp": "galaxy"
+    },
+    {
+     "do": "add.counter",
+     "counter": "stamps",
+     "value": "galaxy"
+    },
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "stamp": "earth"
+       },
+       {
+        "stamp": "moon"
+       },
+       {
+        "stamp": "mars"
+       },
+       {
+        "stamp": "venus"
+       },
+       {
+        "stamp": "mercury"
+       },
+       {
+        "stamp": "sun"
+       },
+       {
+        "stamp": "jupiter"
+       },
+       {
+        "stamp": "saturn"
+       },
+       {
+        "stamp": "uranus"
+       },
+       {
+        "stamp": "neptune"
+       },
+       {
+        "stamp": "galaxy"
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-all"
+      }
+     ],
+     "else": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-galaxy"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

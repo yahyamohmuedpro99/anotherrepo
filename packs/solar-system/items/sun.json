@@ -1,0 +1,29 @@
+{
+ "id": "item.sun",
+ "type": "mcq",
+ "prompt": "quiz.sun.q",
+ "options": [
+  {
+   "id": "item.sun.o0",
+   "text": "quiz.sun.o0",
+   "correct": true
+  },
+  {
+   "id": "item.sun.o1",
+   "text": "quiz.sun.o1"
+  },
+  {
+   "id": "item.sun.o2",
+   "text": "quiz.sun.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.sun"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

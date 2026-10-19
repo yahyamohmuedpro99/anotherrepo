@@ -1,0 +1,29 @@
+{
+ "id": "item.mercury",
+ "type": "mcq",
+ "prompt": "quiz.mercury.q",
+ "options": [
+  {
+   "id": "item.mercury.o0",
+   "text": "quiz.mercury.o0",
+   "correct": true
+  },
+  {
+   "id": "item.mercury.o1",
+   "text": "quiz.mercury.o1"
+  },
+  {
+   "id": "item.mercury.o2",
+   "text": "quiz.mercury.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

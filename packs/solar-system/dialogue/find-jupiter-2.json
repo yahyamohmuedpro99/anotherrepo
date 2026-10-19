@@ -1,0 +1,18 @@
+{
+ "id": "find-jupiter-2",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.jupiter.2"
+  }
+ ],
+ "ttl": 30
+}

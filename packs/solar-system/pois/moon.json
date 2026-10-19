@@ -1,0 +1,21 @@
+{
+ "id": "poi.moon",
+ "scene": "world-moon",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 300,
+ "title": "body.moon",
+ "card": "stop-moon",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "spawn": {
+  "spawn": "lander"
+ },
+ "items": [
+  "item.moon",
+  "item.gravity"
+ ]
+}

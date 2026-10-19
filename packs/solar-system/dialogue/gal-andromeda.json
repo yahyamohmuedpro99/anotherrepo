@@ -1,0 +1,11 @@
+{
+ "id": "gal-andromeda",
+ "lines": [
+  {
+   "who": "gal.andromeda",
+   "glyph": "✦",
+   "text": "gal.andromeda.fact"
+  }
+ ],
+ "ttl": 30
+}

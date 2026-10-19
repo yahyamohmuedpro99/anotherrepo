@@ -1,0 +1,13 @@
+{
+ "id": "stop-neptune",
+ "who": "body.neptune",
+ "glyph": "◉",
+ "title": "body.neptune",
+ "body": "card.neptune",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

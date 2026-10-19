@@ -1,0 +1,18 @@
+{
+ "id": "find-uranus-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.uranus.1"
+  }
+ ],
+ "ttl": 30
+}

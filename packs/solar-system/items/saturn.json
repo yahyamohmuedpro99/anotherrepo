@@ -1,0 +1,29 @@
+{
+ "id": "item.saturn",
+ "type": "mcq",
+ "prompt": "quiz.saturn.q",
+ "options": [
+  {
+   "id": "item.saturn.o0",
+   "text": "quiz.saturn.o0",
+   "correct": true
+  },
+  {
+   "id": "item.saturn.o1",
+   "text": "quiz.saturn.o1"
+  },
+  {
+   "id": "item.saturn.o2",
+   "text": "quiz.saturn.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

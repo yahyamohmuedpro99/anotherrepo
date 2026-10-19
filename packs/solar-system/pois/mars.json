@@ -1,0 +1,20 @@
+{
+ "id": "poi.mars",
+ "scene": "world-mars",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 300,
+ "title": "body.mars",
+ "card": "stop-mars",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "spawn": {
+  "spawn": "lander"
+ },
+ "items": [
+  "item.mars"
+ ]
+}

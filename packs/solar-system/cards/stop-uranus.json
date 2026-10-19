@@ -1,0 +1,14 @@
+{
+ "id": "stop-uranus",
+ "who": "body.uranus",
+ "glyph": "◉",
+ "title": "body.uranus",
+ "body": "card.uranus",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

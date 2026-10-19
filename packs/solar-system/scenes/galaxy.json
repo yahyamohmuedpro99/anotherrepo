@@ -1,0 +1,413 @@
+{
+ "id": "galaxy",
+ "kind": "galaxy",
+ "title": "gal.title",
+ "environment": {
+  "background": "#010108"
+ },
+ "player": {
+  "controller": "orbit",
+  "avatar": "none",
+  "camera": {
+   "dist": 110,
+   "min": 18,
+   "max": 700,
+   "pitch": 0.55
+  }
+ },
+ "spawns": {
+  "view": {
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "camera": {
+    "yaw": 1.381,
+    "pitch": 0.55
+   }
+  }
+ },
+ "defaultSpawn": "view",
+ "enter": {
+  "once": [
+   {
+    "do": "control.delay",
+    "seconds": 1.2,
+    "then": [
+     {
+      "do": "show.dialogue",
+      "dialogue": "gal-intro"
+     }
+    ]
+   }
+  ]
+ },
+ "entities": [
+  {
+   "id": "milky-way",
+   "kind": "prop",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "ground": false,
+   "model": {
+    "gen": "galaxy",
+    "params": {
+     "count": 46000,
+     "sunAt": [
+      21.6,
+      14.471
+     ],
+     "sunTheta": 6.873,
+     "andromeda": [
+      -1480.91,
+      -300,
+      238.56
+     ]
+    }
+   }
+  },
+  {
+   "id": "gal-center",
+   "kind": "label",
+   "at": [
+    0,
+    3,
+    0
+   ],
+   "ground": false,
+   "label": {
+    "text": "gal.center",
+    "style": "gold",
+    "max": 9000,
+    "y": 0,
+    "check": {
+     "counter": "gal",
+     "has": "center"
+    }
+   },
+   "tap": [
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "counter": "gal",
+         "has": "center"
+        }
+       },
+       {
+        "counter": "gal",
+        "gte": 3
+       },
+       {
+        "not": {
+         "stamp": "galaxy"
+        }
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "center"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:center"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-center-quiz"
+      }
+     ],
+     "else": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "center"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:center"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-center"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gal-sun",
+   "kind": "label",
+   "at": [
+    21.6,
+    2.5,
+    14.47
+   ],
+   "ground": false,
+   "label": {
+    "text": "gal.sun",
+    "style": "gold",
+    "max": 9000,
+    "y": 0,
+    "check": {
+     "counter": "gal",
+     "has": "sun"
+    }
+   },
+   "tap": [
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "counter": "gal",
+         "has": "sun"
+        }
+       },
+       {
+        "counter": "gal",
+        "gte": 3
+       },
+       {
+        "not": {
+         "stamp": "galaxy"
+        }
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "sun"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:sun"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-sun-quiz"
+      }
+     ],
+     "else": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "sun"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:sun"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-sun"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gal-edge",
+   "kind": "label",
+   "at": [
+    -51.41,
+    2,
+    7.84
+   ],
+   "ground": false,
+   "label": {
+    "text": "gal.edge",
+    "style": "gold",
+    "max": 9000,
+    "y": 0,
+    "check": {
+     "counter": "gal",
+     "has": "edge"
+    }
+   },
+   "tap": [
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "counter": "gal",
+         "has": "edge"
+        }
+       },
+       {
+        "counter": "gal",
+        "gte": 3
+       },
+       {
+        "not": {
+         "stamp": "galaxy"
+        }
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "edge"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:edge"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-edge-quiz"
+      }
+     ],
+     "else": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "edge"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:edge"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-edge"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gal-andromeda",
+   "kind": "label",
+   "at": [
+    -1480.91,
+    -190,
+    238.56
+   ],
+   "ground": false,
+   "label": {
+    "text": "gal.andromeda",
+    "style": "gold",
+    "max": 9000,
+    "y": 0,
+    "check": {
+     "counter": "gal",
+     "has": "andromeda"
+    }
+   },
+   "tap": [
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "not": {
+         "counter": "gal",
+         "has": "andromeda"
+        }
+       },
+       {
+        "counter": "gal",
+        "gte": 3
+       },
+       {
+        "not": {
+         "stamp": "galaxy"
+        }
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "andromeda"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:andromeda"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-andromeda-quiz"
+      }
+     ],
+     "else": [
+      {
+       "do": "add.counter",
+       "counter": "gal",
+       "value": "andromeda"
+      },
+      {
+       "do": "add.counter",
+       "counter": "found",
+       "value": "gal:andromeda"
+      },
+      {
+       "do": "show.dialogue",
+       "dialogue": "gal-andromeda"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "hud": {
+  "hints": {
+   "default": {
+    "touch": "hint.galT",
+    "desk": "hint.galD"
+   }
+  },
+  "infoCard": {
+   "kicker": "gal.kicker",
+   "title": "gal.title",
+   "note": {
+    "key": "gal.sub",
+    "params": {
+     "n": {
+      "counter": "gal"
+     }
+    }
+   },
+   "buttons": [
+    {
+     "label": "gal.back",
+     "icon": "sun",
+     "style": "gold",
+     "do": [
+      {
+       "do": "go.scene",
+       "scene": "space",
+       "spawn": "start",
+       "transition": "fade"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

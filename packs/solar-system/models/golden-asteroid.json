@@ -1,0 +1,39 @@
+{
+ "id": "golden-asteroid",
+ "parts": [
+  {
+   "shape": "icosahedron",
+   "args": [
+    2,
+    0
+   ],
+   "scale": [
+    1,
+    0.75,
+    1.1
+   ],
+   "material": "gold"
+  },
+  {
+   "shape": "sprite",
+   "args": [
+    12
+   ],
+   "material": {
+    "type": "additive",
+    "color": "#ffd27a",
+    "opacity": 0.6
+   }
+  }
+ ],
+ "materials": {
+  "gold": {
+   "color": "#e9b44c",
+   "emissive": "#8a5a10",
+   "emissiveIntensity": 0.9,
+   "roughness": 0.35,
+   "metalness": 0.7,
+   "flatShading": true
+  }
+ }
+}

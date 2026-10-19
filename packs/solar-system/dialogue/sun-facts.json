@@ -1,0 +1,87 @@
+{
+ "id": "sun-facts",
+ "lines": [
+  {
+   "speaker": "nour",
+   "text": "fact.sun.0"
+  },
+  {
+   "speaker": "nour",
+   "text": "fact.sun.1"
+  },
+  {
+   "speaker": "nour",
+   "text": "fact.sun.2"
+  }
+ ],
+ "endLabel": "quiz.btn",
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.sun",
+   "onCorrect": [
+    {
+     "do": "give.stamp",
+     "stamp": "sun"
+    },
+    {
+     "do": "add.counter",
+     "counter": "stamps",
+     "value": "sun"
+    },
+    {
+     "do": "control.if",
+     "when": {
+      "all": [
+       {
+        "stamp": "earth"
+       },
+       {
+        "stamp": "moon"
+       },
+       {
+        "stamp": "mars"
+       },
+       {
+        "stamp": "venus"
+       },
+       {
+        "stamp": "mercury"
+       },
+       {
+        "stamp": "sun"
+       },
+       {
+        "stamp": "jupiter"
+       },
+       {
+        "stamp": "saturn"
+       },
+       {
+        "stamp": "uranus"
+       },
+       {
+        "stamp": "neptune"
+       },
+       {
+        "stamp": "galaxy"
+       }
+      ]
+     },
+     "then": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-all"
+      }
+     ],
+     "else": [
+      {
+       "do": "show.dialogue",
+       "dialogue": "after-space"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

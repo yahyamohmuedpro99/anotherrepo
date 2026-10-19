@@ -1,0 +1,30 @@
+{
+ "id": "item.uranus",
+ "type": "mcq",
+ "prompt": "quiz.uranus.q",
+ "options": [
+  {
+   "id": "item.uranus.o0",
+   "text": "quiz.uranus.o0",
+   "correct": true
+  },
+  {
+   "id": "item.uranus.o1",
+   "text": "quiz.uranus.o1"
+  },
+  {
+   "id": "item.uranus.o2",
+   "text": "quiz.uranus.o2"
+  }
+ ],
+ "shuffle": true,
+ "hint": "quiz.hint",
+ "objectives": [
+  "obj.worlds",
+  "obj.types"
+ ],
+ "who": "quiz.title",
+ "tags": [
+  "needs-fact-check"
+ ]
+}

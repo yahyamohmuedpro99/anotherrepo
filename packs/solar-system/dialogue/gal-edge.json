@@ -1,0 +1,11 @@
+{
+ "id": "gal-edge",
+ "lines": [
+  {
+   "who": "gal.edge",
+   "glyph": "✦",
+   "text": "gal.edge.fact"
+  }
+ ],
+ "ttl": 30
+}

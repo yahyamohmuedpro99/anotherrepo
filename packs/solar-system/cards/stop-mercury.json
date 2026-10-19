@@ -1,0 +1,13 @@
+{
+ "id": "stop-mercury",
+ "who": "body.mercury",
+ "glyph": "◉",
+ "title": "body.mercury",
+ "body": "card.mercury",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

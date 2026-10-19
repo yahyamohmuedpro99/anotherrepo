@@ -1,0 +1,68 @@
+{
+ "id": "voyager2",
+ "parts": [
+  {
+   "shape": "sphere",
+   "args": [
+    1.8,
+    20,
+    10,
+    0,
+    6.283185307179586,
+    0,
+    0.6
+   ],
+   "rot": [
+    1.5707963267948966,
+    0,
+    0
+   ],
+   "material": {
+    "color": "#e8eaee",
+    "roughness": 0.5,
+    "metalness": 0.4,
+    "doubleSide": true
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.6,
+    0.6,
+    0.5,
+    10
+   ],
+   "geoRot": [
+    1.5707963267948966,
+    0,
+    0
+   ],
+   "at": [
+    0,
+    0,
+    -0.8
+   ],
+   "material": "goldp"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.05,
+    0.05,
+    6,
+    6
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    2.8,
+    0,
+    -0.8
+   ],
+   "material": "white"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "id": "find-saturn-1-had",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.saturn.1"
+  },
+  {
+   "speaker": "nour",
+   "text": {
+    "key": "r.already",
+    "params": {
+     "n": {
+      "text": "name.saturn"
+     }
+    }
+   }
+  }
+ ],
+ "ttl": 30
+}

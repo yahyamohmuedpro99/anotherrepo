@@ -1,0 +1,13 @@
+{
+ "id": "stop-galaxy",
+ "who": "body.galaxy",
+ "glyph": "✦",
+ "title": "body.galaxy",
+ "body": "card.galaxy",
+ "objectives": [
+  "obj.galaxy"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

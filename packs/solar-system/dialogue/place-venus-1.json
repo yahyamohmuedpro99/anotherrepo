@@ -1,0 +1,18 @@
+{
+ "id": "place-venus-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.venus.1"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.venus.1.fact"
+  }
+ ],
+ "ttl": 30
+}

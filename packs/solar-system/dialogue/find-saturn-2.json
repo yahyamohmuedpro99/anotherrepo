@@ -1,0 +1,18 @@
+{
+ "id": "find-saturn-2",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.discovery",
+    "params": {
+     "n": {
+      "counter": "finds"
+     }
+    }
+   },
+   "glyph": "✦",
+   "text": "fact.saturn.2"
+  }
+ ],
+ "ttl": 30
+}

@@ -1,0 +1,16 @@
+{
+ "id": "lava-cone",
+ "parts": [
+  {
+   "shape": "cone",
+   "args": [
+    18,
+    12,
+    16,
+    1,
+    true
+   ],
+   "material": "basalt"
+  }
+ ]
+}

@@ -1,0 +1,59 @@
+{
+ "id": "comet",
+ "parts": [
+  {
+   "shape": "icosahedron",
+   "args": [
+    1.4,
+    1
+   ],
+   "material": "nucleus",
+   "name": "nucleus"
+  },
+  {
+   "shape": "sprite",
+   "args": [
+    14
+   ],
+   "material": {
+    "type": "additive",
+    "color": "#bff6ff",
+    "opacity": 0.85
+   },
+   "name": "coma"
+  },
+  {
+   "shape": "cone",
+   "args": [
+    5,
+    70,
+    16,
+    1,
+    true
+   ],
+   "pivot": [
+    0,
+    -35,
+    0
+   ],
+   "material": "tail",
+   "name": "tail"
+  }
+ ],
+ "materials": {
+  "nucleus": {
+   "color": "#5a5550",
+   "roughness": 1,
+   "flatShading": true
+  },
+  "tail": {
+   "type": "additive",
+   "color": "#9fe8ff",
+   "alphaFade": true,
+   "transparent": true,
+   "opacity": 0.5,
+   "depthWrite": false,
+   "doubleSide": true
+  }
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "id": "place-mercury-1",
+ "lines": [
+  {
+   "who": {
+    "key": "surf.landmark",
+    "params": {
+     "n": {
+      "text": "lm.mercury.1"
+     }
+    }
+   },
+   "glyph": "◆",
+   "text": "lm.mercury.1.fact"
+  }
+ ],
+ "ttl": 30
+}

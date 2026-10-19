@@ -51,7 +51,7 @@ export function buildModel(ref: ModelRef, ctx: BuildCtx, at: Placement): Built {
     case 'balloon':
       return buildBalloon(ctx, p.colors);
     case 'ship':
-      return buildShip(ctx, p.name);
+      return buildShip(ctx, p.name, p.upright);
     case 'body':
       return buildBody(p as BodyParams, ctx);
     case 'orbit-line':

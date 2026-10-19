@@ -1,0 +1,1056 @@
+{
+ "$schema": "../../packages/pack-schema/dist/json-schema/manifest.schema.json",
+ "id": "solar-system",
+ "version": "1.0.0",
+ "engine": "^0.1",
+ "title": "pack.title",
+ "altTitle": "pack.alt",
+ "summary": "pack.summary",
+ "kicker": "pack.kicker",
+ "subjects": [
+  "science"
+ ],
+ "grades": [
+  "EG-P4",
+  "EG-P5",
+  "EG-P6"
+ ],
+ "durationMinutes": 30,
+ "objectives": [
+  {
+   "id": "obj.sun",
+   "text": "obj.sun"
+  },
+  {
+   "id": "obj.worlds",
+   "text": "obj.worlds"
+  },
+  {
+   "id": "obj.types",
+   "text": "obj.types"
+  },
+  {
+   "id": "obj.gravity",
+   "text": "obj.gravity"
+  },
+  {
+   "id": "obj.galaxy",
+   "text": "obj.galaxy"
+  }
+ ],
+ "curriculum": [
+  {
+   "country": "EG",
+   "grade": "P4",
+   "subject": "science",
+   "lesson": "TODO: map to unit/lesson/page (open question 4)"
+  }
+ ],
+ "locales": [
+  "ar-EG",
+  "en"
+ ],
+ "defaultLocale": "ar-EG",
+ "startScene": "space",
+ "startPoi": "poi.sun",
+ "scenes": [
+  "scenes/space.json",
+  "scenes/world-mercury.json",
+  "scenes/world-venus.json",
+  "scenes/world-earth.json",
+  "scenes/world-moon.json",
+  "scenes/world-mars.json",
+  "scenes/world-jupiter.json",
+  "scenes/world-saturn.json",
+  "scenes/world-uranus.json",
+  "scenes/world-neptune.json",
+  "scenes/galaxy.json"
+ ],
+ "pois": [
+  "pois/earth.json",
+  "pois/moon.json",
+  "pois/mars.json",
+  "pois/venus.json",
+  "pois/mercury.json",
+  "pois/sun.json",
+  "pois/jupiter.json",
+  "pois/saturn.json",
+  "pois/uranus.json",
+  "pois/neptune.json",
+  "pois/galaxy.json"
+ ],
+ "quests": [
+  "quests/mission.json"
+ ],
+ "items": [
+  "items/earth.json",
+  "items/moon.json",
+  "items/mars.json",
+  "items/venus.json",
+  "items/mercury.json",
+  "items/sun.json",
+  "items/jupiter.json",
+  "items/saturn.json",
+  "items/uranus.json",
+  "items/neptune.json",
+  "items/galaxy.json",
+  "items/gravity.json"
+ ],
+ "cards": [
+  "cards/stop-earth.json",
+  "cards/stop-moon.json",
+  "cards/stop-mars.json",
+  "cards/stop-venus.json",
+  "cards/stop-mercury.json",
+  "cards/stop-sun.json",
+  "cards/stop-jupiter.json",
+  "cards/stop-saturn.json",
+  "cards/stop-uranus.json",
+  "cards/stop-neptune.json",
+  "cards/stop-galaxy.json"
+ ],
+ "dialogues": [
+  "dialogue/welcome.json",
+  "dialogue/radio-sun.json",
+  "dialogue/radio-mercury.json",
+  "dialogue/radio-venus.json",
+  "dialogue/radio-earth.json",
+  "dialogue/radio-moon.json",
+  "dialogue/radio-mars.json",
+  "dialogue/radio-jupiter.json",
+  "dialogue/radio-saturn.json",
+  "dialogue/radio-uranus.json",
+  "dialogue/radio-neptune.json",
+  "dialogue/sun-facts.json",
+  "dialogue/sun-facts-done.json",
+  "dialogue/find-mercury-0.json",
+  "dialogue/find-mercury-0-quiz.json",
+  "dialogue/find-mercury-0-had.json",
+  "dialogue/find-mercury-1.json",
+  "dialogue/find-mercury-1-quiz.json",
+  "dialogue/find-mercury-1-had.json",
+  "dialogue/find-mercury-2.json",
+  "dialogue/find-mercury-2-quiz.json",
+  "dialogue/find-mercury-2-had.json",
+  "dialogue/place-mercury-0.json",
+  "dialogue/place-mercury-1.json",
+  "dialogue/find-venus-0.json",
+  "dialogue/find-venus-0-quiz.json",
+  "dialogue/find-venus-0-had.json",
+  "dialogue/find-venus-1.json",
+  "dialogue/find-venus-1-quiz.json",
+  "dialogue/find-venus-1-had.json",
+  "dialogue/find-venus-2.json",
+  "dialogue/find-venus-2-quiz.json",
+  "dialogue/find-venus-2-had.json",
+  "dialogue/place-venus-0.json",
+  "dialogue/place-venus-1.json",
+  "dialogue/find-earth-0.json",
+  "dialogue/find-earth-0-quiz.json",
+  "dialogue/find-earth-0-had.json",
+  "dialogue/find-earth-1.json",
+  "dialogue/find-earth-1-quiz.json",
+  "dialogue/find-earth-1-had.json",
+  "dialogue/find-earth-2.json",
+  "dialogue/find-earth-2-quiz.json",
+  "dialogue/find-earth-2-had.json",
+  "dialogue/place-earth-0.json",
+  "dialogue/place-earth-1.json",
+  "dialogue/find-moon-0.json",
+  "dialogue/find-moon-0-quiz.json",
+  "dialogue/find-moon-0-had.json",
+  "dialogue/find-moon-1.json",
+  "dialogue/find-moon-1-quiz.json",
+  "dialogue/find-moon-1-had.json",
+  "dialogue/find-moon-2.json",
+  "dialogue/find-moon-2-quiz.json",
+  "dialogue/find-moon-2-had.json",
+  "dialogue/place-moon-0.json",
+  "dialogue/place-moon-1.json",
+  "dialogue/find-mars-0.json",
+  "dialogue/find-mars-0-quiz.json",
+  "dialogue/find-mars-0-had.json",
+  "dialogue/find-mars-1.json",
+  "dialogue/find-mars-1-quiz.json",
+  "dialogue/find-mars-1-had.json",
+  "dialogue/find-mars-2.json",
+  "dialogue/find-mars-2-quiz.json",
+  "dialogue/find-mars-2-had.json",
+  "dialogue/place-mars-0.json",
+  "dialogue/place-mars-1.json",
+  "dialogue/find-jupiter-0.json",
+  "dialogue/find-jupiter-0-quiz.json",
+  "dialogue/find-jupiter-0-had.json",
+  "dialogue/find-jupiter-1.json",
+  "dialogue/find-jupiter-1-quiz.json",
+  "dialogue/find-jupiter-1-had.json",
+  "dialogue/find-jupiter-2.json",
+  "dialogue/find-jupiter-2-quiz.json",
+  "dialogue/find-jupiter-2-had.json",
+  "dialogue/place-jupiter-0.json",
+  "dialogue/place-jupiter-1.json",
+  "dialogue/find-saturn-0.json",
+  "dialogue/find-saturn-0-quiz.json",
+  "dialogue/find-saturn-0-had.json",
+  "dialogue/find-saturn-1.json",
+  "dialogue/find-saturn-1-quiz.json",
+  "dialogue/find-saturn-1-had.json",
+  "dialogue/find-saturn-2.json",
+  "dialogue/find-saturn-2-quiz.json",
+  "dialogue/find-saturn-2-had.json",
+  "dialogue/place-saturn-0.json",
+  "dialogue/place-saturn-1.json",
+  "dialogue/find-uranus-0.json",
+  "dialogue/find-uranus-0-quiz.json",
+  "dialogue/find-uranus-0-had.json",
+  "dialogue/find-uranus-1.json",
+  "dialogue/find-uranus-1-quiz.json",
+  "dialogue/find-uranus-1-had.json",
+  "dialogue/find-uranus-2.json",
+  "dialogue/find-uranus-2-quiz.json",
+  "dialogue/find-uranus-2-had.json",
+  "dialogue/place-uranus-0.json",
+  "dialogue/place-uranus-1.json",
+  "dialogue/find-neptune-0.json",
+  "dialogue/find-neptune-0-quiz.json",
+  "dialogue/find-neptune-0-had.json",
+  "dialogue/find-neptune-1.json",
+  "dialogue/find-neptune-1-quiz.json",
+  "dialogue/find-neptune-1-had.json",
+  "dialogue/find-neptune-2.json",
+  "dialogue/find-neptune-2-quiz.json",
+  "dialogue/find-neptune-2-had.json",
+  "dialogue/place-neptune-0.json",
+  "dialogue/place-neptune-1.json",
+  "dialogue/craft-iss.json",
+  "dialogue/craft-jwst.json",
+  "dialogue/craft-voyager.json",
+  "dialogue/craft-comet.json",
+  "dialogue/ast-fact.json",
+  "dialogue/comet-alert.json",
+  "dialogue/gal-intro.json",
+  "dialogue/gal-center.json",
+  "dialogue/gal-center-quiz.json",
+  "dialogue/gal-sun.json",
+  "dialogue/gal-sun-quiz.json",
+  "dialogue/gal-edge.json",
+  "dialogue/gal-edge-quiz.json",
+  "dialogue/gal-andromeda.json",
+  "dialogue/gal-andromeda-quiz.json",
+  "dialogue/after-space.json",
+  "dialogue/after-galaxy.json",
+  "dialogue/after-world-mercury.json",
+  "dialogue/after-world-venus.json",
+  "dialogue/after-world-earth.json",
+  "dialogue/after-world-moon.json",
+  "dialogue/after-world-mars.json",
+  "dialogue/after-world-jupiter.json",
+  "dialogue/after-world-saturn.json",
+  "dialogue/after-world-uranus.json",
+  "dialogue/after-world-neptune.json",
+  "dialogue/after-all.json"
+ ],
+ "models": [
+  "models/iss.json",
+  "models/jwst.json",
+  "models/voyager.json",
+  "models/comet.json",
+  "models/golden-asteroid.json",
+  "models/venera.json",
+  "models/apollo-lander.json",
+  "models/flag-usa.json",
+  "models/rover.json",
+  "models/voyager2.json",
+  "models/felucca.json",
+  "models/lava-cone.json"
+ ],
+ "characters": {
+  "nour": {
+   "name": "char.nour",
+   "glyph": "char.nour.g",
+   "color": "#33b7a9"
+  },
+  "quiz": {
+   "name": "quiz.title",
+   "glyph": "char.quiz.g"
+  },
+  "find": {
+   "name": "char.find",
+   "glyph": "char.find.g"
+  }
+ },
+ "counters": [
+  {
+   "id": "stamps",
+   "scope": "save",
+   "of": 11
+  },
+  {
+   "id": "finds",
+   "scope": "visit",
+   "of": 3
+  },
+  {
+   "id": "lm",
+   "scope": "save",
+   "of": 18
+  },
+  {
+   "id": "lm-mercury",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-venus",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-earth",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-moon",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-mars",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-jupiter",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-saturn",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-uranus",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "lm-neptune",
+   "scope": "save",
+   "of": 2
+  },
+  {
+   "id": "craft",
+   "scope": "save",
+   "of": 4
+  },
+  {
+   "id": "ast",
+   "scope": "save",
+   "of": 5
+  },
+  {
+   "id": "gal",
+   "scope": "save",
+   "of": 4
+  },
+  {
+   "id": "found",
+   "scope": "save"
+  }
+ ],
+ "flags": [
+  {
+   "id": "radio-sun"
+  },
+  {
+   "id": "radio-mercury"
+  },
+  {
+   "id": "radio-venus"
+  },
+  {
+   "id": "radio-earth"
+  },
+  {
+   "id": "radio-moon"
+  },
+  {
+   "id": "radio-mars"
+  },
+  {
+   "id": "radio-jupiter"
+  },
+  {
+   "id": "radio-saturn"
+  },
+  {
+   "id": "radio-uranus"
+  },
+  {
+   "id": "radio-neptune"
+  }
+ ],
+ "stamps": [
+  {
+   "id": "earth",
+   "title": "body.earth",
+   "color": "#3f7fd0",
+   "style": "planet"
+  },
+  {
+   "id": "moon",
+   "title": "body.moon",
+   "color": "#b9b6ae",
+   "style": "planet"
+  },
+  {
+   "id": "mars",
+   "title": "body.mars",
+   "color": "#c1532c",
+   "style": "planet"
+  },
+  {
+   "id": "venus",
+   "title": "body.venus",
+   "color": "#e3c08a",
+   "style": "planet"
+  },
+  {
+   "id": "mercury",
+   "title": "body.mercury",
+   "color": "#a39c94",
+   "style": "planet"
+  },
+  {
+   "id": "sun",
+   "title": "body.sun",
+   "color": "#ffb347",
+   "style": "planet"
+  },
+  {
+   "id": "jupiter",
+   "title": "body.jupiter",
+   "color": "#d8a878",
+   "style": "planet"
+  },
+  {
+   "id": "saturn",
+   "title": "body.saturn",
+   "color": "#e3cf9a",
+   "style": "planet"
+  },
+  {
+   "id": "uranus",
+   "title": "body.uranus",
+   "color": "#9fdde3",
+   "style": "planet"
+  },
+  {
+   "id": "neptune",
+   "title": "body.neptune",
+   "color": "#3b62d6",
+   "style": "planet"
+  },
+  {
+   "id": "galaxy",
+   "title": "body.galaxy",
+   "color": "#9a8cff",
+   "style": "galaxy"
+  }
+ ],
+ "certificate": {
+  "when": {
+   "all": [
+    {
+     "stamp": "earth"
+    },
+    {
+     "stamp": "moon"
+    },
+    {
+     "stamp": "mars"
+    },
+    {
+     "stamp": "venus"
+    },
+    {
+     "stamp": "mercury"
+    },
+    {
+     "stamp": "sun"
+    },
+    {
+     "stamp": "jupiter"
+    },
+    {
+     "stamp": "saturn"
+    },
+    {
+     "stamp": "uranus"
+    },
+    {
+     "stamp": "neptune"
+    },
+    {
+     "stamp": "galaxy"
+    }
+   ]
+  },
+  "title": "cert.title",
+  "text": "cert.text"
+ },
+ "collections": {
+  "log": {
+   "title": "log.title",
+   "button": "log.button",
+   "sub": {
+    "key": "log.sub",
+    "params": {
+     "n": {
+      "counter": "found"
+     }
+    }
+   },
+   "sections": [
+    {
+     "title": "log.craft",
+     "progress": {
+      "counter": "craft",
+      "of": 4
+     },
+     "entries": [
+      {
+       "title": "craft.iss",
+       "subDone": "craft.iss.fact",
+       "icon": "telescope",
+       "done": {
+        "counter": "craft",
+        "has": "iss"
+       },
+       "go": [
+        {
+         "do": "travel.to",
+         "target": "iss",
+         "mode": "auto"
+        }
+       ],
+       "goWhen": {
+        "scene": "space"
+       },
+       "goLabel": "log.fly"
+      },
+      {
+       "title": "craft.jwst",
+       "subDone": "craft.jwst.fact",
+       "icon": "telescope",
+       "done": {
+        "counter": "craft",
+        "has": "jwst"
+       },
+       "go": [
+        {
+         "do": "travel.to",
+         "target": "jwst",
+         "mode": "auto"
+        }
+       ],
+       "goWhen": {
+        "scene": "space"
+       },
+       "goLabel": "log.fly"
+      },
+      {
+       "title": "craft.voyager",
+       "subDone": "craft.voyager.fact",
+       "icon": "telescope",
+       "done": {
+        "counter": "craft",
+        "has": "voyager"
+       },
+       "go": [
+        {
+         "do": "travel.to",
+         "target": "voyager",
+         "mode": "auto"
+        }
+       ],
+       "goWhen": {
+        "scene": "space"
+       },
+       "goLabel": "log.fly"
+      },
+      {
+       "title": "craft.comet",
+       "subDone": "craft.comet.fact",
+       "icon": "telescope",
+       "done": {
+        "counter": "craft",
+        "has": "comet"
+       },
+       "go": [
+        {
+         "do": "travel.to",
+         "target": "comet",
+         "mode": "auto"
+        }
+       ],
+       "goWhen": {
+        "scene": "space"
+       },
+       "goLabel": "log.fly"
+      }
+     ]
+    },
+    {
+     "title": "log.ast",
+     "progress": {
+      "counter": "ast",
+      "of": 5
+     },
+     "entries": [
+      {
+       "title": {
+        "key": "log.astLine",
+        "params": {
+         "n": {
+          "counter": "ast"
+         }
+        }
+       },
+       "subDone": "ast.fact",
+       "icon": "star",
+       "done": {
+        "counter": "ast",
+        "gte": 5
+       },
+       "goWhen": {
+        "scene": "space"
+       },
+       "goLabel": "log.fly",
+       "go": [
+        {
+         "do": "control.if",
+         "when": {
+          "not": {
+           "counter": "ast",
+           "has": "0"
+          }
+         },
+         "then": [
+          {
+           "do": "travel.to",
+           "target": "ast-0",
+           "mode": "auto"
+          }
+         ],
+         "else": [
+          {
+           "do": "control.if",
+           "when": {
+            "not": {
+             "counter": "ast",
+             "has": "1"
+            }
+           },
+           "then": [
+            {
+             "do": "travel.to",
+             "target": "ast-1",
+             "mode": "auto"
+            }
+           ],
+           "else": [
+            {
+             "do": "control.if",
+             "when": {
+              "not": {
+               "counter": "ast",
+               "has": "2"
+              }
+             },
+             "then": [
+              {
+               "do": "travel.to",
+               "target": "ast-2",
+               "mode": "auto"
+              }
+             ],
+             "else": [
+              {
+               "do": "control.if",
+               "when": {
+                "not": {
+                 "counter": "ast",
+                 "has": "3"
+                }
+               },
+               "then": [
+                {
+                 "do": "travel.to",
+                 "target": "ast-3",
+                 "mode": "auto"
+                }
+               ],
+               "else": [
+                {
+                 "do": "control.if",
+                 "when": {
+                  "not": {
+                   "counter": "ast",
+                   "has": "4"
+                  }
+                 },
+                 "then": [
+                  {
+                   "do": "travel.to",
+                   "target": "ast-4",
+                   "mode": "auto"
+                  }
+                 ]
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "title": "log.land",
+     "progress": {
+      "counter": "lm",
+      "of": 18
+     },
+     "entries": [
+      {
+       "title": "lm.mercury.0",
+       "sub": "body.mercury",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "mercury:0"
+       }
+      },
+      {
+       "title": "lm.mercury.1",
+       "sub": "body.mercury",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "mercury:1"
+       }
+      },
+      {
+       "title": "lm.venus.0",
+       "sub": "body.venus",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "venus:0"
+       }
+      },
+      {
+       "title": "lm.venus.1",
+       "sub": "body.venus",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "venus:1"
+       }
+      },
+      {
+       "title": "lm.earth.0",
+       "sub": "body.earth",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "earth:0"
+       }
+      },
+      {
+       "title": "lm.earth.1",
+       "sub": "body.earth",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "earth:1"
+       }
+      },
+      {
+       "title": "lm.moon.0",
+       "sub": "body.moon",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "moon:0"
+       }
+      },
+      {
+       "title": "lm.moon.1",
+       "sub": "body.moon",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "moon:1"
+       }
+      },
+      {
+       "title": "lm.mars.0",
+       "sub": "body.mars",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "mars:0"
+       }
+      },
+      {
+       "title": "lm.mars.1",
+       "sub": "body.mars",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "mars:1"
+       }
+      },
+      {
+       "title": "lm.jupiter.0",
+       "sub": "body.jupiter",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "jupiter:0"
+       }
+      },
+      {
+       "title": "lm.jupiter.1",
+       "sub": "body.jupiter",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "jupiter:1"
+       }
+      },
+      {
+       "title": "lm.saturn.0",
+       "sub": "body.saturn",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "saturn:0"
+       }
+      },
+      {
+       "title": "lm.saturn.1",
+       "sub": "body.saturn",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "saturn:1"
+       }
+      },
+      {
+       "title": "lm.uranus.0",
+       "sub": "body.uranus",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "uranus:0"
+       }
+      },
+      {
+       "title": "lm.uranus.1",
+       "sub": "body.uranus",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "uranus:1"
+       }
+      },
+      {
+       "title": "lm.neptune.0",
+       "sub": "body.neptune",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "neptune:0"
+       }
+      },
+      {
+       "title": "lm.neptune.1",
+       "sub": "body.neptune",
+       "icon": "star",
+       "done": {
+        "counter": "lm",
+        "has": "neptune:1"
+       }
+      }
+     ]
+    },
+    {
+     "title": "log.gal",
+     "progress": {
+      "counter": "gal",
+      "of": 4
+     },
+     "entries": [
+      {
+       "title": "gal.center",
+       "icon": "galaxy",
+       "done": {
+        "counter": "gal",
+        "has": "center"
+       }
+      },
+      {
+       "title": "gal.sun",
+       "icon": "galaxy",
+       "done": {
+        "counter": "gal",
+        "has": "sun"
+       }
+      },
+      {
+       "title": "gal.edge",
+       "icon": "galaxy",
+       "done": {
+        "counter": "gal",
+        "has": "edge"
+       }
+      },
+      {
+       "title": "gal.andromeda",
+       "icon": "galaxy",
+       "done": {
+        "counter": "gal",
+        "has": "andromeda"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "intro": {
+  "story": [
+   "intro.story1",
+   "intro.story2"
+  ],
+  "features": [
+   {
+    "icon": "rocket",
+    "text": "feat.fly"
+   },
+   {
+    "icon": "down",
+    "text": "feat.land"
+   },
+   {
+    "icon": "up",
+    "text": "feat.jump"
+   },
+   {
+    "icon": "galaxy",
+    "text": "feat.galaxy"
+   }
+  ],
+  "askName": true,
+  "nameLabel": "intro.name",
+  "namePlaceholder": "intro.namePh",
+  "defaultName": "intro.defaultName",
+  "start": "intro.start",
+  "notes": [
+   "intro.scale"
+  ],
+  "controls": {
+   "touch": "intro.ctlTouch",
+   "desk": "intro.ctlDesk"
+  },
+  "onStart": [
+   {
+    "do": "control.delay",
+    "seconds": 0.9,
+    "then": [
+     {
+      "do": "show.dialogue",
+      "dialogue": "welcome"
+     }
+    ]
+   }
+  ],
+  "onResume": []
+ },
+ "theme": {
+  "preset": "space",
+  "band": "diamonds",
+  "background": "#02030a"
+ },
+ "hud": {
+  "quest": "mission",
+  "panels": [
+   "passport",
+   "log",
+   "settings"
+  ]
+ },
+ "prePost": {
+  "pre": [
+   "item.sun",
+   "item.mars",
+   "item.jupiter",
+   "item.gravity",
+   "item.galaxy"
+  ],
+  "post": [
+   "item.sun",
+   "item.mars",
+   "item.jupiter",
+   "item.gravity",
+   "item.galaxy"
+  ]
+ },
+ "budgets": {
+  "low": {
+   "downloadMB": 15,
+   "drawCalls": 150,
+   "textureMB": 48
+  },
+  "mid": {
+   "downloadMB": 25,
+   "drawCalls": 300,
+   "textureMB": 128
+  },
+  "high": {
+   "downloadMB": 40,
+   "drawCalls": 600,
+   "textureMB": 256
+  }
+ },
+ "sensitivity": [],
+ "credits": [
+  {
+   "role": "credits.prototype",
+   "name": "Yahya (Rihla founder)"
+  },
+  {
+   "role": "credits.port",
+   "name": "Rihla engineering"
+  }
+ ],
+ "reviewStatus": "draft",
+ "teacher": {
+  "lessonPlan": "teacher/lesson-plan.md",
+  "worksheet": "teacher/worksheet.md",
+  "answerKey": "teacher/answer-key.md"
+ },
+ "tags": [
+  "space",
+  "science"
+ ]
+}

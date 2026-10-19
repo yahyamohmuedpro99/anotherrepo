@@ -1,0 +1,13 @@
+{
+ "id": "stop-venus",
+ "who": "body.venus",
+ "glyph": "◉",
+ "title": "body.venus",
+ "body": "card.venus",
+ "objectives": [
+  "obj.worlds"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}
