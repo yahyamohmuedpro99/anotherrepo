@@ -128,6 +128,7 @@ export const ENGINE_STRINGS: Record<'ar-EG' | 'en', Record<string, string>> = {
     'engine.namePh': 'اسمك',
     'engine.textSmaller': 'أصغر',
     'engine.textBigger': 'أكبر',
+    'engine.shipName': '',
   },
   en: {
     'engine.next': 'Next',
@@ -254,5 +255,6 @@ export const ENGINE_STRINGS: Record<'ar-EG' | 'en', Record<string, string>> = {
     'engine.namePh': 'Your name',
     'engine.textSmaller': 'Smaller',
     'engine.textBigger': 'Bigger',
+    'engine.shipName': '',
   },
 };

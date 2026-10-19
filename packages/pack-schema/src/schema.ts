@@ -8,7 +8,7 @@
  * - Coordinates: x = east, y = up, z = south, metres in terrain scenes, scene units in space scenes.
  * - Everything a pack can *do* is in the closed lists in behaviours.ts. Adding one is an engine PR.
  */
-import { Type, type Static, type TSchema } from '@sinclair/typebox';
+import { Type, type Static, type TSchema, type TLiteral, type TUnion } from '@sinclair/typebox';
 import {
   ACTIONS,
   CONTROLLERS,
@@ -23,7 +23,7 @@ import {
 } from './behaviours.js';
 
 const Strict = { additionalProperties: false } as const;
-const lit = <T extends readonly string[]>(values: T) => Type.Union(values.map((v) => Type.Literal(v)));
+const lit = <const T extends readonly string[]>(values: T): TUnion<TLiteral<T[number]>[]> => Type.Union(values.map((v) => Type.Literal(v))) as TUnion<TLiteral<T[number]>[]>;
 
 export const Id = Type.String({ pattern: '^[a-z0-9][a-z0-9._:-]*$', maxLength: 80 });
 export const TextKey = Type.String({ pattern: '^[A-Za-z0-9][A-Za-z0-9._-]*$', maxLength: 120, description: 'Locale key' });

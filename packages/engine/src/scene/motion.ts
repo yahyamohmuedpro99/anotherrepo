@@ -54,7 +54,7 @@ export function applyMotion(m: Motion, h: MotionHost, env: MotionEnv): boolean {
       return true;
     }
     case 'spin': {
-      const ax = m.axis ?? 'y';
+      const ax = (m.axis ?? 'y') as 'x' | 'y' | 'z';
       h.object.rotation[ax] += dt * (m.speed ?? 0.1);
       return false;
     }
