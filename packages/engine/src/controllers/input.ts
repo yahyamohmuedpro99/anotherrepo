@@ -158,7 +158,8 @@ export class Input {
 
   /** Movement intent: x = strafe, z = forward, both in [-1,1]; run when shift or stick pushed far. */
   axes(): { x: number; z: number; y: number; run: boolean } {
-    let x = 0, z = 0, y = 0;
+    let x = 0, z = 0;
+    const y = 0;
     const k = this.keys;
     if (!this.typing()) {
       if (k.KeyW || k.ArrowUp) z += 1;

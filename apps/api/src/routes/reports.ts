@@ -45,7 +45,11 @@ export async function buildReport(app: { ctx: { database: import('../db/client.j
     const objectiveDefs = v?.objectives ?? [];
     const phaseScore = (studentId: string | null, objectiveId: string | null, phase: string) => {
       let c = 0, n = 0;
-      for (const o of objs) if (o.phase === phase && (!studentId || o.studentId === studentId) && (!objectiveId || o.objectiveId === objectiveId)) (c += o.correct), (n += o.items);
+      for (const o of objs) {
+        if (o.phase !== phase || (studentId && o.studentId !== studentId) || (objectiveId && o.objectiveId !== objectiveId)) continue;
+        c += o.correct;
+        n += o.items;
+      }
       return pct(c, n);
     };
     const itemIds = [...new Set(items.map((i) => i.itemId))];

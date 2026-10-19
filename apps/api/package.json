@@ -16,7 +16,8 @@
     "openapi": "tsx src/emit-openapi.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src test",
-    "test": "vitest run"
+    "test": "vitest run",
+    "demo": "tsx src/demo.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.2.15",

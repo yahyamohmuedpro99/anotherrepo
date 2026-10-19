@@ -7,7 +7,6 @@ export function useData<T>(load: () => Promise<T>, deps: unknown[]): { data: T |
   const [error, setError] = useState<unknown>(null);
   const [loading, setLoading] = useState(true);
   const [n, setN] = useState(0);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const run = useCallback(load, deps);
   useEffect(() => {
     let live = true;

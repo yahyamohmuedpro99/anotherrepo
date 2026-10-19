@@ -12,7 +12,6 @@ export function Revisions() {
   const load = () => {
     if (packId) void api<{ revisions: Rev[] }>(`/packs/${packId}/revisions`).then((r) => setRevs(r.revisions));
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(load, [packId]);
   return (
     <div className="r-stack">

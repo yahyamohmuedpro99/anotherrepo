@@ -1,0 +1,75 @@
+# Main is always deployable (BRIEF §3): lint, typecheck, unit tests, pack:check, builds, Playwright flows,
+# accessibility and the low-tier perf smoke. Preview deploys wait on the hosting decision (docs/OPEN-QUESTIONS.md).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Packs are valid
+        run: pnpm pack:check
+      - name: Pack port scripts reproduce the committed packs
+        run: |
+          pnpm pack:port
+          git diff --exit-code -- packs/
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: API spec and client are up to date
+        run: |
+          pnpm api-client
+          git diff --exit-code -- apps/api/openapi.json packages/api-client/src/schema.d.ts
+      - run: pnpm test
+      - name: Build player and portal
+        run: |
+          pnpm --filter @rihla/player build
+          pnpm --filter @rihla/portal build
+      - name: Player shell size (QR landing target < 50 KB before the engine)
+        run: |
+          size=$(stat -c %s apps/player/dist/index.html)
+          echo "index.html: $size bytes"
+          test "$size" -lt 51200
+
+  e2e:
+    needs: check
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @rihla/pack-schema build
+      - run: pnpm --filter @rihla/e2e exec playwright install --with-deps chromium
+      - name: Flows, accessibility and perf smoke
+        run: pnpm e2e
+        env:
+          CI: '1'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: tests/e2e/playwright-report
+          retention-days: 14

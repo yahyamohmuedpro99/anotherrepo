@@ -24,7 +24,7 @@ import { Hud, type ButtonDef } from './ui/hud.js';
 import { buildIntro, buildLoading, buildSplash } from './ui/intro.js';
 import { makeTag, type Tag } from './ui/labels.js';
 import { MapRenderer, type MapMark } from './ui/map.js';
-import { activityCount, logCount, openActivities, openAlbum, openCredits, openLog, openPassport, openSettings } from './ui/panels.js';
+import { activityCount, logCount, openActivities, openAlbum, openLog, openPassport, openSettings } from './ui/panels.js';
 import { themeVars } from './ui/styles.js';
 import { refreshTextTextures, setMaxAnisotropy } from './world/textures.js';
 import { renderTwoD } from './fallback/twod.js';
@@ -440,7 +440,9 @@ export class Engine implements EngineApi {
 
   private placePlayer(spawnId: string | undefined, poi?: PackData['pois'][string]): void {
     const sc = this.scene!;
-    let { pos, yaw, spawn } = sc.spawnPoint(spawnId);
+    const sp = sc.spawnPoint(spawnId);
+    const spawn = sp.spawn;
+    let { pos, yaw } = sp;
     if (poi && !spawnId) {
       const at = poi.spawn?.at ?? poi.at;
       pos = at.length === 2 ? new THREE.Vector3(at[0], sc.height(at[0], at[1]), at[1]) : new THREE.Vector3(at[0], at[1], at[2]);
