@@ -21,10 +21,20 @@ export interface RoomHandlers {
  * so solo play never downloads it. The server broadcasts plain snapshots at 10 Hz; teacher commands arrive
  * as `teacher` messages.
  */
+function sessionOf(token: string): string {
+  try {
+    const part = token.split('.')[1] ?? '';
+    return (JSON.parse(atob(part.replace(/-/g, '+').replace(/_/g, '/'))) as { sid?: string }).sid ?? '';
+  } catch {
+    return '';
+  }
+}
+
 export async function connectRoom(url: string, token: string, h: RoomHandlers): Promise<{ send: (type: string, data: unknown) => void; leave: () => void }> {
   const { Client } = await import('colyseus.js');
   const client = new Client(url || `${location.protocol === 'https:' ? 'wss' : 'ws'}://${location.host}/rooms`);
-  const room = await client.join('class', { token });
+  // one room per live session: the session id travels inside the (signed) token; the server re-checks it
+  const room = await client.joinOrCreate('class', { token, sid: sessionOf(token) });
   const known = new Set<string>();
   room.onMessage('peers', (snap: Record<string, PeerPose>) => {
     const seen = new Set<string>();

@@ -39,7 +39,7 @@ export default defineConfig({
     },
   },
   server: {
-    proxy: { '/api': { target: process.env.RIHLA_API ?? 'http://localhost:4000', changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, '') }, '/rooms': { target: process.env.RIHLA_ROOMS ?? 'ws://localhost:2567', ws: true } },
+    proxy: { '/api': { target: process.env.RIHLA_API ?? 'http://localhost:4000', changeOrigin: true, rewrite: (p) => p.replace(/^\/api/, '') }, '/rooms': { target: process.env.RIHLA_ROOMS ?? 'http://localhost:2567', ws: true, rewrite: (p) => p.replace(/^\/rooms/, '') } },
   },
   build: {
     target: 'es2020',

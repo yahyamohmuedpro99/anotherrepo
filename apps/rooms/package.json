@@ -1,0 +1,24 @@
+{
+  "name": "@rihla/rooms",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Live class sessions (Colyseus): presence at 10 Hz, teacher hooks, preset phrases, moderation log.",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "dev": "tsx watch src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "colyseus": "0.15.57",
+    "jose": "5.9.6",
+    "@colyseus/ws-transport": "0.15.3"
+  },
+  "devDependencies": {
+    "colyseus.js": "0.15.26",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vitest": "2.1.8"
+  }
+}

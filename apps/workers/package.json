@@ -1,0 +1,22 @@
+{
+  "name": "@rihla/workers",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Queue consumers: event aggregation, data export/deletion, retention.",
+  "scripts": {
+    "start": "tsx src/main.ts",
+    "dev": "tsx watch src/main.ts",
+    "once": "tsx src/main.ts --once",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@rihla/api": "workspace:*"
+  },
+  "devDependencies": {
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vitest": "2.1.8"
+  }
+}
