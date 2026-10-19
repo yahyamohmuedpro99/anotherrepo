@@ -1,0 +1,25 @@
+{
+ "id": "mona",
+ "anchor": "npc.mona",
+ "lines": [
+  {
+   "speaker": "mona",
+   "text": "mona.1",
+   "options": [
+    {
+     "text": "opt.fly",
+     "prime": true,
+     "do": [
+      {
+       "do": "vehicle.mount",
+       "entity": "veh.balloon"
+      }
+     ]
+    },
+    {
+     "text": "opt.later"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "id": "photos",
+ "title": "act.photos",
+ "mode": "nearest",
+ "steps": [
+  {
+   "id": "all",
+   "label": "act.photos",
+   "done": {
+    "counter": "spots",
+    "gte": 6
+   }
+  }
+ ],
+ "done": {
+  "counter": "spots",
+  "gte": 6
+ },
+ "goal": {
+  "next": "act.photos",
+  "done": "act.photos"
+ },
+ "onComplete": [
+  {
+   "do": "give.stamp",
+   "stamp": "photographer"
+  }
+ ]
+}

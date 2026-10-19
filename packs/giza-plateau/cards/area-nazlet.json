@@ -1,0 +1,11 @@
+{
+ "id": "area-nazlet",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.nazlet",
+ "objectives": [],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

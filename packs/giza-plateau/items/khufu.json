@@ -1,0 +1,27 @@
+{
+ "id": "item.khufu",
+ "type": "mcq",
+ "prompt": "item.khufu.q",
+ "options": [
+  {
+   "text": "item.khufu.o0",
+   "correct": true,
+   "id": "item.khufu.o0"
+  },
+  {
+   "text": "item.khufu.o1",
+   "id": "item.khufu.o1"
+  },
+  {
+   "text": "item.khufu.o2",
+   "id": "item.khufu.o2"
+  }
+ ],
+ "hint": "item.khufu.h",
+ "objectives": [
+  "obj.scale"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

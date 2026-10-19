@@ -1,0 +1,44 @@
+{
+ "id": "photo-marker",
+ "parts": [
+  {
+   "shape": "ring",
+   "args": [
+    2.2,
+    2.7,
+    40
+   ],
+   "geoRot": [
+    -1.5707963267948966,
+    0,
+    0
+   ],
+   "at": [
+    0,
+    0.15,
+    0
+   ],
+   "material": {
+    "type": "basic",
+    "color": "#f2c25a",
+    "transparent": true,
+    "opacity": 0.85,
+    "depthWrite": false
+   }
+  },
+  {
+   "shape": "sprite",
+   "args": [
+    1.6
+   ],
+   "at": [
+    0,
+    2.6,
+    0
+   ],
+   "material": {
+    "color": "#f2c25a"
+   }
+  }
+ ]
+}

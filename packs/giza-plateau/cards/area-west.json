@@ -1,0 +1,13 @@
+{
+ "id": "area-west",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.west",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

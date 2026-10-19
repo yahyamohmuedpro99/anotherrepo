@@ -1,0 +1,13 @@
+{
+ "id": "ring-1",
+ "who": "char.fact",
+ "glyph": "ring",
+ "body": "card.ring.1",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 20
+}

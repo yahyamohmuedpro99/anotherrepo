@@ -1,0 +1,27 @@
+{
+ "id": "item.granite",
+ "type": "mcq",
+ "prompt": "item.granite.q",
+ "options": [
+  {
+   "text": "item.granite.o0",
+   "correct": true,
+   "id": "item.granite.o0"
+  },
+  {
+   "text": "item.granite.o1",
+   "id": "item.granite.o1"
+  },
+  {
+   "text": "item.granite.o2",
+   "id": "item.granite.o2"
+  }
+ ],
+ "hint": "item.granite.h",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

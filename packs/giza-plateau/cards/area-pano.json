@@ -1,0 +1,11 @@
+{
+ "id": "area-pano",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.pano",
+ "objectives": [],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

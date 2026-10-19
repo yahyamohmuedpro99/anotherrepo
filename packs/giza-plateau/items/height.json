@@ -1,0 +1,15 @@
+{
+ "id": "item.height",
+ "type": "numeric",
+ "prompt": "item.height.q",
+ "answer": 146.6,
+ "tolerance": 2,
+ "unit": "unit.m",
+ "hint": "item.height.h",
+ "objectives": [
+  "obj.scale"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

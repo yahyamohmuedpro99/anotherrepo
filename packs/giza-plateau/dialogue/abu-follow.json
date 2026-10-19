@@ -1,0 +1,18 @@
+{
+ "id": "abu-follow",
+ "anchor": "npc.abu",
+ "ttl": 14,
+ "lines": [
+  {
+   "speaker": "abu",
+   "text": {
+    "key": "abu.hint",
+    "params": {
+     "hint": {
+      "guide": "voice"
+     }
+    }
+   }
+  }
+ ]
+}

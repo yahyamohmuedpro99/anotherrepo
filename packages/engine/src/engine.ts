@@ -653,11 +653,11 @@ export class Engine implements EngineApi {
         return;
       }
       case 'give.title': {
-        if (this.state.titles.has(a.text)) return;
-        this.state.titles.add(a.text);
+        if (this.state.titles.has(a.title)) return;
+        this.state.titles.add(a.title);
         this.state.changed();
-        const def = this.manifest.titles?.find((x) => x.id === a.text);
-        const title = this.t(def?.text ?? a.text);
+        const def = this.manifest.titles?.find((x) => x.id === a.title);
+        const title = this.t(def?.text ?? a.title);
         this.hud.toast(this.t('engine.titleEarned', { title }), { kind: 'gold', ms: 5500 });
         if (this.myTag) {
           this.myTag.chip.textContent = title;

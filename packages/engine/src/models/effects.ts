@@ -3,6 +3,7 @@ import { TAU, rng } from '../math/noise.js';
 import { fadeTexture, haloTexture } from '../world/textures.js';
 import type { BuildCtx, Built } from './context.js';
 import { haloSprite } from './space.js';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 const HIT_MAT = new THREE.MeshBasicMaterial({ visible: false });
 
@@ -12,15 +13,12 @@ export function buildScarab(p: { beam?: number; color?: string; glow?: string },
   const faience = ctx.materials.get({ color: p.color ?? '#2b8fd0', emissive: '#19a7a0', emissiveIntensity: 0.9, roughness: 0.3, metalness: 0.15 });
   const dark = ctx.materials.get({ color: '#2b231d', roughness: 0.9 });
   const bug = new THREE.Group();
-  const body = new THREE.Mesh(new THREE.SphereGeometry(0.5, 18, 14), faience);
-  body.scale.set(0.8, 0.45, 1);
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.2, 12, 8), faience);
-  head.position.z = 0.55;
+  const body = new THREE.Mesh(mergeGeometries([new THREE.SphereGeometry(0.5, 18, 14).scale(0.8, 0.45, 1), new THREE.SphereGeometry(0.2, 12, 8).translate(0, 0, 0.55)])!, faience);
   const seam = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.06, 0.9), dark);
   seam.position.y = 0.21;
   const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: haloTexture(), color: '#7ff0e2', transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
   halo.scale.set(4.2, 4.2, 1);
-  bug.add(body, head, seam, halo);
+  bug.add(body, seam, halo);
   bug.position.y = 1.3;
   g.add(bug);
   const H = p.beam ?? 220;

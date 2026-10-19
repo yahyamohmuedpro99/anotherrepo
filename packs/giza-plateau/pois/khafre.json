@@ -1,0 +1,24 @@
+{
+ "id": "poi.khafre",
+ "scene": "plateau",
+ "at": [
+  -328,
+  344
+ ],
+ "radius": 190,
+ "title": "area.khafre",
+ "card": "area-khafre",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "spawn": {
+  "at": [
+   -300,
+   494
+  ],
+  "yaw": 0.18
+ },
+ "items": [
+  "item.khafre"
+ ]
+}

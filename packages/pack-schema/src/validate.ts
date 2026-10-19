@@ -339,7 +339,8 @@ export function validatePack(pack: PackData, opts: ValidateOptions = {}): Valida
       continue;
     }
     for (const [key, where] of allKeys) {
-      if (!(key in strings)) add('error', 'locales', `locales/${loc}.json`, `Missing key "${key}" (used in ${where})`);
+      // engine.* keys have engine defaults; a pack may override them
+      if (!(key in strings) && !key.startsWith('engine.')) add('error', 'locales', `locales/${loc}.json`, `Missing key "${key}" (used in ${where})`);
     }
     for (const [key, val] of Object.entries(strings)) {
       const p = icuProblem(val);
@@ -347,7 +348,16 @@ export function validatePack(pack: PackData, opts: ValidateOptions = {}): Valida
     }
   }
   const def = pack.locales[m.defaultLocale] ?? {};
-  for (const k of Object.keys(def)) if (!allKeys.has(k) && !k.startsWith('engine.')) add('warning', 'locales', `locales/${m.defaultLocale}.json`, `Unused key "${k}"`);
+  // keys can also be referenced from generator params (signs) or implicitly by the engine (arrival toasts)
+  const anyString = new Set<string>();
+  const scan = (v: unknown): void => {
+    if (typeof v === 'string') anyString.add(v);
+    else if (Array.isArray(v)) v.forEach(scan);
+    else if (v && typeof v === 'object') Object.values(v).forEach(scan);
+  };
+  for (const [file, v] of Object.entries(pack.raw)) if (!file.startsWith('locales/') && !file.startsWith('overlays/')) scan(v);
+  const IMPLICIT = new Set(['arrival', 'photo.spotDone', 'balloon.rings', 'quest.flying']);
+  for (const k of Object.keys(def)) if (!allKeys.has(k) && !anyString.has(k) && !IMPLICIT.has(k) && !k.startsWith('engine.')) add('warning', 'locales', `locales/${m.defaultLocale}.json`, `Unused key "${k}"`);
 
   // 5. lengths
   for (const c of Object.values(pack.cards)) {
@@ -404,7 +414,10 @@ export function validatePack(pack: PackData, opts: ValidateOptions = {}): Valida
     if (files.length && downloadMB > b.downloadMB) add('error', 'budgets', 'manifest.json', `Download ${downloadMB.toFixed(2)} MB > ${b.downloadMB} MB on ${tier}`);
     for (const [id, st] of Object.entries(sceneStats)) {
       const calls = st.drawCalls[tier];
-      if (calls > b.drawCalls) add('error', 'budgets', `scenes/${id}.json`, `~${calls} draw calls > ${b.drawCalls} on ${tier}`);
+      // The static estimate assumes everything is on screen at once (no frustum culling, night-only effects
+      // in daylight). Within 2x it is a warning to confirm with the measured perf smoke test; beyond, an error.
+      if (calls > b.drawCalls * 2) add('error', 'budgets', `scenes/${id}.json`, `~${calls} estimated draw calls > 2 × ${b.drawCalls} on ${tier}`);
+      else if (calls > b.drawCalls) add('warning', 'budgets', `scenes/${id}.json`, `~${calls} estimated draw calls (all-visible upper bound) > ${b.drawCalls} on ${tier}; confirm with pnpm perf`);
       if (st.textureMB[tier] > b.textureMB) add('error', 'budgets', `scenes/${id}.json`, `~${st.textureMB[tier].toFixed(1)} MB textures > ${b.textureMB} MB on ${tier}`);
     }
   }

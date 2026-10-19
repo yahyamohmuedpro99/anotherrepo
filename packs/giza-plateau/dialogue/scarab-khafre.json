@@ -1,0 +1,31 @@
+{
+ "id": "scarab-khafre",
+ "locked": true,
+ "lines": [
+  {
+   "who": {
+    "key": "scarab.ask",
+    "params": {}
+   },
+   "glyph": "scarab",
+   "text": "scarab.khafre.lore"
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.khafre",
+   "onCorrect": [
+    {
+     "do": "add.counter",
+     "counter": "scarabs",
+     "value": "khafre"
+    },
+    {
+     "do": "show.dialogue",
+     "dialogue": "scarab-khafre-got"
+    }
+   ]
+  }
+ ]
+}

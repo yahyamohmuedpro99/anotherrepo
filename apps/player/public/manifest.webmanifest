@@ -1,0 +1,13 @@
+{
+  "name": "رحلة · Rihla",
+  "short_name": "رحلة",
+  "description": "رحلات قصيرة ثلاثية الأبعاد مرتبطة بالدروس · Short 3D trips tied to lessons",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#0c1530",
+  "theme_color": "#0c1530",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

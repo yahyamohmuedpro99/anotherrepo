@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { MaterialRef } from '@rihla/pack-schema';
 import { TAU, clamp, rng } from '../math/noise.js';
 import { makeCanvas, textureFor } from '../world/textures.js';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import type { BuildCtx, Built } from './context.js';
 
 /* ---------------------------------------------------------------- stepped pyramid (silent-sphinx) */
@@ -144,13 +145,17 @@ export function buildPyramid(p: PyramidParams, x: number, z: number, ctx: BuildC
     grp.add(new THREE.Mesh(g, ctx.materials.get({ color: '#6a4e34', roughness: 1 })));
   }
   if (p.mast) {
-    const mm = ctx.materials.get({ color: '#4f4237', roughness: 0.8 });
+    // the survey mast on top shows the original height; three legs merged into one mesh
+    const legs: THREE.BufferGeometry[] = [];
+    const o = new THREE.Object3D();
     for (let i = 0; i < 3; i++) {
-      const a = (i / 3) * TAU, leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 8.6, 5), mm);
-      leg.position.set(Math.cos(a) * 0.7, p.hTop + 4.2, Math.sin(a) * 0.7);
-      leg.rotation.set(Math.sin(a) * 0.08, 0, -Math.cos(a) * 0.08);
-      grp.add(leg);
+      const a = (i / 3) * TAU, leg = new THREE.CylinderGeometry(0.06, 0.06, 8.6, 5);
+      o.position.set(Math.cos(a) * 0.7, p.hTop + 4.2, Math.sin(a) * 0.7);
+      o.rotation.set(Math.sin(a) * 0.08, 0, -Math.cos(a) * 0.08);
+      o.updateMatrix();
+      legs.push(leg.applyMatrix4(o.matrix));
     }
+    grp.add(new THREE.Mesh(mergeGeometries(legs)!, ctx.materials.get({ color: '#4f4237', roughness: 0.8 })));
   }
   ctx.solids.push({ kind: 'pyr', x, z, hx: half, hz: half, y0, h: H });
   return { object: grp, baseY: y0, labelY: p.hTop + 12 };
@@ -220,13 +225,10 @@ export function buildSign(textKey: string, w: number, y: number, bg: string, ctx
   board.position.y = y;
   board.castShadow = ctx.shadows;
   grp.add(board);
-  const post = ctx.materials.get({ color: '#4a3b2c', roughness: 0.9 });
-  for (const px of [-w * 0.38, w * 0.38]) {
-    const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, y, 6), post);
-    p.position.set(px, y / 2 - w / 8, -0.1);
-    p.castShadow = ctx.shadows;
-    grp.add(p);
-  }
+  const posts = [-w * 0.38, w * 0.38].map((px) => new THREE.CylinderGeometry(0.08, 0.08, y, 6).translate(px, y / 2 - w / 8, -0.1));
+  const pm = new THREE.Mesh(mergeGeometries(posts)!, ctx.materials.get({ color: '#4a3b2c', roughness: 0.9 }));
+  pm.castShadow = ctx.shadows;
+  grp.add(pm);
   return { object: grp };
 }
 

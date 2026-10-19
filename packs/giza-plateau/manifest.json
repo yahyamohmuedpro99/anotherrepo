@@ -1,0 +1,569 @@
+{
+ "$schema": "../../packages/pack-schema/dist/json-schema/manifest.schema.json",
+ "id": "giza-plateau",
+ "version": "1.0.0",
+ "engine": "^0.1",
+ "title": "pack.title",
+ "altTitle": "pack.alt",
+ "summary": "pack.summary",
+ "kicker": "pack.kicker",
+ "subjects": [
+  "social-studies"
+ ],
+ "grades": [
+  "EG-P4",
+  "EG-P5",
+  "EG-P6"
+ ],
+ "durationMinutes": 20,
+ "objectives": [
+  {
+   "id": "obj.pyramids",
+   "text": "obj.pyramids"
+  },
+  {
+   "id": "obj.scale",
+   "text": "obj.scale"
+  },
+  {
+   "id": "obj.sphinx",
+   "text": "obj.sphinx"
+  },
+  {
+   "id": "obj.crafts",
+   "text": "obj.crafts"
+  }
+ ],
+ "curriculum": [
+  {
+   "country": "EG",
+   "grade": "P4",
+   "subject": "social-studies",
+   "lesson": "TODO: map to unit/lesson/page (open question 4)"
+  }
+ ],
+ "locales": [
+  "ar-EG",
+  "en"
+ ],
+ "defaultLocale": "ar-EG",
+ "startScene": "plateau",
+ "startPoi": "poi.sphinx",
+ "scenes": [
+  "scenes/plateau.json"
+ ],
+ "pois": [
+  "pois/khufu.json",
+  "pois/khafre.json",
+  "pois/menkaure.json",
+  "pois/boat.json",
+  "pois/west.json",
+  "pois/sphinx.json",
+  "pois/valley.json",
+  "pois/nazlet.json",
+  "pois/pano.json"
+ ],
+ "quests": [
+  "quests/voice.json",
+  "quests/photos.json"
+ ],
+ "items": [
+  "items/height.json",
+  "items/khufu.json",
+  "items/khafre.json",
+  "items/menkaure.json",
+  "items/boat.json",
+  "items/sphinx.json",
+  "items/papyrus.json",
+  "items/granite.json"
+ ],
+ "cards": [
+  "cards/area-khufu.json",
+  "cards/area-khafre.json",
+  "cards/area-menkaure.json",
+  "cards/area-queens-k.json",
+  "cards/area-west.json",
+  "cards/area-sphinx.json",
+  "cards/area-valley.json",
+  "cards/area-nazlet.json",
+  "cards/area-pano.json",
+  "cards/ring-0.json",
+  "cards/ring-1.json",
+  "cards/ring-2.json",
+  "cards/ring-3.json",
+  "cards/ring-4.json",
+  "cards/ring-5.json"
+ ],
+ "dialogues": [
+  "dialogue/hassan-intro.json",
+  "dialogue/hassan-partial.json",
+  "dialogue/hassan-done.json",
+  "dialogue/finale-1.json",
+  "dialogue/finale-2.json",
+  "dialogue/abu.json",
+  "dialogue/abu-done.json",
+  "dialogue/abu-follow.json",
+  "dialogue/abu-all.json",
+  "dialogue/sayed.json",
+  "dialogue/mona.json",
+  "dialogue/fathi.json",
+  "dialogue/tourist-0.json",
+  "dialogue/tourist-1.json",
+  "dialogue/tourist-2.json",
+  "dialogue/tourist-3.json",
+  "dialogue/tourist-4.json",
+  "dialogue/scarab-khufu.json",
+  "dialogue/scarab-khufu-got.json",
+  "dialogue/scarab-khafre.json",
+  "dialogue/scarab-khafre-got.json",
+  "dialogue/scarab-menkaure.json",
+  "dialogue/scarab-menkaure-got.json",
+  "dialogue/scarab-boat.json",
+  "dialogue/scarab-boat-got.json",
+  "dialogue/scarab-all.json"
+ ],
+ "models": [
+  "models/sphinx.json",
+  "models/gem.json",
+  "models/cafe.json",
+  "models/shop.json",
+  "models/pad.json",
+  "models/photo-marker.json",
+  "models/kite.json",
+  "models/bus-0.json",
+  "models/bus-1.json",
+  "models/bus-2.json",
+  "models/bus-3.json"
+ ],
+ "glyphs": [
+  "glyphs/hieroglyphs.json"
+ ],
+ "vehicles": [
+  {
+   "preset": "camel"
+  },
+  {
+   "preset": "carriage"
+  },
+  {
+   "preset": "balloon"
+  }
+ ],
+ "characters": {
+  "hassan": {
+   "name": "char.hassan",
+   "glyph": "char.hassan.g"
+  },
+  "abu": {
+   "name": "char.abu",
+   "glyph": "char.abu.g"
+  },
+  "sayed": {
+   "name": "char.sayed",
+   "glyph": "char.sayed.g"
+  },
+  "mona": {
+   "name": "char.mona",
+   "glyph": "char.mona.g"
+  },
+  "fathi": {
+   "name": "char.fathi",
+   "glyph": "char.fathi.g"
+  },
+  "tourist": {
+   "name": "char.tourist",
+   "glyph": "char.tourist.g"
+  },
+  "sphinx": {
+   "name": "char.sphinx",
+   "glyph": "char.sphinx.g"
+  },
+  "fact": {
+   "name": "char.fact",
+   "glyph": "char.fact.g"
+  }
+ },
+ "counters": [
+  {
+   "id": "scarabs",
+   "scope": "save",
+   "of": 4
+  },
+  {
+   "id": "rings",
+   "scope": "save",
+   "of": 6
+  },
+  {
+   "id": "spots",
+   "scope": "save",
+   "of": 6
+  },
+  {
+   "id": "rides",
+   "scope": "save",
+   "of": 3
+  }
+ ],
+ "flags": [
+  {
+   "id": "done"
+  },
+  {
+   "id": "finale"
+  },
+  {
+   "id": "met-hassan"
+  },
+  {
+   "id": "tea"
+  },
+  {
+   "id": "cartouche"
+  }
+ ],
+ "stamps": [
+  {
+   "id": "giza",
+   "title": "stamp.giza",
+   "color": "#e9b44c",
+   "style": "seal"
+  },
+  {
+   "id": "pilot",
+   "title": "stamp.pilot",
+   "color": "#c4533c",
+   "style": "seal"
+  },
+  {
+   "id": "photographer",
+   "title": "stamp.photographer",
+   "color": "#33b7a9",
+   "style": "seal"
+  }
+ ],
+ "titles": [
+  {
+   "id": "guardian",
+   "text": "title.guardian"
+  }
+ ],
+ "collections": {
+  "activities": {
+   "title": "act.title",
+   "button": "act.button",
+   "sub": "act.sub",
+   "entries": [
+    {
+     "title": "act.story",
+     "sub": {
+      "key": "act.storyS",
+      "params": {
+       "n": {
+        "counter": "scarabs"
+       }
+      }
+     },
+     "icon": "scarab",
+     "done": {
+      "flag": "done"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": {
+        "nearest": "quest-step",
+        "quest": "voice"
+       },
+       "mode": "fast"
+      }
+     ]
+    },
+    {
+     "title": "act.camel",
+     "sub": "act.camelS",
+     "icon": "camel",
+     "done": {
+      "counter": "rides",
+      "has": "camel"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "veh.shams",
+       "mode": "fast"
+      }
+     ],
+     "keepGo": true
+    },
+    {
+     "title": "act.cart",
+     "sub": "act.cartS",
+     "icon": "carriage",
+     "done": {
+      "counter": "rides",
+      "has": "carriage"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "veh.antar",
+       "mode": "fast"
+      }
+     ],
+     "keepGo": true
+    },
+    {
+     "title": "act.balloon",
+     "sub": "act.balloonS",
+     "icon": "balloon",
+     "done": {
+      "counter": "rides",
+      "has": "balloon"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "npc.mona",
+       "mode": "fast"
+      }
+     ],
+     "keepGo": true
+    },
+    {
+     "title": "act.rings",
+     "sub": {
+      "key": "act.ringsS",
+      "params": {
+       "n": {
+        "counter": "rings"
+       }
+      }
+     },
+     "icon": "ring",
+     "done": {
+      "counter": "rings",
+      "gte": 6
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "npc.mona",
+       "mode": "fast"
+      }
+     ]
+    },
+    {
+     "title": "act.photos",
+     "sub": {
+      "key": "act.photosS",
+      "params": {
+       "n": {
+        "counter": "spots"
+       }
+      }
+     },
+     "icon": "camera",
+     "done": {
+      "counter": "spots",
+      "gte": 6
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "photo.pano",
+       "mode": "fast"
+      }
+     ]
+    },
+    {
+     "title": "act.cartouche",
+     "sub": "act.cartoucheS",
+     "icon": "cartouche",
+     "done": {
+      "flag": "cartouche"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "npc.sayed",
+       "mode": "fast"
+      }
+     ]
+    },
+    {
+     "title": "act.tea",
+     "sub": "act.teaS",
+     "icon": "tea",
+     "done": {
+      "flag": "tea"
+     },
+     "go": [
+      {
+       "do": "travel.to",
+       "target": "npc.abu",
+       "mode": "fast"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "intro": {
+  "story": [
+   "intro.story1",
+   "intro.story2"
+  ],
+  "features": [
+   {
+    "icon": "camel",
+    "text": "feat.camel"
+   },
+   {
+    "icon": "carriage",
+    "text": "feat.cart"
+   },
+   {
+    "icon": "balloon",
+    "text": "feat.balloon"
+   },
+   {
+    "icon": "camera",
+    "text": "feat.photo"
+   },
+   {
+    "icon": "cartouche",
+    "text": "feat.cartouche"
+   }
+  ],
+  "askName": true,
+  "nameLabel": "intro.name",
+  "namePlaceholder": "intro.namePh",
+  "defaultName": "intro.defaultName",
+  "palette": {
+   "label": "intro.robe",
+   "colors": [
+    "#2f63b0",
+    "#c4533c",
+    "#239a8c",
+    "#6e4a9e",
+    "#d39b2f",
+    "#3c8a48",
+    "#ece4d2"
+   ],
+   "names": [
+    "robe.0",
+    "robe.1",
+    "robe.2",
+    "robe.3",
+    "robe.4",
+    "robe.5",
+    "robe.6"
+   ]
+  },
+  "start": "intro.start",
+  "notes": [
+   "intro.scale"
+  ],
+  "controls": {
+   "touch": "intro.ctlTouch",
+   "desk": "intro.ctlDesk"
+  }
+ },
+ "theme": {
+  "preset": "lapis",
+  "band": "khayamiya"
+ },
+ "hud": {
+  "quest": "voice",
+  "panels": [
+   "activities",
+   "passport",
+   "album",
+   "settings"
+  ],
+  "toggles": [
+   {
+    "id": "show",
+    "on": "show.on",
+    "off": "show.off",
+    "icon": "star",
+    "when": {
+     "flag": "done"
+    },
+    "state": {
+     "timeOfDay": "night"
+    },
+    "do": [
+     {
+      "do": "set.timeOfDay",
+      "value": "toggle"
+     }
+    ]
+   }
+  ],
+  "album": {
+   "max": 12,
+   "defaultCaption": "album.caption",
+   "note": "engine.albumNote",
+   "empty": "engine.albumEmpty"
+  },
+  "wave": true
+ },
+ "prePost": {
+  "pre": [
+   "item.sphinx",
+   "item.height",
+   "item.papyrus",
+   "item.granite",
+   "item.menkaure"
+  ],
+  "post": [
+   "item.sphinx",
+   "item.height",
+   "item.papyrus",
+   "item.granite",
+   "item.menkaure"
+  ]
+ },
+ "budgets": {
+  "low": {
+   "downloadMB": 15,
+   "drawCalls": 150,
+   "textureMB": 48
+  },
+  "mid": {
+   "downloadMB": 25,
+   "drawCalls": 300,
+   "textureMB": 128
+  },
+  "high": {
+   "downloadMB": 40,
+   "drawCalls": 600,
+   "textureMB": 256
+  }
+ },
+ "sensitivity": [
+  "burial-practices"
+ ],
+ "credits": [
+  {
+   "role": "credits.prototype",
+   "name": "Yahya (Rihla founder)"
+  },
+  {
+   "role": "credits.port",
+   "name": "Rihla engineering"
+  }
+ ],
+ "reviewStatus": "draft",
+ "teacher": {
+  "lessonPlan": "teacher/lesson-plan.md",
+  "worksheet": "teacher/worksheet.md",
+  "answerKey": "teacher/answer-key.md"
+ },
+ "tags": [
+  "heritage",
+  "giza"
+ ]
+}

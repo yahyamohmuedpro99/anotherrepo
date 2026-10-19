@@ -1,0 +1,22 @@
+{
+ "id": "poi.west",
+ "scene": "plateau",
+ "at": [
+  -224,
+  -36
+ ],
+ "radius": 120,
+ "title": "area.west",
+ "card": "area-west",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "spawn": {
+  "at": [
+   -232,
+   -176
+  ],
+  "yaw": -3.08
+ },
+ "items": []
+}

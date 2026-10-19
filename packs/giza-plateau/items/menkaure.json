@@ -1,0 +1,27 @@
+{
+ "id": "item.menkaure",
+ "type": "mcq",
+ "prompt": "item.menkaure.q",
+ "options": [
+  {
+   "text": "item.menkaure.o0",
+   "correct": true,
+   "id": "item.menkaure.o0"
+  },
+  {
+   "text": "item.menkaure.o1",
+   "id": "item.menkaure.o1"
+  },
+  {
+   "text": "item.menkaure.o2",
+   "id": "item.menkaure.o2"
+  }
+ ],
+ "hint": "item.menkaure.h",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

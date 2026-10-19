@@ -1,0 +1,24 @@
+{
+ "id": "poi.menkaure",
+ "scene": "plateau",
+ "at": [
+  -590,
+  744
+ ],
+ "radius": 110,
+ "title": "area.menkaure",
+ "card": "area-menkaure",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "spawn": {
+  "at": [
+   -492,
+   744
+  ],
+  "yaw": 1.57
+ },
+ "items": [
+  "item.menkaure"
+ ]
+}

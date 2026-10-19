@@ -1,0 +1,11 @@
+{
+ "id": "abu-all",
+ "anchor": "npc.abu",
+ "ttl": 14,
+ "lines": [
+  {
+   "speaker": "abu",
+   "text": "abu.all"
+  }
+ ]
+}

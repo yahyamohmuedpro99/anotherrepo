@@ -1,0 +1,27 @@
+{
+ "id": "item.khafre",
+ "type": "mcq",
+ "prompt": "item.khafre.q",
+ "options": [
+  {
+   "text": "item.khafre.o0",
+   "correct": true,
+   "id": "item.khafre.o0"
+  },
+  {
+   "text": "item.khafre.o1",
+   "id": "item.khafre.o1"
+  },
+  {
+   "text": "item.khafre.o2",
+   "id": "item.khafre.o2"
+  }
+ ],
+ "hint": "item.khafre.h",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

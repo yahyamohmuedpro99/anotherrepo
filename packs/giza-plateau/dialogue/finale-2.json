@@ -1,0 +1,50 @@
+{
+ "id": "finale-2",
+ "locked": true,
+ "endLabel": "engine.finish",
+ "lines": [
+  {
+   "speaker": "sphinx",
+   "text": "finale.2",
+   "do": [
+    {
+     "do": "set.timeOfDay",
+     "value": "night"
+    }
+   ]
+  },
+  {
+   "speaker": "sphinx",
+   "text": "finale.3"
+  },
+  {
+   "speaker": "sphinx",
+   "text": "finale.4"
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "set.flag",
+   "flag": "done"
+  },
+  {
+   "do": "give.title",
+   "title": "guardian"
+  },
+  {
+   "do": "give.stamp",
+   "stamp": "giza"
+  },
+  {
+   "do": "control.delay",
+   "seconds": 0.7,
+   "then": [
+    {
+     "do": "show.toast",
+     "text": "sphinx.fact",
+     "ms": 8000
+    }
+   ]
+  }
+ ]
+}

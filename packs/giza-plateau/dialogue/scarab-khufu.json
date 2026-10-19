@@ -1,0 +1,31 @@
+{
+ "id": "scarab-khufu",
+ "locked": true,
+ "lines": [
+  {
+   "who": {
+    "key": "scarab.ask",
+    "params": {}
+   },
+   "glyph": "scarab",
+   "text": "scarab.khufu.lore"
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.khufu",
+   "onCorrect": [
+    {
+     "do": "add.counter",
+     "counter": "scarabs",
+     "value": "khufu"
+    },
+    {
+     "do": "show.dialogue",
+     "dialogue": "scarab-khufu-got"
+    }
+   ]
+  }
+ ]
+}

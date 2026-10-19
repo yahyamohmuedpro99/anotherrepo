@@ -1,0 +1,147 @@
+{
+ "id": "shop",
+ "parts": [
+  {
+   "shape": "plane",
+   "args": [
+    1.4,
+    1.05
+   ],
+   "at": [
+    2.9,
+    1.6,
+    -2.4
+   ],
+   "rot": [
+    0,
+    -1.5707963267948966,
+    0
+   ],
+   "material": {
+    "map": {
+     "gen": "papyrus-art",
+     "seed": 9
+    },
+    "roughness": 0.9,
+    "doubleSide": true
+   }
+  },
+  {
+   "shape": "plane",
+   "args": [
+    1.4,
+    1.05
+   ],
+   "at": [
+    2.9,
+    1.6,
+    0
+   ],
+   "rot": [
+    0,
+    -1.5707963267948966,
+    0
+   ],
+   "material": {
+    "map": {
+     "gen": "papyrus-art",
+     "seed": 9
+    },
+    "roughness": 0.9,
+    "doubleSide": true
+   }
+  },
+  {
+   "shape": "plane",
+   "args": [
+    1.4,
+    1.05
+   ],
+   "at": [
+    2.9,
+    1.6,
+    2.4
+   ],
+   "rot": [
+    0,
+    -1.5707963267948966,
+    0
+   ],
+   "material": {
+    "map": {
+     "gen": "papyrus-art",
+     "seed": 9
+    },
+    "roughness": 0.9,
+    "doubleSide": true
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.04,
+    0.04,
+    1.3,
+    5
+   ],
+   "at": [
+    2.95,
+    0.65,
+    -2.4
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.04,
+    0.04,
+    1.3,
+    5
+   ],
+   "at": [
+    2.95,
+    0.65,
+    0
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.04,
+    0.04,
+    1.3,
+    5
+   ],
+   "at": [
+    2.95,
+    0.65,
+    2.4
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "box",
+   "args": [
+    3,
+    0.15,
+    10
+   ],
+   "at": [
+    1.8,
+    3.4,
+    0
+   ],
+   "rot": [
+    0,
+    0,
+    0.15
+   ],
+   "material": {
+    "color": "#b5462f",
+    "roughness": 0.9
+   }
+  }
+ ]
+}

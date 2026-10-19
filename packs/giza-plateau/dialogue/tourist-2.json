@@ -1,0 +1,10 @@
+{
+ "id": "tourist-2",
+ "ttl": 10,
+ "lines": [
+  {
+   "speaker": "tourist",
+   "text": "tourist.2"
+  }
+ ]
+}

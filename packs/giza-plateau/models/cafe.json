@@ -1,0 +1,99 @@
+{
+ "id": "cafe",
+ "parts": [
+  {
+   "shape": "box",
+   "args": [
+    11,
+    0.25,
+    7
+   ],
+   "at": [
+    0,
+    3.2,
+    0
+   ],
+   "material": {
+    "color": "#2f7a56",
+    "roughness": 0.9
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.08,
+    0.08,
+    3.2,
+    6
+   ],
+   "at": [
+    -5.2,
+    1.6,
+    -3.2
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.08,
+    0.08,
+    3.2,
+    6
+   ],
+   "at": [
+    5.2,
+    1.6,
+    -3.2
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.08,
+    0.08,
+    3.2,
+    6
+   ],
+   "at": [
+    -5.2,
+    1.6,
+    3.2
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.08,
+    0.08,
+    3.2,
+    6
+   ],
+   "at": [
+    5.2,
+    1.6,
+    3.2
+   ],
+   "material": "post"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    3.2,
+    7
+   ],
+   "at": [
+    5.6,
+    1.6,
+    0
+   ],
+   "material": {
+    "color": "#d9c3a0",
+    "roughness": 0.95
+   }
+  }
+ ]
+}

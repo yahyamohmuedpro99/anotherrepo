@@ -1,0 +1,29 @@
+{
+ "id": "finale-1",
+ "locked": true,
+ "anchor": "npc.hassan",
+ "lines": [
+  {
+   "speaker": "hassan",
+   "text": "finale.1",
+   "do": [
+    {
+     "do": "set.flag",
+     "flag": "finale"
+    }
+   ]
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "ask.item",
+   "item": "item.sphinx",
+   "onCorrect": [
+    {
+     "do": "show.dialogue",
+     "dialogue": "finale-2"
+    }
+   ]
+  }
+ ]
+}

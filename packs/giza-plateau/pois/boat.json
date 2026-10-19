@@ -1,0 +1,23 @@
+{
+ "id": "poi.boat",
+ "scene": "plateau",
+ "at": [
+  0,
+  146
+ ],
+ "radius": 28,
+ "title": "area.boat",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "spawn": {
+  "at": [
+   30,
+   160
+  ],
+  "yaw": 1.13
+ },
+ "items": [
+  "item.boat"
+ ]
+}

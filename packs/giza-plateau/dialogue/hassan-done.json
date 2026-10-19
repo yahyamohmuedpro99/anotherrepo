@@ -1,0 +1,10 @@
+{
+ "id": "hassan-done",
+ "anchor": "npc.hassan",
+ "lines": [
+  {
+   "speaker": "hassan",
+   "text": "hassan.done"
+  }
+ ]
+}

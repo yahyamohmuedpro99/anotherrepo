@@ -1,0 +1,78 @@
+{
+ "id": "abu-done",
+ "anchor": "npc.abu",
+ "lines": [
+  {
+   "speaker": "abu",
+   "text": "abu.done",
+   "options": [
+    {
+     "text": "opt.tea",
+     "prime": true,
+     "do": [
+      {
+       "do": "player.buff",
+       "runSpeed": 13,
+       "seconds": 90
+      },
+      {
+       "do": "set.flag",
+       "flag": "tea"
+      },
+      {
+       "do": "show.toast",
+       "text": "tea.done",
+       "kind": "gold",
+       "ms": 5000
+      },
+      {
+       "do": "control.if",
+       "when": {
+        "not": {
+         "flag": "done"
+        }
+       },
+       "then": [
+        {
+         "do": "control.delay",
+         "seconds": 0.35,
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "abu-follow"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "text": "opt.noThanks",
+     "do": [
+      {
+       "do": "control.if",
+       "when": {
+        "not": {
+         "flag": "done"
+        }
+       },
+       "then": [
+        {
+         "do": "control.delay",
+         "seconds": 0.35,
+         "then": [
+          {
+           "do": "show.dialogue",
+           "dialogue": "abu-follow"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

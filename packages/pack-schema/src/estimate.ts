@@ -31,8 +31,13 @@ function modelCalls(m: ModelRef | undefined, models: Record<string, CompositeMod
   switch (m.gen) {
     case 'gltf':
       return tier === 'low' && m.lowTier ? modelCalls(m.lowTier as ModelRef, models, tier) : 8;
-    case 'composite':
-      return m.ref ? (models[m.ref]?.parts.length ?? 1) : 1;
+    case 'composite': {
+      // static composites are merged per material at build time
+      const cm = m.ref ? models[m.ref] : undefined;
+      if (!cm) return 1;
+      if (cm.parts.some((p) => p.name || p.parent)) return cm.parts.length;
+      return new Set(cm.parts.map((p, i) => (p.shape === 'sprite' ? `sprite${i}` : JSON.stringify(p.material)))).size;
+    }
     case 'part':
     case 'instances':
     case 'strip':
@@ -43,11 +48,11 @@ function modelCalls(m: ModelRef | undefined, models: Record<string, CompositeMod
     case 'orbit-line':
       return 1;
     case 'pyramid':
-      return 1 + (p.casingFrom != null ? 1 : 0) + (p.granite ? 1 : 0) + (p.gash ? 1 : 0) + (p.mast ? 3 : 0);
+      return 1 + (p.casingFrom != null ? 1 : 0) + (p.granite ? 1 : 0) + (p.gash ? 1 : 0) + (p.mast ? 1 : 0);
     case 'pyramid-simple':
       return 1;
     case 'sign':
-      return 4;
+      return 3;
     case 'body':
       return 1 + (p.rings ? 1 : 0) + (p.clouds ? 1 : 0) + (p.atmosphere ? 1 : 0) + (p.glow ? 2 : 0);
     case 'belt':
@@ -57,7 +62,7 @@ function modelCalls(m: ModelRef | undefined, models: Record<string, CompositeMod
     case 'beacon':
       return 4;
     case 'scarab':
-      return 6;
+      return 5;
     case 'beams':
       return Array.isArray(p.aims) ? p.aims.length : 4;
     default: {
@@ -104,7 +109,7 @@ export function estimateScene(scene: Scene, models: Record<string, CompositeMode
       calls += e.lod ? Math.ceil(c * 0.35) : c;
       texMB += textureMBFor(e.model);
     }
-    if (tier !== 'low' && scene.kind === 'terrain') calls = Math.round(calls * 1.6);
+    if (tier !== 'low' && scene.kind === 'terrain') calls = Math.round(calls * 1.25); // shadow pass, casters near the player only
     out.drawCalls[tier] = calls;
     out.textureMB[tier] = +(texMB + textures.size * ((256 * 256 * 4 * 1.33) / 1048576)).toFixed(2);
   }

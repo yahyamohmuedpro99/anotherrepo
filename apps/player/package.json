@@ -1,0 +1,28 @@
+{
+  "name": "@rihla/player",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "QR landing shell and full-screen player PWA. Mounts @rihla/engine.",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0 --port 4173",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@fontsource/aref-ruqaa": "5.1.0",
+    "@fontsource/ibm-plex-sans-arabic": "5.1.0",
+    "@fontsource/noto-sans-egyptian-hieroglyphs": "5.1.0",
+    "@fontsource/reem-kufi": "5.1.0",
+    "@rihla/engine": "workspace:*",
+    "@rihla/i18n": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.6.3",
+    "vite": "6.0.7",
+    "vitest": "2.1.8"
+  }
+}

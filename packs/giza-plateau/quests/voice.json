@@ -1,0 +1,89 @@
+{
+ "id": "voice",
+ "title": "quest.title",
+ "mode": "nearest",
+ "progress": {
+  "counter": "scarabs",
+  "of": 4,
+  "style": "scarab"
+ },
+ "steps": [
+  {
+   "id": "scarab-khufu",
+   "label": "scarab.khufu.where",
+   "target": "scarab.khufu",
+   "done": {
+    "counter": "scarabs",
+    "has": "khufu"
+   }
+  },
+  {
+   "id": "scarab-khafre",
+   "label": "scarab.khafre.where",
+   "target": "scarab.khafre",
+   "done": {
+    "counter": "scarabs",
+    "has": "khafre"
+   }
+  },
+  {
+   "id": "scarab-menkaure",
+   "label": "scarab.menkaure.where",
+   "target": "scarab.menkaure",
+   "done": {
+    "counter": "scarabs",
+    "has": "menkaure"
+   }
+  },
+  {
+   "id": "scarab-boat",
+   "label": "scarab.boat.where",
+   "target": "scarab.boat",
+   "done": {
+    "counter": "scarabs",
+    "has": "boat"
+   }
+  },
+  {
+   "id": "return",
+   "label": "quest.return",
+   "target": "npc.hassan",
+   "when": {
+    "counter": "scarabs",
+    "gte": 4
+   },
+   "done": {
+    "flag": "done"
+   }
+  }
+ ],
+ "done": {
+  "flag": "done"
+ },
+ "goal": {
+  "next": "quest.next",
+  "done": "quest.free",
+  "busy": {
+   "when": {
+    "all": [
+     {
+      "flag": "finale"
+     },
+     {
+      "not": {
+       "flag": "done"
+      }
+     }
+    ]
+   },
+   "text": "quest.finale"
+  }
+ },
+ "objectives": [
+  "obj.pyramids",
+  "obj.scale",
+  "obj.sphinx",
+  "obj.crafts"
+ ],
+ "onComplete": []
+}

@@ -1,0 +1,621 @@
+{
+ "id": "sphinx",
+ "note": "Ported from silent-sphinx.html; replace with a photogrammetry glTF when one is licensed (BRIEF §14).",
+ "materials": {
+  "body": {
+   "map": {
+    "gen": "strata",
+    "seed": 5,
+    "repeat": [
+     0.1,
+     0.05
+    ]
+   },
+   "roughness": 0.95,
+   "emissive": "#c98a3a",
+   "night": {
+    "intensity": 0.3
+   }
+  },
+  "head": {
+   "map": {
+    "gen": "strata",
+    "seed": 5,
+    "repeat": [
+     1,
+     0.5
+    ]
+   },
+   "color": "#efdcb8",
+   "roughness": 0.9,
+   "flatShading": true,
+   "emissive": "#c98a3a",
+   "night": {
+    "intensity": 0.3
+   }
+  },
+  "face": {
+   "map": {
+    "gen": "strata",
+    "seed": 5,
+    "repeat": [
+     1,
+     0.5
+    ]
+   },
+   "color": "#f2e0bd",
+   "roughness": 0.85,
+   "emissive": "#c98a3a",
+   "night": {
+    "intensity": 0.3
+   }
+  },
+  "eye": {
+   "color": "#2a2018",
+   "emissive": "#8ff6ff",
+   "glowWhen": {
+    "when": {
+     "any": [
+      {
+       "flag": "done"
+      },
+      {
+       "flag": "finale"
+      }
+     ]
+    },
+    "intensity": 0.6,
+    "nightBoost": 3
+   }
+  },
+  "nose": {
+   "color": "#b89a72",
+   "roughness": 1
+  },
+  "mouth": {
+   "color": "#5d4630",
+   "roughness": 1
+  },
+  "granite": {
+   "map": {
+    "gen": "granite",
+    "seed": 17,
+    "size": 128,
+    "repeat": [
+     2,
+     2
+    ]
+   },
+   "roughness": 0.7
+  },
+  "floor": {
+   "color": "#c5a77d",
+   "roughness": 1
+  }
+ },
+ "parts": [
+  {
+   "shape": "extrude",
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     4.5
+    ],
+    [
+     0.5,
+     8.5,
+     5,
+     9
+    ],
+    [
+     14,
+     9.6
+    ],
+    [
+     24,
+     9,
+     32,
+     10.2
+    ],
+    [
+     39,
+     11,
+     44,
+     12
+    ],
+    [
+     46,
+     12
+    ],
+    [
+     46,
+     0
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "depth": 11,
+   "bevel": [
+    1.1,
+    1,
+    3
+   ],
+   "pivot": [
+    -36.5,
+    0,
+    -5.5
+   ],
+   "material": "body",
+   "ground": true
+  },
+  {
+   "shape": "extrude",
+   "points": [
+    [
+     40,
+     0
+    ],
+    [
+     40,
+     11.6
+    ],
+    [
+     44,
+     12.6
+    ],
+    [
+     50.5,
+     12.4
+    ],
+    [
+     52.4,
+     10
+    ],
+    [
+     53.6,
+     6,
+     52.8,
+     3
+    ],
+    [
+     52.5,
+     0
+    ],
+    [
+     40,
+     0
+    ]
+   ],
+   "depth": 8.4,
+   "bevel": [
+    1.1,
+    1,
+    3
+   ],
+   "pivot": [
+    -36.5,
+    0,
+    -4.2
+   ],
+   "material": "body",
+   "ground": true
+  },
+  {
+   "shape": "sphere",
+   "args": [
+    1,
+    16,
+    10
+   ],
+   "scale": [
+    7.5,
+    4.4,
+    1.8
+   ],
+   "at": [
+    -27.5,
+    3.8,
+    -6.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "sphere",
+   "args": [
+    1,
+    16,
+    10
+   ],
+   "scale": [
+    7.5,
+    4.4,
+    1.8
+   ],
+   "at": [
+    -27.5,
+    3.8,
+    6.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "extrude",
+   "points": [
+    [
+     -5,
+     12
+    ],
+    [
+     5,
+     12
+    ],
+    [
+     4.6,
+     14.5
+    ],
+    [
+     4.1,
+     18.6,
+     2.3,
+     19.7
+    ],
+    [
+     -2.3,
+     19.7
+    ],
+    [
+     -4.1,
+     18.6,
+     -4.6,
+     14.5
+    ],
+    [
+     -5,
+     12
+    ]
+   ],
+   "depth": 6.4,
+   "bevel": [
+    0.3,
+    0.25,
+    2
+   ],
+   "args": [
+    8
+   ],
+   "geoRot": [
+    0,
+    1.5707963267948966,
+    0
+   ],
+   "pivot": [
+    8.299999999999997,
+    0,
+    0
+   ],
+   "material": "head",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    2.6,
+    5.6,
+    4
+   ],
+   "at": [
+    15.9,
+    15.9,
+    0
+   ],
+   "material": "face",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    2.9,
+    0.8,
+    5.4
+   ],
+   "at": [
+    15.8,
+    18.9,
+    0
+   ],
+   "material": "head",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.8,
+    6.2,
+    1.8
+   ],
+   "at": [
+    15.2,
+    12.6,
+    -3.25
+   ],
+   "material": "head",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    1,
+    1.6,
+    0.5
+   ],
+   "at": [
+    15.4,
+    16.3,
+    -2.25
+   ],
+   "material": "face"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.8,
+    6.2,
+    1.8
+   ],
+   "at": [
+    15.2,
+    12.6,
+    3.25
+   ],
+   "material": "head",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    1,
+    1.6,
+    0.5
+   ],
+   "at": [
+    15.4,
+    16.3,
+    2.25
+   ],
+   "material": "face"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.16,
+    0.4,
+    0.95
+   ],
+   "at": [
+    17.22,
+    16.9,
+    -0.95
+   ],
+   "material": "eye"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.16,
+    0.4,
+    0.95
+   ],
+   "at": [
+    17.22,
+    16.9,
+    0.95
+   ],
+   "material": "eye"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.5,
+    1,
+    0.95
+   ],
+   "at": [
+    17.22,
+    15.3,
+    0
+   ],
+   "material": "nose"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.1,
+    0.12,
+    1.4
+   ],
+   "at": [
+    17.22,
+    14.25,
+    0
+   ],
+   "material": "mouth"
+  },
+  {
+   "shape": "box",
+   "args": [
+    21,
+    2.8,
+    3.4
+   ],
+   "at": [
+    26,
+    1.4,
+    -4.3
+   ],
+   "material": "body",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    6,
+    5.5,
+    3.6
+   ],
+   "at": [
+    16,
+    2.75,
+    -4.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    -5.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    -4.3
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    -3.2
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    21,
+    2.8,
+    3.4
+   ],
+   "at": [
+    26,
+    1.4,
+    4.3
+   ],
+   "material": "body",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    6,
+    5.5,
+    3.6
+   ],
+   "at": [
+    16,
+    2.75,
+    4.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    3.2
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    4.3
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    1.2,
+    1.4,
+    1
+   ],
+   "at": [
+    36.7,
+    0.7,
+    5.4
+   ],
+   "material": "body"
+  },
+  {
+   "shape": "box",
+   "args": [
+    0.7,
+    3.6,
+    2.4
+   ],
+   "at": [
+    19.7,
+    1.8,
+    0
+   ],
+   "material": "granite",
+   "ground": true
+  },
+  {
+   "shape": "box",
+   "args": [
+    30,
+    0.25,
+    14
+   ],
+   "at": [
+    27.5,
+    0.12,
+    0
+   ],
+   "material": "floor"
+  }
+ ]
+}

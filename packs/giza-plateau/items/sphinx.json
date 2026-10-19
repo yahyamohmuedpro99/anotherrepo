@@ -1,0 +1,27 @@
+{
+ "id": "item.sphinx",
+ "type": "mcq",
+ "prompt": "item.sphinx.q",
+ "options": [
+  {
+   "text": "item.sphinx.o0",
+   "correct": true,
+   "id": "item.sphinx.o0"
+  },
+  {
+   "text": "item.sphinx.o1",
+   "id": "item.sphinx.o1"
+  },
+  {
+   "text": "item.sphinx.o2",
+   "id": "item.sphinx.o2"
+  }
+ ],
+ "hint": "item.sphinx.h",
+ "objectives": [
+  "obj.sphinx"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

@@ -1,0 +1,11 @@
+{
+ "id": "fathi",
+ "anchor": "npc.fathi",
+ "ttl": 16,
+ "lines": [
+  {
+   "speaker": "fathi",
+   "text": "fathi.1"
+  }
+ ]
+}

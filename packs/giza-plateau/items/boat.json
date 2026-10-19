@@ -1,0 +1,27 @@
+{
+ "id": "item.boat",
+ "type": "mcq",
+ "prompt": "item.boat.q",
+ "options": [
+  {
+   "text": "item.boat.o0",
+   "correct": true,
+   "id": "item.boat.o0"
+  },
+  {
+   "text": "item.boat.o1",
+   "id": "item.boat.o1"
+  },
+  {
+   "text": "item.boat.o2",
+   "id": "item.boat.o2"
+  }
+ ],
+ "hint": "item.boat.h",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

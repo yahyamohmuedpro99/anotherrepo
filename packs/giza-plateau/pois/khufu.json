@@ -1,0 +1,26 @@
+{
+ "id": "poi.khufu",
+ "scene": "plateau",
+ "at": [
+  0,
+  0
+ ],
+ "radius": 200,
+ "title": "area.khufu",
+ "card": "area-khufu",
+ "objectives": [
+  "obj.scale",
+  "obj.pyramids"
+ ],
+ "spawn": {
+  "at": [
+   146,
+   -142
+  ],
+  "yaw": 2.34
+ },
+ "items": [
+  "item.khufu",
+  "item.height"
+ ]
+}

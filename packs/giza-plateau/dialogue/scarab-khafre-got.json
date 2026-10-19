@@ -1,0 +1,43 @@
+{
+ "id": "scarab-khafre-got",
+ "ttl": 20,
+ "lines": [
+  {
+   "who": {
+    "key": "scarab.who",
+    "params": {
+     "n": {
+      "counter": "scarabs"
+     },
+     "where": {
+      "text": "scarab.khafre.where"
+     }
+    }
+   },
+   "glyph": "scarab",
+   "text": {
+    "key": "scarab.got",
+    "params": {
+     "hint": {
+      "guide": "voice"
+     }
+    }
+   }
+  }
+ ],
+ "onEnd": [
+  {
+   "do": "control.if",
+   "when": {
+    "counter": "scarabs",
+    "gte": 4
+   },
+   "then": [
+    {
+     "do": "show.dialogue",
+     "dialogue": "scarab-all"
+    }
+   ]
+  }
+ ]
+}

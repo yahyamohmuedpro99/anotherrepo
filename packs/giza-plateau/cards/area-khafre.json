@@ -1,0 +1,13 @@
+{
+ "id": "area-khafre",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.khafre",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

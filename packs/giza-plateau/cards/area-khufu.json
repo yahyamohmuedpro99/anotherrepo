@@ -1,0 +1,14 @@
+{
+ "id": "area-khufu",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.khufu",
+ "objectives": [
+  "obj.scale",
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

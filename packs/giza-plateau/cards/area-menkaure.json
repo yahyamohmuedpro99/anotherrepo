@@ -1,0 +1,13 @@
+{
+ "id": "area-menkaure",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.menkaure",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

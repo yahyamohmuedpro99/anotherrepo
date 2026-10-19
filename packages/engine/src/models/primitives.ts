@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import type { CompositeModel, ModelRef, Part, Scatter } from '@rihla/pack-schema';
 import { TAU, rng } from '../math/noise.js';
 import { haloTexture } from '../world/textures.js';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import type { Materials } from '../world/materials.js';
 import type { BuildCtx, Built } from './context.js';
 
@@ -14,6 +15,11 @@ export function partGeometry(p: Part): THREE.BufferGeometry {
   switch (p.shape) {
     case 'box':
       g = new THREE.BoxGeometry(num(a[0], 1), num(a[1], 1), num(a[2], 1));
+      if (a[3] === true) {
+        // plain top and bottom: sample one texel of the facade instead of windows
+        const uv = g.attributes.uv as THREE.BufferAttribute;
+        for (let i = 8; i < 16; i++) uv.setXY(i, 0.5, 0.97);
+      }
       break;
     case 'sphere':
       g = new THREE.SphereGeometry(num(a[0], 1), num(a[1], 16), num(a[2], 12), num(a[3], 0), num(a[4], TAU), num(a[5], 0), num(a[6], Math.PI));
@@ -117,21 +123,67 @@ export function partMesh(p: Part, ctx: BuildCtx, materials: Materials = ctx.mate
 }
 
 /** Composite model: a list of primitives, optionally parented to named parts. Model-local materials are
- * registered in the scene's material set under "<model>:<id>" so night/glow animation applies to them too. */
+ * registered in the scene's material set under "<model>:<id>" so night/glow animation applies to them too.
+ * Static composites (no named/animated parts) are merged into one mesh per material to save draw calls. */
 export function buildComposite(model: CompositeModel, ctx: BuildCtx): Built {
   const group = new THREE.Group();
   const local = model.materials ?? {};
   for (const [id, def] of Object.entries(local)) ctx.materials.define(`${model.id}:${id}`, def);
+  const resolved = model.parts.map((raw) => (typeof raw.material === 'string' && local[raw.material] ? { ...raw, material: `${model.id}:${raw.material}` } : raw));
   const parts: Record<string, THREE.Object3D> = {};
-  for (const raw of model.parts) {
-    const p = typeof raw.material === 'string' && local[raw.material] ? { ...raw, material: `${model.id}:${raw.material}` } : raw;
-    const m = partMesh(p, ctx);
-    if (p.name) parts[p.name] = m;
-    const parent = p.parent ? parts[p.parent] : undefined;
-    (parent ?? group).add(m);
-  }
+  const animated = resolved.some((p) => p.name || p.parent);
+  if (!animated) {
+    const byMat = new Map<string, { mat: Part['material']; geos: THREE.BufferGeometry[]; ground: boolean; shadow: boolean }>();
+    for (const p of resolved) {
+      if (p.shape === 'sprite') {
+        group.add(partMesh(p, ctx));
+        continue;
+      }
+      const key = JSON.stringify(p.material);
+      let b = byMat.get(key);
+      if (!b) byMat.set(key, (b = { mat: p.material, geos: [], ground: false, shadow: false }));
+      const g = partGeometry(p);
+      const o = new THREE.Object3D();
+      place(o, p);
+      o.updateMatrix();
+      g.applyMatrix4(o.matrix);
+      b.geos.push(normalizeGeometry(g));
+      b.ground ||= !!p.ground;
+      b.shadow ||= p.shadow ?? true;
+    }
+    for (const b of byMat.values()) {
+      const merged = b.geos.length === 1 ? b.geos[0]! : mergeGeometries(b.geos, false);
+      if (!merged) continue;
+      const mesh = new THREE.Mesh(merged, ctx.materials.get(b.mat));
+      mesh.castShadow = ctx.shadows && b.shadow;
+      mesh.receiveShadow = ctx.shadows;
+      if (b.ground) {
+        mesh.userData.ground = true;
+        ctx.pickables.push(mesh);
+      }
+      group.add(mesh);
+      if (b.geos.length > 1) for (const g of b.geos) g.dispose();
+    }
+  } else
+    for (const p of resolved) {
+      const m = partMesh(p, ctx);
+      if (p.name) parts[p.name] = m;
+      const parent = p.parent ? parts[p.parent] : undefined;
+      (parent ?? group).add(m);
+    }
   if (model.scale) group.scale.setScalar(model.scale);
   return { object: group, parts };
+}
+
+/** Same attribute set on every geometry so they can be merged. */
+function normalizeGeometry(g: THREE.BufferGeometry): THREE.BufferGeometry {
+  const n = g.index ? g.toNonIndexed() : g;
+  if (n !== g) g.dispose();
+  for (const name of Object.keys(n.attributes)) if (!['position', 'normal', 'uv'].includes(name)) n.deleteAttribute(name);
+  if (!n.attributes.normal) n.computeVertexNormals();
+  if (!n.attributes.uv) n.setAttribute('uv', new THREE.Float32BufferAttribute(new Float32Array((n.attributes.position!.count) * 2), 2));
+  n.clearGroups();
+  return n;
 }
 
 interface InstanceSpec {

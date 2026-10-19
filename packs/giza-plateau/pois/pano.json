@@ -1,0 +1,22 @@
+{
+ "id": "poi.pano",
+ "scene": "plateau",
+ "at": [
+  -860,
+  960
+ ],
+ "radius": 96,
+ "title": "area.pano",
+ "card": "area-pano",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "spawn": {
+  "at": [
+   -836,
+   972
+  ],
+  "yaw": 1.11
+ },
+ "items": []
+}

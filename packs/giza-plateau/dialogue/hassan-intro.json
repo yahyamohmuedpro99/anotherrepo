@@ -1,0 +1,22 @@
+{
+ "id": "hassan-intro",
+ "anchor": "npc.hassan",
+ "lines": [
+  {
+   "speaker": "hassan",
+   "text": "hassan.intro.1"
+  },
+  {
+   "speaker": "hassan",
+   "text": "hassan.intro.2"
+  },
+  {
+   "speaker": "hassan",
+   "text": "hassan.intro.3"
+  },
+  {
+   "speaker": "hassan",
+   "text": "hassan.intro.4"
+  }
+ ]
+}

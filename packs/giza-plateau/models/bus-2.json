@@ -1,0 +1,148 @@
+{
+ "id": "bus-2",
+ "parts": [
+  {
+   "shape": "box",
+   "args": [
+    2.5,
+    3,
+    12
+   ],
+   "at": [
+    0,
+    1.9,
+    0
+   ],
+   "material": {
+    "color": "#f2f0ea",
+    "roughness": 0.5
+   }
+  },
+  {
+   "shape": "box",
+   "args": [
+    2.56,
+    0.95,
+    11.2
+   ],
+   "at": [
+    0,
+    2.55,
+    -0.2
+   ],
+   "material": {
+    "color": "#1d2c48",
+    "roughness": 0.2,
+    "metalness": 0.4
+   }
+  },
+  {
+   "shape": "box",
+   "args": [
+    2.56,
+    0.3,
+    12.02
+   ],
+   "at": [
+    0,
+    1.35,
+    0
+   ],
+   "material": {
+    "color": "#239a8c"
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.5,
+    0.5,
+    0.35,
+    12
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    -1.15,
+    0.5,
+    4
+   ],
+   "material": {
+    "color": "#1b1b1b",
+    "roughness": 0.9
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.5,
+    0.5,
+    0.35,
+    12
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    1.15,
+    0.5,
+    4
+   ],
+   "material": {
+    "color": "#1b1b1b",
+    "roughness": 0.9
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.5,
+    0.5,
+    0.35,
+    12
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    -1.15,
+    0.5,
+    -4
+   ],
+   "material": {
+    "color": "#1b1b1b",
+    "roughness": 0.9
+   }
+  },
+  {
+   "shape": "cylinder",
+   "args": [
+    0.5,
+    0.5,
+    0.35,
+    12
+   ],
+   "geoRot": [
+    0,
+    0,
+    1.5707963267948966
+   ],
+   "at": [
+    1.15,
+    0.5,
+    -4
+   ],
+   "material": {
+    "color": "#1b1b1b",
+    "roughness": 0.9
+   }
+  }
+ ]
+}

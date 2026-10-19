@@ -1,0 +1,11 @@
+{
+ "id": "scarab-all",
+ "ttl": 24,
+ "lines": [
+  {
+   "who": "scarab.allWho",
+   "glyph": "scarab",
+   "text": "scarab.all"
+  }
+ ]
+}

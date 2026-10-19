@@ -1,0 +1,13 @@
+{
+ "id": "area-queens-k",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.queens-k",
+ "objectives": [
+  "obj.pyramids"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

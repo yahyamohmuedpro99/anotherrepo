@@ -1,0 +1,11 @@
+{
+ "id": "ring-4",
+ "who": "char.fact",
+ "glyph": "ring",
+ "body": "card.ring.4",
+ "objectives": [],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 20
+}

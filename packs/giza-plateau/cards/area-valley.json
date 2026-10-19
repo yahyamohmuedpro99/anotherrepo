@@ -1,0 +1,13 @@
+{
+ "id": "area-valley",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.valley",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}

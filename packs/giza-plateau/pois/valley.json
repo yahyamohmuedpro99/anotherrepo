@@ -1,0 +1,24 @@
+{
+ "id": "poi.valley",
+ "scene": "plateau",
+ "at": [
+  336,
+  500
+ ],
+ "radius": 40,
+ "title": "area.valley",
+ "card": "area-valley",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "spawn": {
+  "at": [
+   380,
+   520
+  ],
+  "yaw": 1.14
+ },
+ "items": [
+  "item.granite"
+ ]
+}

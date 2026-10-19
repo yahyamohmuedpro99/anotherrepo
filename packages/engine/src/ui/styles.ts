@@ -201,7 +201,7 @@ export const CSS = `
 .rihla .orn i{width:8px;height:8px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 0 3px rgba(233,180,76,.22)}
 .rihla .story{font-size:15.5px;line-height:1.8;margin:10px 0 0;max-width:62ch;text-wrap:pretty}
 .rihla .news{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.rihla .news span{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:5px 10px;border-radius:999px;background:rgba(233,180,76,.12);border:1px solid var(--line)}
+.rihla .news>span{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:5px 10px;border-radius:999px;background:rgba(233,180,76,.12);border:1px solid var(--line)}
 .rihla .news svg.i{width:15px;height:15px;color:var(--gold-hi)}
 .rihla .sform{display:grid;gap:14px;margin-top:18px}
 .rihla .flabel{display:block;font:500 12.5px/1.3 var(--f-label);letter-spacing:var(--ls);text-transform:uppercase;color:var(--muted);margin-bottom:7px;padding:0}

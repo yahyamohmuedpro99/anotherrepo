@@ -1,0 +1,27 @@
+{
+ "id": "item.papyrus",
+ "type": "mcq",
+ "prompt": "item.papyrus.q",
+ "options": [
+  {
+   "text": "item.papyrus.o0",
+   "correct": true,
+   "id": "item.papyrus.o0"
+  },
+  {
+   "text": "item.papyrus.o1",
+   "id": "item.papyrus.o1"
+  },
+  {
+   "text": "item.papyrus.o2",
+   "id": "item.papyrus.o2"
+  }
+ ],
+ "hint": "item.papyrus.h",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ]
+}

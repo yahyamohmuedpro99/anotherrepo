@@ -1,0 +1,20 @@
+{
+ "id": "hassan-partial",
+ "anchor": "npc.hassan",
+ "lines": [
+  {
+   "speaker": "hassan",
+   "text": {
+    "key": "hassan.partial",
+    "params": {
+     "n": {
+      "counter": "scarabs"
+     },
+     "hint": {
+      "guide": "voice"
+     }
+    }
+   }
+  }
+ ]
+}

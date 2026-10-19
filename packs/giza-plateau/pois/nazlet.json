@@ -1,0 +1,24 @@
+{
+ "id": "poi.nazlet",
+ "scene": "plateau",
+ "at": [
+  676,
+  448
+ ],
+ "radius": 270,
+ "title": "area.nazlet",
+ "card": "area-nazlet",
+ "objectives": [
+  "obj.crafts"
+ ],
+ "spawn": {
+  "at": [
+   488,
+   524
+  ],
+  "yaw": -1.19
+ },
+ "items": [
+  "item.papyrus"
+ ]
+}

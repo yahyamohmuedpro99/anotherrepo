@@ -1,0 +1,25 @@
+{
+ "id": "sayed",
+ "anchor": "npc.sayed",
+ "lines": [
+  {
+   "speaker": "sayed",
+   "text": "sayed.1",
+   "options": [
+    {
+     "text": "opt.cartouche",
+     "prime": true,
+     "do": [
+      {
+       "do": "show.glyphs",
+       "alphabet": "hieroglyphs"
+      }
+     ]
+    },
+    {
+     "text": "opt.later"
+    }
+   ]
+  }
+ ]
+}

@@ -90,7 +90,7 @@ export const Action = Type.Recursive(
       Type.Object({ do: Type.Literal('show.card'), card: Id }, Strict),
       Type.Object({ do: Type.Literal('ask.item'), item: Id, onCorrect: Type.Optional(Type.Array(Self)) }, Strict),
       Type.Object({ do: Type.Literal('give.stamp'), stamp: Id }, Strict),
-      Type.Object({ do: Type.Literal('give.title'), text: TextKey }, Strict),
+      Type.Object({ do: Type.Literal('give.title'), title: Id }, Strict),
       Type.Object({ do: Type.Literal('set.flag'), flag: Id, value: Type.Optional(Type.Boolean()) }, Strict),
       Type.Object({ do: Type.Literal('add.counter'), counter: Id, value: Type.String() }, Strict),
       Type.Object({ do: Type.Literal('start.quest'), quest: Id }, Strict),

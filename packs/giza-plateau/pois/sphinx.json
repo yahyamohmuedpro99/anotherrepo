@@ -1,0 +1,24 @@
+{
+ "id": "poi.sphinx",
+ "scene": "plateau",
+ "at": [
+  340,
+  432
+ ],
+ "radius": 80,
+ "title": "area.sphinx",
+ "card": "area-sphinx",
+ "objectives": [
+  "obj.sphinx"
+ ],
+ "spawn": {
+  "at": [
+   414,
+   396
+  ],
+  "yaw": 2.02
+ },
+ "items": [
+  "item.sphinx"
+ ]
+}

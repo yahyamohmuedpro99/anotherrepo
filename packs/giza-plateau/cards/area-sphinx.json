@@ -1,0 +1,13 @@
+{
+ "id": "area-sphinx",
+ "who": "char.fact",
+ "glyph": "!",
+ "body": "card.area.sphinx",
+ "objectives": [
+  "obj.sphinx"
+ ],
+ "tags": [
+  "needs-fact-check"
+ ],
+ "ttl": 24
+}
