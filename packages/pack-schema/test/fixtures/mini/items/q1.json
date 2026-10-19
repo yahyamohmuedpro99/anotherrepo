@@ -1,0 +1,1 @@
+{ "id": "q1", "type": "mcq", "prompt": "q1.prompt", "options": [{ "text": "q1.a", "correct": true }, { "text": "q1.b" }], "hint": "q1.hint", "objectives": ["obj.a"] }

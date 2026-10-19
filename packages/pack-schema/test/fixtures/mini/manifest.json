@@ -1,0 +1,20 @@
+{
+  "id": "mini", "version": "1.0.0", "engine": "^0.1", "title": "pack.title", "summary": "pack.summary",
+  "subjects": ["science"], "grades": ["EG-P5"], "durationMinutes": 10,
+  "objectives": [{ "id": "obj.a", "text": "obj.a" }],
+  "curriculum": [{ "country": "EG", "grade": "P5", "subject": "science", "lesson": "TODO" }],
+  "locales": ["ar-EG", "en"], "defaultLocale": "ar-EG",
+  "startScene": "world", "startPoi": "poi.start",
+  "scenes": ["scenes/world.json", "scenes/other.json"],
+  "pois": ["pois/start.json", "pois/far.json"], "quests": ["quests/main.json"], "items": ["items/q1.json"],
+  "cards": ["cards/c1.json"], "dialogues": ["dialogue/hello.json"],
+  "characters": { "guide": { "name": "char.guide", "glyph": "char.guide.glyph" } },
+  "counters": [{ "id": "found", "scope": "save", "of": 1 }],
+  "flags": [{ "id": "done" }],
+  "stamps": [{ "id": "mini", "title": "stamp.mini", "color": "#e9b44c" }],
+  "intro": { "story": ["intro.story"], "askName": false, "defaultName": "intro.name", "start": "intro.start" },
+  "theme": { "preset": "lapis", "band": "khayamiya" },
+  "hud": { "quest": "main", "panels": ["passport"] },
+  "budgets": { "low": { "downloadMB": 15, "drawCalls": 150, "textureMB": 48 } },
+  "sensitivity": [], "credits": [], "reviewStatus": "draft"
+}

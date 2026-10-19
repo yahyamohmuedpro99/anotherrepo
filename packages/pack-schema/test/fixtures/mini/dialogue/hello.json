@@ -1,0 +1,1 @@
+{ "id": "hello", "lines": [{ "speaker": "guide", "text": { "key": "hello.1", "params": { "n": { "counter": "found" } } } }] }

@@ -1,0 +1,33 @@
+{
+  "name": "@rihla/engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Rihla runtime: one three.js engine that plays every experience pack.",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src test",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@rihla/i18n": "workspace:*",
+    "@rihla/pack-schema": "workspace:*",
+    "three": "0.170.0"
+  },
+  "peerDependencies": {
+    "colyseus.js": "0.15.26"
+  },
+  "peerDependenciesMeta": { "colyseus.js": { "optional": true } },
+  "devDependencies": {
+    "@types/three": "0.170.0",
+    "colyseus.js": "0.15.26",
+    "jsdom": "25.0.1",
+    "typescript": "5.6.3",
+    "vitest": "2.1.8"
+  }
+}

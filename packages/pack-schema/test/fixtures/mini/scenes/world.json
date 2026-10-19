@@ -1,0 +1,15 @@
+{
+  "id": "world", "kind": "terrain",
+  "environment": { "sky": { "style": "simple-gradient", "day": { "top": "#3d6cae", "hor": "#f7b672", "bot": "#e6b07f" } } },
+  "terrain": { "type": "layers", "size": 400, "segments": 32, "layers": [{ "type": "fbm", "freq": 0.01, "amp": 2, "bias": -0.5 }], "colors": { "base": "#ddb57c" } },
+  "player": { "controller": "walk", "bounds": { "center": [0, 0], "radius": 150 } },
+  "spawns": { "start": { "at": [0, 0] } },
+  "entities": [
+    { "id": "gem", "kind": "pickup", "at": [10, 10], "model": { "gen": "beacon" },
+      "hideWhen": { "counter": "found", "has": "gem" },
+      "triggers": [{ "on": "enter", "radius": 3, "do": [
+        { "do": "ask.item", "item": "q1", "onCorrect": [{ "do": "add.counter", "counter": "found", "value": "gem" }, { "do": "control.if", "when": { "all": [{ "counter": "found", "gte": 1 }, { "not": { "flag": "done" } }] }, "then": [{ "do": "give.stamp", "stamp": "mini" }] }] }
+      ] }] },
+    { "id": "door", "kind": "prop", "at": [20, 0], "triggers": [{ "on": "interact", "radius": 4, "label": "door.label", "do": [{ "do": "go.scene", "scene": "other", "transition": "fade" }] }] }
+  ]
+}

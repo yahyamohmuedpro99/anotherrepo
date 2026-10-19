@@ -1,0 +1,1 @@
+{ "id": "other", "kind": "terrain", "environment": {}, "player": { "controller": "walk" }, "spawns": { "in": { "at": [0, 0] } }, "entities": [] }

@@ -1,0 +1,2 @@
+{ "id": "main", "title": "quest.title", "mode": "nearest", "steps": [{ "id": "s1", "label": "quest.s1", "target": "gem", "done": { "counter": "found", "has": "gem" } }],
+  "done": { "counter": "found", "gte": 1 }, "goal": { "next": "quest.next", "done": "quest.done" } }

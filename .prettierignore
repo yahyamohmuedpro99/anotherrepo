@@ -1,0 +1,5 @@
+prototypes/
+pnpm-lock.yaml
+dist/
+.next/
+packs/**/*.json
