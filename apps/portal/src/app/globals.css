@@ -1,0 +1,23 @@
+@import '@fontsource/ibm-plex-sans-arabic/400.css';
+@import '@fontsource/ibm-plex-sans-arabic/600.css';
+@import '@fontsource/reem-kufi/600.css';
+@import '@rihla/ui/styles.css';
+
+.skip { position: absolute; inset-inline-start: -999px; }
+.skip:focus { inset-inline-start: 16px; inset-block-start: 8px; z-index: 10; background: #fff; padding: 8px 12px; border-radius: 8px; }
+.topnav { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 12px; flex-wrap: wrap; }
+.topnav a { text-decoration: none; font-weight: 600; }
+.logo { font: 700 26px/1 var(--r-title); color: var(--r-lapis); }
+.linkish { background: none; border: 0; color: var(--r-lapis); font: 600 16px var(--r-font); cursor: pointer; padding: 0; }
+main { padding-block: 20px 48px; }
+.hero { background: linear-gradient(160deg, #13244f, #1f3f8f 60%, #2a4f9e); color: #fff; border-radius: 20px; padding: clamp(20px, 5vw, 44px); }
+.hero h1 { color: #f6d58a; font-size: clamp(30px, 7vw, 52px); }
+.hero p { max-inline-size: 60ch; font-size: 18px; }
+.packcard h3 { margin-block-end: 4px; }
+.packcard .poster { block-size: 120px; border-radius: 12px; margin-block-end: 12px; background: radial-gradient(circle at 70% 30%, #f6d58a 0, #b07a14 30%, #1f3f8f 80%); }
+.packcard .poster.science { background: radial-gradient(circle at 30% 40%, #fff 0, #3b62d6 25%, #0b1330 75%); }
+footer { border-block-start: 1px solid var(--r-line); padding-block: 20px; color: var(--r-muted); font-size: 14px; }
+.md h1 { font-size: 24px; } .md h2 { font-size: 20px; } .md table { border-collapse: collapse; } .md td, .md th { border: 1px solid var(--r-line); padding: 6px 8px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; }
+.live-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); }
+@media print { header, footer, .noprint { display: none; } }

@@ -10,6 +10,7 @@ import { newId } from '../lib/ids.js';
 import { audit } from '../lib/audit.js';
 import { staff } from '../context.js';
 
+// The refresh cookie is httpOnly and SameSite=Lax; path '/' so it also works behind the portal's /api proxy.
 const COOKIE = 'rihla_rt';
 const REFRESH_DAYS = 30;
 
@@ -47,7 +48,7 @@ export async function issueSession(app: FastifyInstance, reply: FastifyReply, us
   const accessToken = await signAccess({ kind: 'staff', sub: u.id, tid: t.id, roles: t.roles }, app.ctx.config.jwtSecret);
   const rt = opaqueToken();
   await db.insert(refreshTokens).values({ tokenHash: rt.hash, userId: u.id, expiresAt: new Date(Date.now() + REFRESH_DAYS * 864e5) });
-  reply.setCookie(COOKIE, rt.token, { httpOnly: true, sameSite: 'lax', secure: app.ctx.config.cookieSecure, path: '/v1/auth', maxAge: REFRESH_DAYS * 86400 });
+  reply.setCookie(COOKIE, rt.token, { httpOnly: true, sameSite: 'lax', secure: app.ctx.config.cookieSecure, path: '/', maxAge: REFRESH_DAYS * 86400 });
   return { accessToken, user: { id: u.id, name: u.name, email: u.email, locale: u.locale }, tenant: { id: t.id, name: t.name, kind: t.kind }, roles: t.roles, tenants: list };
 }
 
@@ -90,7 +91,7 @@ export const authRoutes: FastifyPluginAsyncTypebox = async (app) => {
   app.post('/v1/auth/logout', { schema: { tags: ['auth'], security: [] } }, async (req, reply) => {
     const token = req.cookies[COOKIE];
     if (token) await db.update(refreshTokens).set({ revokedAt: new Date() }).where(eq(refreshTokens.tokenHash, sha256(token)));
-    reply.clearCookie(COOKIE, { path: '/v1/auth' });
+    reply.clearCookie(COOKIE, { path: '/' });
     return { ok: true };
   });
 

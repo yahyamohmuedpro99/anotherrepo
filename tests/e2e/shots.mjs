@@ -13,6 +13,8 @@ for (const a of actions) {
   const [kind, arg, ms = '1500'] = a.split('|');
   if (kind === 'click') await page.click(arg).catch((e) => logs.push('click fail ' + arg + ' ' + e.message));
   if (kind === 'key') await page.keyboard.press(arg);
+  if (kind === 'fill') await page.fill(arg, ms);
+  if (kind === 'goto') await page.goto(arg);
   if (kind === 'hold') { await page.keyboard.down(arg); await page.waitForTimeout(+ms); await page.keyboard.up(arg); }
   if (kind === 'eval') logs.push('eval: ' + JSON.stringify(await page.evaluate(arg)));
   if (kind === 'wait') await page.waitForTimeout(+arg);

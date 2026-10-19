@@ -11,9 +11,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "colyseus": "0.15.57",
     "jose": "5.9.6",
-    "@colyseus/ws-transport": "0.15.3"
+    "@colyseus/ws-transport": "0.15.3",
+    "@colyseus/core": "0.15.57"
   },
   "devDependencies": {
     "colyseus.js": "0.15.26",

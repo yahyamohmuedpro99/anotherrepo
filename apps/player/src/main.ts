@@ -15,8 +15,10 @@ const params = new URLSearchParams(location.search);
 const API = (import.meta.env.VITE_API_BASE as string | undefined) ?? '/api';
 
 function setShell(title: string | null, sub?: string): void {
-  if (title) document.getElementById('shell-title')!.textContent = title;
-  if (sub) document.getElementById('shell-sub')!.textContent = sub;
+  // the shell is gone once the engine (or the class name picker) took over
+  const t = document.getElementById('shell-title'), s = document.getElementById('shell-sub');
+  if (title && t) t.textContent = title;
+  if (sub && s) s.textContent = sub;
 }
 
 async function start(route: Route): Promise<void> {

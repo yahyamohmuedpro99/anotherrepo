@@ -12,3 +12,5 @@ playwright-report/
 .data/
 storage/
 *.tsbuildinfo
+next-env.d.ts.bak
+apps/api/openapi.json.tmp

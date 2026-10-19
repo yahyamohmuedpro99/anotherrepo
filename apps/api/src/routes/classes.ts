@@ -50,6 +50,11 @@ export const classRoutes: FastifyPluginAsyncTypebox = async (app) => {
     });
   });
 
+  app.get('/v1/classes/:id', { schema: { tags: ['classes'], params: Type.Object({ id: Type.String() }) } }, async (req) => {
+    const a = staff(req, 'teacher', 'school_admin');
+    return database.tenant(a.tid, async (tx) => ({ class: await ownClass(tx, a, req.params.id) }));
+  });
+
   app.post('/v1/classes', { schema: { tags: ['classes'], body: ClassBody } }, async (req) => {
     const a = staff(req, 'teacher', 'school_admin');
     return database.tenant(a.tid, async (tx) => {

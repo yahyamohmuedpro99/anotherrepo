@@ -1,4 +1,4 @@
-import { Room, type Client } from 'colyseus';
+import { Room, type Client } from '@colyseus/core';
 import { verifyRoom, type RoomClaims } from './tokens.js';
 
 /** Teacher commands the engine understands (packages/engine/src/gameplay/teacher.ts). */

@@ -82,6 +82,8 @@ export const packRoutes: FastifyPluginAsyncTypebox = async (app) => {
       locales: m.locales ?? [],
       startPoi: m.startPoi ?? null,
       itemCount: Object.keys(v?.items ?? {}).length,
+      // prompts only (for the teacher's "push a question"); answers stay in the answer key
+      items: Object.entries(v?.items ?? {}).map(([id, it]) => ({ id, prompt: it.prompt })),
     };
   });
 
