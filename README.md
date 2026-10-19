@@ -60,6 +60,18 @@ docker compose -f infra/compose.yaml --env-file .env --profile demo up --build
 Player <http://localhost:8080> · portal <http://localhost:3000> · API <http://localhost:4000>. The `demo` profile seeds
 the same demo data; leave it off in production.
 
+### Live demo on Render
+
+`render.yaml` is a Render Blueprint for the whole platform with demo data (ADR-0021): in Render choose
+**New → Blueprint**, connect this repository and pick the branch that has `render.yaml`. The first build takes
+about 15 minutes. Then:
+
+- player and QR links: <https://rihla-player-o6hr.onrender.com> (try `/x/giza-plateau/poi.sphinx`)
+- portal: <https://rihla-portal-o6hr.onrender.com> (demo logins above)
+
+If Render had to rename a service, update the URLs in `render.yaml` (`PLAYER_URL`, `PORTAL_URL`, `API_URL`,
+`*_UPSTREAM`, `NEXT_PUBLIC_*`) to the ones it shows and sync the blueprint.
+
 ## Checks
 
 ```sh

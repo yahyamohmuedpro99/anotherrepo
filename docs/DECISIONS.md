@@ -96,7 +96,6 @@ Short records: date, decision, options considered, why. Newest last. Anything ma
 - **Options:** compile each service to JS · one image running `tsx` for api, workers, rooms and seed.
 - **Why:** one Dockerfile, no build step that can drift from what tests run, and the workspace packages resolve from
   source. Start-up costs about a second. Revisit if cold starts matter on the chosen host.
-  `infra/compose.yaml` adds a one-shot `packs-init` service so the shared packs volume is writable by the API.
 
 ## ADR-0018 · 2026-10-19 · Typed API client from OpenAPI, with a small hand-written fetch helper
 - **Options:** openapi-fetch · generated SDK · `openapi-typescript` types plus a 60-line helper.
@@ -107,7 +106,25 @@ Short records: date, decision, options considered, why. Newest last. Anything ma
 - The `colyseus` meta package fails to load as native ESM on Node 22. The two packages it re-exports load fine and
   are the same code and version (0.15). Matchmaking filters by session id so one class never joins another's room.
 
-## ADR-0020 · 2026-10-19 · Packs are served from a shared volume behind nginx until hosting is chosen
+## ADR-0020 · 2026-10-19 · The API serves built packs until hosting is chosen
 - The architecture diagram shows object storage and a CDN. With no provider chosen (ADR-0014) the API writes built
-  bundles to `STORAGE_DIR` and the player's nginx serves them with immutable caching by content hash. Moving to
-  object storage changes one module in the API (`routes/packs.ts` write path) and the nginx `location /packs/`.
+  bundles to `STORAGE_DIR` and serves them at `/packs/*` (content-hashed files cached as immutable); the player's
+  nginx proxies `/packs/` to it, so no volume is shared between services. Moving to object storage changes the
+  write path in `routes/packs.ts` and the nginx `location /packs/`.
+
+## ADR-0021 · 2026-10-19 · Live demo on Render's free plan (founder's choice, demo data only)
+- **Options offered:** Render blueprint · Fly.io · a VPS with Docker Compose · Railway. **Founder chose Render.**
+- `render.yaml` deploys api, rooms, player and portal as Docker web services plus PostgreSQL 16 in Frankfurt
+  (closest Render region to Egypt). This is a demo host, not the production region decision (open question 2):
+  no real pupils' data goes on it.
+- Free-plan limits shape three changes that also hold anywhere else:
+  - no persistent disk: on boot the API rebuilds any published bundle that is missing from the pack folders in the
+    image (`PACKS_SOURCE_DIR`), only when the rebuild has the published content hash, and rewrites each
+    `index.json` from the database;
+  - no private network or shared volumes: nginx upstreams come from env (`API_UPSTREAM`, `ROOMS_UPSTREAM`) and are
+    resolved per request, so the same image runs under Compose and on Render;
+  - the database user is not a superuser: migrations grant `rihla_app` to it `WITH SET TRUE` (needed on
+    PostgreSQL 16) and, where even that is refused, the API stays on the owner role. Every tenant table has
+    `FORCE ROW LEVEL SECURITY`, so policies still apply; tested with an owner that has no `CREATEROLE`.
+- Jobs run inside the API (`INLINE_WORKER=1`) because background workers are paid. Free services sleep after
+  ~15 idle minutes (first request then takes about a minute) and the free database expires after 30 days.

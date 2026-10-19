@@ -17,4 +17,4 @@ None of these block the build; each has a reversible default noted.
 | 11 | Free-text chat in live rooms: allow teachers to enable it at all for under-15s? | Not offered: rooms carry preset phrases only and refuse chat messages |
 | 12 | Email provider for invites and password resets (a paid service) | Invite links are shown to the inviting adult to pass on; no email is sent |
 | 13 | Word lists for generated pupil display names (cultural review) | Small Egyptian Arabic adjective + noun list in `apps/api/src/lib/names.ts` |
-| 14 | Container registry and where preview deploys run | Images build in CI; nothing is pushed or deployed |
+| 14 | Container registry and where preview deploys run | Live demo on Render's free plan from `render.yaml` (ADR-0021); no registry |

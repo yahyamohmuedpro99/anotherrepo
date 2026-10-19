@@ -18,6 +18,7 @@ x-service: &service
     PORTAL_URL: ${PORTAL_URL:-http://localhost:3000}
     SHORT_URL: ${SHORT_URL:-http://localhost:8080/s}
     STORAGE_DIR: /data/packs
+    PACKS_SOURCE_DIR: /repo/packs
     COOKIE_SECURE: ${COOKIE_SECURE:-0}
   depends_on:
     postgres: { condition: service_healthy }
@@ -36,22 +37,10 @@ services:
       interval: 5s
       retries: 20
 
-  # whichever container mounts the packs volume first decides its owner; make it the API's user
-  packs-init:
-    <<: *service
-    restart: 'no'
-    user: root
-    entrypoint: ['chown', 'node:node', '/data/packs']
-    volumes: [packs:/data/packs]
-    depends_on: []
-
   api:
     <<: *service
     build: { context: .., dockerfile: infra/docker/services.Dockerfile, args: { APP: api } }
     environment: { <<: *env, APP: api }
-    depends_on:
-      postgres: { condition: service_healthy }
-      packs-init: { condition: service_completed_successfully }
     ports: ['4000:4000']
     volumes: [packs:/data/packs]
     healthcheck:
@@ -84,7 +73,6 @@ services:
     build: { context: .., dockerfile: infra/docker/player.Dockerfile }
     restart: unless-stopped
     ports: ['8080:8080']
-    volumes: [packs:/usr/share/nginx/packs:ro]
     depends_on: [api, rooms]
 
   portal:

@@ -1,4 +1,5 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
+import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { Type } from '@sinclair/typebox';
 import type { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
@@ -45,9 +46,26 @@ async function writeIndex(dir: string, id: string, update: (idx: { id: string; c
   await writeFile(p, JSON.stringify(idx, null, 2));
 }
 
+const TYPES: Record<string, string> = { '.json': 'application/json; charset=utf-8', '.md': 'text/markdown; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.ktx2': 'image/ktx2', '.glb': 'model/gltf-binary', '.mp3': 'audio/mpeg', '.ogg': 'audio/ogg' };
+
 export const packRoutes: FastifyPluginAsyncTypebox = async (app) => {
   const { database, config } = app.ctx;
   const db = database.db;
+
+  /** Built packs, for hosts where the player cannot share a volume with the API (ADR-0021). Hashed files are immutable. */
+  app.get('/packs/*', { schema: { hide: true } }, async (req, reply) => {
+    const rel = path.normalize((req.params as { '*': string })['*']);
+    const file = path.join(config.storageDir, rel);
+    if (rel.startsWith('..') || path.isAbsolute(rel) || !file.startsWith(path.resolve(config.storageDir) + path.sep)) throw notFound();
+    const s = await stat(file).catch(() => null);
+    if (!s?.isFile()) throw notFound();
+    const hashed = /\.[0-9a-f]{12}\.[a-z0-9]+$/.test(file);
+    return reply
+      .header('content-type', TYPES[path.extname(file)] ?? 'application/octet-stream')
+      .header('cache-control', hashed ? 'public, max-age=31536000, immutable' : 'no-cache')
+      .header('access-control-allow-origin', '*')
+      .send(createReadStream(file));
+  });
 
   /** Public catalog with filters (subject, grade, language, duration). */
   app.get(

@@ -1,0 +1,101 @@
+# Render Blueprint for a live demo of the whole platform (ADR-0021). Demo data only: no real pupils on this.
+# Render → New → Blueprint → pick this repo and branch. URLs below assume Render keeps these service names;
+# if it adds a suffix to one, update the *_URL / *_UPSTREAM values to the URLs Render shows.
+#   player  https://rihla-player-o6hr.onrender.com   (QR links, class join, the trips)
+#   portal  https://rihla-portal-o6hr.onrender.com   (teachers, schools, publishers, admin)
+envVarGroups:
+  - name: rihla-shared
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ROOM_TOKEN_SECRET
+        generateValue: true
+      - key: INTERNAL_SECRET
+        generateValue: true
+      - key: PLAYER_URL
+        value: https://rihla-player-o6hr.onrender.com
+      - key: PORTAL_URL
+        value: https://rihla-portal-o6hr.onrender.com
+      - key: API_URL
+        value: https://rihla-api-o6hr.onrender.com
+
+services:
+  - type: web
+    name: rihla-api-o6hr
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./infra/docker/services.Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - fromGroup: rihla-shared
+      - key: APP
+        value: demo # seeds the demo school, publisher and both packs once, then serves
+      - key: DATABASE_URL
+        fromDatabase:
+          name: rihla-db-o6hr
+          property: connectionString
+      - key: SHORT_URL
+        value: https://rihla-player-o6hr.onrender.com/s
+      - key: STORAGE_DIR
+        value: /data/packs
+      - key: PACKS_SOURCE_DIR # no persistent disk on the free plan: rebuild published packs on boot
+        value: /repo/packs
+      - key: INLINE_WORKER # jobs run inside the API; a separate worker is a paid service
+        value: '1'
+      - key: COOKIE_SECURE
+        value: '1'
+      - key: DB_POOL
+        value: '5'
+
+  - type: web
+    name: rihla-rooms-o6hr
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./infra/docker/services.Dockerfile
+    dockerContext: .
+    envVars:
+      - fromGroup: rihla-shared
+      - key: APP
+        value: rooms
+
+  - type: web
+    name: rihla-player-o6hr
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./infra/docker/player.Dockerfile
+    dockerContext: .
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: '8080'
+      - key: API_UPSTREAM
+        value: https://rihla-api-o6hr.onrender.com
+      - key: ROOMS_UPSTREAM
+        value: https://rihla-rooms-o6hr.onrender.com
+
+  - type: web
+    name: rihla-portal-o6hr
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./infra/docker/portal.Dockerfile
+    dockerContext: .
+    envVars:
+      - key: API_URL # also a build argument: the /api rewrite is baked in at build time
+        value: https://rihla-api-o6hr.onrender.com
+      - key: NEXT_PUBLIC_PLAYER_URL
+        value: https://rihla-player-o6hr.onrender.com
+      - key: NEXT_PUBLIC_ROOMS_URL
+        value: wss://rihla-player-o6hr.onrender.com/rooms
+
+databases:
+  - name: rihla-db-o6hr
+    plan: free
+    region: frankfurt
+    postgresMajorVersion: '16'
+    databaseName: rihla
+    user: rihla

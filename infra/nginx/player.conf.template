@@ -1,6 +1,8 @@
-# Player: tiny shell, hashed assets cached forever, packs immutable by content hash, API and rooms proxied.
+# Player: tiny shell, hashed assets cached forever; packs, API and rooms proxied.
+# Rendered by the nginx image's envsubst at start: API_UPSTREAM, ROOMS_UPSTREAM (http://api:4000 in Compose,
+# https://… on hosts without a private network) and NGINX_RESOLVER (from /etc/resolv.conf, see 15-resolver.envsh).
 server {
-  listen 8080;
+  listen ${PORT};
   server_name _;
   root /usr/share/nginx/html;
 
@@ -17,21 +19,17 @@ server {
     add_header X-Content-Type-Options nosniff always;
   }
 
-  location /packs/ {
-    alias /usr/share/nginx/packs/;
-    add_header Cache-Control "no-cache" always;
-    location ~ /bundle\.[0-9a-f]+\.json$ {
-      add_header Cache-Control "public, max-age=31536000, immutable" always;
-    }
-    location ~ /assets/ {
-      add_header Cache-Control "public, max-age=31536000, immutable" always;
-    }
-  }
+  # Resolve upstreams per request so nginx starts before api/rooms are up.
+  resolver ${NGINX_RESOLVER} valid=10s ipv6=off;
+  set $api_upstream ${API_UPSTREAM};
+  set $rooms_upstream ${ROOMS_UPSTREAM};
+  proxy_ssl_server_name on;
 
-  # Resolve upstreams per request via Docker's DNS so nginx starts before api/rooms are up.
-  resolver 127.0.0.11 valid=10s ipv6=off;
-  set $api_upstream http://api:4000;
-  set $rooms_upstream http://rooms:2567;
+  # built packs come from the API (it rebuilds them on hosts without a persistent disk, ADR-0021)
+  location /packs/ {
+    proxy_pass $api_upstream;
+    proxy_set_header X-Forwarded-Host $host;
+  }
 
   location = /sw.js { add_header Cache-Control "no-cache" always; }
 
@@ -39,7 +37,7 @@ server {
   location /api/ {
     rewrite ^/api/(.*)$ /$1 break;
     proxy_pass $api_upstream;
-    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-Host $host;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
     client_max_body_size 2m;
@@ -56,7 +54,6 @@ server {
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
-    proxy_set_header Host $host;
     proxy_read_timeout 120s;
   }
 

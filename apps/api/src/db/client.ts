@@ -15,8 +15,11 @@ export interface Database {
   /** Runs fn with row-level security bypassed: system jobs and cross-tenant lookups (code resolution). */
   system<T>(fn: (tx: Tx) => Promise<T>): Promise<T>;
   migrate(): Promise<string[]>;
-  /** Switch this connection to the restricted application role (RLS applies even to the table owner's session). */
-  useAppRole(): Promise<void>;
+  /**
+   * Switch to the restricted application role. Resolves false when the role is unavailable (managed databases
+   * without CREATEROLE); FORCE ROW LEVEL SECURITY still applies to the owner then (ADR-0021).
+   */
+  useAppRole(): Promise<boolean>;
   close(): Promise<void>;
   kind: 'pg' | 'pglite';
 }
@@ -29,7 +32,7 @@ export async function createDatabase(url: string): Promise<Database> {
   let exec: (text: string) => Promise<void>;
   let close: () => Promise<void>;
   let kind: Database['kind'];
-  let appRole: () => Promise<void>;
+  let appRole: () => Promise<boolean>;
   if (url.startsWith('pglite:')) {
     const { PGlite } = await import('@electric-sql/pglite');
     const { drizzle } = await import('drizzle-orm/pglite');
@@ -38,7 +41,10 @@ export async function createDatabase(url: string): Promise<Database> {
     db = drizzle(client, { schema }) as unknown as Tx;
     exec = async (text) => void (await client.exec(text));
     close = () => client.close();
-    appRole = async () => void (await client.exec('SET ROLE rihla_app'));
+    appRole = async () => {
+      await client.exec('SET ROLE rihla_app');
+      return true;
+    };
     kind = 'pglite';
   } else {
     const pg = (await import('pg')).default;
@@ -52,9 +58,13 @@ export async function createDatabase(url: string): Promise<Database> {
     exec = async (text) => void (await pool.query(text));
     close = () => pool.end();
     appRole = async () => {
-      restricted = true;
       // connections already in the pool switch too
-      await pool.query('SET ROLE rihla_app');
+      const ok = await pool.query('SET ROLE rihla_app').then(
+        () => true,
+        () => false,
+      );
+      restricted = ok;
+      return ok;
     };
     kind = 'pg';
   }
