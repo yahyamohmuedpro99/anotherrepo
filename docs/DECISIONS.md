@@ -77,3 +77,37 @@ Short records: date, decision, options considered, why. Newest last. Anything ma
 ## ADR-0014 · 2026-10-19 · No hosting provider chosen
 - Docker images are region-configurable and the dev stack is `docker compose`. Cloud provider and Egyptian/Gulf
   regions stay with the founder (open question 2).
+
+## ADR-0015 · 2026-10-19 · PGlite for local runs and tests, with the job loop inside the API process
+- **Options:** require Docker Postgres for every run · embedded Postgres (PGlite) for local runs and tests.
+- **Why:** `pnpm demo` and the test suite start in seconds with no services. PGlite is real Postgres (same SQL, RLS
+  policies and `SKIP LOCKED` queue), but only one process can open its files, so when `DATABASE_URL` is `pglite://`
+  (or `INLINE_WORKER=1`) the API runs the job loop itself. Production uses PostgreSQL 16 and `apps/workers`.
+
+## ADR-0016 · 2026-10-19 · Studio edits pack files through a dev-server middleware; revisions are git
+- **Options:** Studio stores drafts in the API database · Studio edits the pack folders directly.
+- **Why:** packs are already reviewed as files in pull requests, and the content team works next to engineers for
+  now. The Vite middleware (`apps/studio/studio-fs.ts`) reads and writes `packs/`, uploads media with licence fields,
+  runs the validator and shows history and diffs from `git log`. Publishing goes through the API like any client.
+  The Studio is therefore internal and not deployed. Hosted editing with database drafts is a later ADR when
+  non-engineers edit without a checkout.
+
+## ADR-0017 · 2026-10-19 · Node services run TypeScript through tsx from one image
+- **Options:** compile each service to JS · one image running `tsx` for api, workers, rooms and seed.
+- **Why:** one Dockerfile, no build step that can drift from what tests run, and the workspace packages resolve from
+  source. Start-up costs about a second. Revisit if cold starts matter on the chosen host.
+  `infra/compose.yaml` adds a one-shot `packs-init` service so the shared packs volume is writable by the API.
+
+## ADR-0018 · 2026-10-19 · Typed API client from OpenAPI, with a small hand-written fetch helper
+- **Options:** openapi-fetch · generated SDK · `openapi-typescript` types plus a 60-line helper.
+- **Why:** the brief asks for a generated client; the types are generated (`pnpm api-client`, checked in CI) and the
+  helper adds cookies, refresh and `ApiError` the way the portal needs, with no extra runtime dependency.
+
+## ADR-0019 · 2026-10-19 · Rooms import `@colyseus/core` and `@colyseus/ws-transport`, not `colyseus`
+- The `colyseus` meta package fails to load as native ESM on Node 22. The two packages it re-exports load fine and
+  are the same code and version (0.15). Matchmaking filters by session id so one class never joins another's room.
+
+## ADR-0020 · 2026-10-19 · Packs are served from a shared volume behind nginx until hosting is chosen
+- The architecture diagram shows object storage and a CDN. With no provider chosen (ADR-0014) the API writes built
+  bundles to `STORAGE_DIR` and the player's nginx serves them with immutable caching by content hash. Moving to
+  object storage changes one module in the API (`routes/packs.ts` write path) and the nginx `location /packs/`.

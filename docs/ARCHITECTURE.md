@@ -17,6 +17,8 @@ declarative behaviour that every pack can then use.
    └───────────────────────────────── same call everywhere ─────────────────────────────┘
 ```
 
+Until a host is chosen, "object storage + CDN" is a shared volume served by the player's nginx (ADR-0020).
+
 | Path | What | Tech |
 |---|---|---|
 | `packages/engine` | 3D runtime, HUD, gameplay systems | three.js 0.170 (pinned), TypeScript, no framework |

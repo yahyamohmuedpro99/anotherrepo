@@ -28,6 +28,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: Packs are valid
         run: pnpm pack:check
+      - name: Fact-check register is current
+        run: node tools/factcheck.mjs --check
       - name: Pack port scripts reproduce the committed packs
         run: |
           pnpm pack:port
