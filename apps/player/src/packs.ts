@@ -8,8 +8,10 @@ export async function packUrlFor(id: string): Promise<string> {
   try {
     const res = await fetch(`${BASE}/${id}/index.json`, { cache: 'no-cache' });
     if (res.ok) {
-      const idx = (await res.json()) as { latest?: string; versions?: Record<string, { bundle: string }> };
-      const v = idx.latest && idx.versions?.[idx.latest];
+      const idx = (await res.json()) as { current?: string; latest?: string; versions?: Record<string, { bundle: string }> };
+      // `current` is what the platform serves (rollback moves it); `latest` is the newest build
+      const pick = idx.current ?? idx.latest;
+      const v = pick && idx.versions?.[pick];
       if (v) return `${BASE}/${id}/${v.bundle}`;
     }
   } catch {

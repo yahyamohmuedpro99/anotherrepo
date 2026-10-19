@@ -39,6 +39,8 @@ export interface MountOptions {
   roomToken?: string;
   roomUrl?: string;
   assignment?: { id: string; hints?: boolean; preQuiz?: boolean; postQuiz?: boolean };
+  /** The printed QR code that opened this trip; lets publishers see completions per page (counts only). */
+  code?: string;
   quality?: 'auto' | Tier;
   mode?: 'guest' | 'student' | 'preview';
   /** Force the cards-and-questions mode (very weak devices). */
@@ -216,7 +218,7 @@ export class Engine implements EngineApi {
     this.telemetry = new Telemetry({ ...(this.opts.telemetryUrl ? { url: this.opts.telemetryUrl } : {}), ...(this.opts.telemetryHeaders ? { headers: this.opts.telemetryHeaders } : {}), ...(this.opts.onEvent ? { sink: this.opts.onEvent } : {}) });
     this.telemetry.setContext({
       actor: { deviceId: deviceId(), ...(this.opts.user?.studentId ? { studentId: this.opts.user.studentId } : {}), ...(this.opts.user?.classId ? { classId: this.opts.user.classId } : {}) },
-      context: { packId: m.id, packVersion: m.version, locale: this.locale, sessionId: this.sessionId, mode: this.opts.mode ?? (this.opts.user?.studentId ? 'student' : 'guest'), ...(this.opts.assignment ? { assignmentId: this.opts.assignment.id } : {}), phase: 'play' },
+      context: { packId: m.id, packVersion: m.version, locale: this.locale, sessionId: this.sessionId, mode: this.opts.mode ?? (this.opts.user?.studentId ? 'student' : 'guest'), ...(this.opts.assignment ? { assignmentId: this.opts.assignment.id } : {}), ...(this.opts.code ? { code: this.opts.code } : {}), phase: 'play' },
     });
     this.telemetry.start();
 

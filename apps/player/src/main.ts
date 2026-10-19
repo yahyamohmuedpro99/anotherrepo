@@ -61,6 +61,7 @@ async function start(route: Route): Promise<void> {
     ...(locale ? { locale } : {}),
     ...(join ? { user: { displayName: join.displayName, studentId: join.studentId, classId: join.classId }, mode: 'student' as const } : { mode: 'guest' as const }),
     ...(join?.assignment ? { assignment: join.assignment } : {}),
+    ...(code && !join ? { code } : {}),
     ...(params.get('session') ? { roomToken: params.get('session')! } : join?.roomToken ? { roomToken: join.roomToken } : {}),
     telemetryUrl: `${API}/v1/events`,
     ...(auth ? { telemetryHeaders: () => auth } : {}),

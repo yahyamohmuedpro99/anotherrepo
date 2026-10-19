@@ -9,7 +9,7 @@ export interface LearningEvent {
   actor: { deviceId: string; studentId?: string; classId?: string };
   object: { type: 'pack' | 'scene' | 'poi' | 'card' | 'item' | 'quest' | 'stamp' | 'photo'; id: string };
   result?: { correct?: boolean; attempt?: number; response?: string; score?: number; durationMs?: number; hints?: number };
-  context: { packId: string; packVersion: string; locale: string; sceneId?: string; assignmentId?: string; sessionId?: string; objectives?: string[]; mode: 'guest' | 'student' | 'preview'; phase?: 'pre' | 'post' | 'play' | 'teacher' };
+  context: { packId: string; packVersion: string; locale: string; sceneId?: string; assignmentId?: string; sessionId?: string; objectives?: string[]; mode: 'guest' | 'student' | 'preview'; code?: string; phase?: 'pre' | 'post' | 'play' | 'teacher' };
 }
 
 const QUEUE_KEY = 'rihla.events.queue';
