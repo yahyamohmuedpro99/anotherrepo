@@ -1,0 +1,2598 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Rihla API",
+    "version": "0.1.0",
+    "description": "Tenants, classes, assignments, learning events, reports, packs, publishers and compliance."
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {}
+  },
+  "paths": {
+    "/v1/auth/providers": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "maxLength": 200,
+                    "type": "string"
+                  },
+                  "password": {
+                    "maxLength": 200,
+                    "type": "string"
+                  },
+                  "tenantId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "email",
+                        "locale"
+                      ]
+                    },
+                    "tenant": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "kind"
+                      ]
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "roles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "kind",
+                          "roles"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "accessToken",
+                    "user",
+                    "tenant",
+                    "roles",
+                    "tenants"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/refresh": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "tenantId",
+            "required": false
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "email",
+                        "locale"
+                      ]
+                    },
+                    "tenant": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "kind"
+                      ]
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "roles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "kind",
+                          "roles"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "accessToken",
+                    "user",
+                    "tenant",
+                    "roles",
+                    "tenants"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/auth/accept-invite": {
+      "post": {
+        "tags": [
+          "auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "maxLength": 200,
+                    "type": "string"
+                  },
+                  "name": {
+                    "maxLength": 80,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "token",
+                  "password"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string"
+                    },
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "locale": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "email",
+                        "locale"
+                      ]
+                    },
+                    "tenant": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "kind": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "name",
+                        "kind"
+                      ]
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "tenants": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "roles": {
+                            "type": "array",
+                            "items": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "name",
+                          "kind",
+                          "roles"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "accessToken",
+                    "user",
+                    "tenant",
+                    "roles",
+                    "tenants"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/tenants": {
+      "post": {
+        "tags": [
+          "tenants"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "school"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "publisher"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "platform"
+                        ]
+                      }
+                    ]
+                  },
+                  "name": {
+                    "minLength": 2,
+                    "maxLength": 120,
+                    "type": "string"
+                  },
+                  "region": {
+                    "pattern": "^[a-z]{2}$",
+                    "type": "string"
+                  },
+                  "seats": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "retentionDays": {
+                    "minimum": 30,
+                    "maximum": 3650,
+                    "type": "integer"
+                  },
+                  "consentRequired": {
+                    "type": "boolean"
+                  },
+                  "contractStart": {
+                    "format": "date",
+                    "type": "string"
+                  },
+                  "contractEnd": {
+                    "format": "date",
+                    "type": "string"
+                  },
+                  "admin": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "format": "email",
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "name"
+                    ]
+                  }
+                },
+                "required": [
+                  "kind",
+                  "name"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/tenant": {
+      "get": {
+        "tags": [
+          "tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "tenants"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "minLength": 2,
+                    "type": "string"
+                  },
+                  "retentionDays": {
+                    "minimum": 30,
+                    "maximum": 3650,
+                    "type": "integer"
+                  },
+                  "consentRequired": {
+                    "type": "boolean"
+                  },
+                  "seats": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/members": {
+      "get": {
+        "tags": [
+          "tenants"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/invites": {
+      "post": {
+        "tags": [
+          "tenants"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "format": "email",
+                    "type": "string"
+                  },
+                  "name": {
+                    "minLength": 1,
+                    "maxLength": 80,
+                    "type": "string"
+                  },
+                  "role": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "teacher"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "school_admin"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "publisher_admin"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "author"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "reviewer"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "platform_admin"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "email",
+                  "name",
+                  "role"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/members/{userId}": {
+      "delete": {
+        "tags": [
+          "tenants"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "userId",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "boolean"
+            },
+            "in": "query",
+            "name": "archived",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "classes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "minLength": 1,
+                    "maxLength": 80,
+                    "type": "string"
+                  },
+                  "grade": {
+                    "maxLength": 20,
+                    "type": "string"
+                  },
+                  "namePolicy": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "list"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "typed"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes/{id}": {
+      "patch": {
+        "tags": [
+          "classes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "minLength": 1,
+                    "maxLength": 80,
+                    "type": "string"
+                  },
+                  "grade": {
+                    "maxLength": 20,
+                    "type": "string"
+                  },
+                  "namePolicy": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "list"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "typed"
+                        ]
+                      }
+                    ]
+                  },
+                  "archived": {
+                    "type": "boolean"
+                  },
+                  "chatAllowed": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes/{id}/code": {
+      "post": {
+        "tags": [
+          "classes"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes/{id}/students": {
+      "get": {
+        "tags": [
+          "classes"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "classes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "names": {
+                    "maxItems": 200,
+                    "type": "array",
+                    "items": {
+                      "maxLength": 40,
+                      "type": "string"
+                    }
+                  },
+                  "csv": {
+                    "maxLength": 20000,
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/students/{id}": {
+      "patch": {
+        "tags": [
+          "classes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "displayName": {
+                    "maxLength": 40,
+                    "type": "string"
+                  },
+                  "nameStatus": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "approved"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "rejected"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "compliance"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/codes/{code}/resolve": {
+      "get": {
+        "tags": [
+          "join"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "maxLength": 16,
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/s/{code}": {
+      "get": {
+        "tags": [
+          "join"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "maxLength": 16,
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/join": {
+      "post": {
+        "tags": [
+          "join"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "maxLength": 8,
+                    "type": "string"
+                  },
+                  "displayName": {
+                    "maxLength": 40,
+                    "type": "string"
+                  },
+                  "deviceId": {
+                    "maxLength": 64,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "code",
+                  "displayName"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes/{id}/assignments": {
+      "get": {
+        "tags": [
+          "assignments"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "assignments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "packId": {
+                    "type": "string"
+                  },
+                  "version": {
+                    "type": "string"
+                  },
+                  "poiId": {
+                    "type": "string"
+                  },
+                  "dueAt": {
+                    "format": "date-time",
+                    "type": "string"
+                  },
+                  "attemptsAllowed": {
+                    "minimum": 1,
+                    "maximum": 10,
+                    "type": "integer"
+                  },
+                  "hints": {
+                    "type": "boolean"
+                  },
+                  "preQuiz": {
+                    "type": "boolean"
+                  },
+                  "postQuiz": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "packId"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/assignments/{id}": {
+      "delete": {
+        "tags": [
+          "assignments"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/events": {
+      "post": {
+        "tags": [
+          "events"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "events": {
+                    "maxItems": 200,
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "format": "uuid",
+                          "type": "string"
+                        },
+                        "verb": {
+                          "anyOf": [
+                            {
+                              "type": "string",
+                              "enum": [
+                                "launched"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "entered-zone"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "visited-poi"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "viewed-card"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "answered"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "hint-used"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "completed-quest"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "took-photo"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "earned-stamp"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "completed"
+                              ]
+                            },
+                            {
+                              "type": "string",
+                              "enum": [
+                                "abandoned"
+                              ]
+                            }
+                          ]
+                        },
+                        "ts": {
+                          "format": "date-time",
+                          "type": "string"
+                        },
+                        "actor": {
+                          "additionalProperties": true,
+                          "type": "object",
+                          "properties": {}
+                        },
+                        "object": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "maxLength": 20,
+                              "type": "string"
+                            },
+                            "id": {
+                              "maxLength": 120,
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "type",
+                            "id"
+                          ]
+                        },
+                        "result": {
+                          "type": "object",
+                          "properties": {
+                            "correct": {
+                              "type": "boolean"
+                            },
+                            "attempt": {
+                              "type": "integer"
+                            },
+                            "response": {
+                              "maxLength": 200,
+                              "type": "string"
+                            },
+                            "score": {
+                              "type": "number"
+                            },
+                            "durationMs": {
+                              "type": "integer"
+                            },
+                            "hints": {
+                              "type": "integer"
+                            }
+                          }
+                        },
+                        "context": {
+                          "additionalProperties": true,
+                          "type": "object",
+                          "properties": {
+                            "packId": {
+                              "maxLength": 80,
+                              "type": "string"
+                            },
+                            "packVersion": {
+                              "maxLength": 20,
+                              "type": "string"
+                            },
+                            "locale": {
+                              "maxLength": 12,
+                              "type": "string"
+                            },
+                            "sceneId": {
+                              "type": "string"
+                            },
+                            "assignmentId": {
+                              "type": "string"
+                            },
+                            "sessionId": {
+                              "type": "string"
+                            },
+                            "objectives": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "mode": {
+                              "type": "string"
+                            },
+                            "phase": {
+                              "type": "string"
+                            },
+                            "code": {
+                              "maxLength": 16,
+                              "type": "string"
+                            },
+                            "tier": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "packId",
+                            "packVersion",
+                            "locale",
+                            "mode"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "verb",
+                        "ts",
+                        "actor",
+                        "object",
+                        "context"
+                      ]
+                    }
+                  }
+                },
+                "required": [
+                  "events"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/assignments/{id}/report": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/assignments/{id}/report.csv": {
+      "get": {
+        "tags": [
+          "reports"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "lang",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs": {
+      "get": {
+        "tags": [
+          "packs"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "subject",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "grade",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "q",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "maxMinutes",
+            "required": false
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs/{id}": {
+      "get": {
+        "tags": [
+          "packs"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs/{id}/versions": {
+      "get": {
+        "tags": [
+          "packs"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "packs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "bundle": {
+                    "type": "object",
+                    "properties": {
+                      "format": {
+                        "type": "string",
+                        "enum": [
+                          "rihla-pack-bundle@1"
+                        ]
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "version": {
+                        "type": "string"
+                      },
+                      "hash": {
+                        "type": "string"
+                      },
+                      "builtAt": {
+                        "type": "string"
+                      },
+                      "files": {
+                        "type": "object",
+                        "additionalProperties": {}
+                      },
+                      "assets": {
+                        "type": "object",
+                        "additionalProperties": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "required": [
+                      "format",
+                      "id",
+                      "version",
+                      "hash",
+                      "builtAt",
+                      "files",
+                      "assets"
+                    ]
+                  },
+                  "teacher": {
+                    "type": "object",
+                    "properties": {
+                      "lesson-plan": {
+                        "type": "string"
+                      },
+                      "worksheet": {
+                        "type": "string"
+                      },
+                      "answer-key": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "makeCurrent": {
+                    "type": "boolean"
+                  },
+                  "overrideReviews": {
+                    "description": "Reason; platform admins only, audited",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "bundle"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs/{id}/teacher/{doc}": {
+      "get": {
+        "tags": [
+          "packs"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          },
+          {
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "lesson-plan"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "worksheet"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "answer-key"
+                  ]
+                }
+              ]
+            },
+            "in": "path",
+            "name": "doc",
+            "required": true
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs/{id}/versions/{version}/reviews": {
+      "post": {
+        "tags": [
+          "packs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "aspect": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "content"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "language"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "culture"
+                        ]
+                      }
+                    ]
+                  },
+                  "state": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "in-review"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "changes-requested"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "approved"
+                        ]
+                      }
+                    ]
+                  },
+                  "comment": {
+                    "maxLength": 4000,
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "aspect",
+                  "state",
+                  "comment"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "version",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/packs/{id}/current": {
+      "post": {
+        "tags": [
+          "packs"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "version": {
+                    "type": "string"
+                  },
+                  "retire": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "version"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/books": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "publisher"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "minLength": 1,
+                    "maxLength": 200,
+                    "type": "string"
+                  },
+                  "isbn": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "pattern": "^[A-Z]{2}$",
+                    "type": "string"
+                  },
+                  "grade": {
+                    "type": "string"
+                  },
+                  "subject": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/books/{id}": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/books/{id}/pages": {
+      "post": {
+        "tags": [
+          "publisher"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "chapter": {
+                    "maxLength": 80,
+                    "type": "string"
+                  },
+                  "page": {
+                    "maxLength": 20,
+                    "type": "string"
+                  },
+                  "label": {
+                    "maxLength": 200,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "chapter",
+                  "page"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/pages/{id}/links": {
+      "post": {
+        "tags": [
+          "publisher"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "packId": {
+                    "type": "string"
+                  },
+                  "poiId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "packId",
+                  "poiId"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/links/{id}": {
+      "patch": {
+        "tags": [
+          "publisher"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "packId": {
+                    "type": "string"
+                  },
+                  "poiId": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "packId",
+                  "poiId"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/qr-batches": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "publisher"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "public"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "book"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "copy"
+                        ]
+                      }
+                    ]
+                  },
+                  "pageLinkId": {
+                    "type": "string"
+                  },
+                  "packId": {
+                    "type": "string"
+                  },
+                  "poiId": {
+                    "type": "string"
+                  },
+                  "count": {
+                    "minimum": 1,
+                    "maximum": 5000,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/qr-batches/{id}/codes.csv": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/qr-batches/{id}/sheet.svg": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/qr/{code}": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [
+                    "svg"
+                  ]
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "png"
+                  ]
+                }
+              ]
+            },
+            "in": "query",
+            "name": "format",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "code",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/books/{id}/stats": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "minimum": 1,
+              "maximum": 730,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "days",
+            "required": false
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/qr/suspicious": {
+      "get": {
+        "tags": [
+          "publisher"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/sessions": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "classId": {
+                    "type": "string"
+                  },
+                  "assignmentId": {
+                    "type": "string"
+                  },
+                  "chatEnabled": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "classId"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/sessions/{id}": {
+      "get": {
+        "tags": [
+          "sessions"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/sessions/{id}/end": {
+      "post": {
+        "tags": [
+          "sessions"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/sessions/{id}/moderation": {
+      "get": {
+        "tags": [
+          "sessions"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/student/room": {
+      "get": {
+        "tags": [
+          "sessions"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/students/{id}/consent": {
+      "post": {
+        "tags": [
+          "compliance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "givenBy": {
+                    "minLength": 1,
+                    "maxLength": 120,
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "minLength": 1,
+                    "maxLength": 500,
+                    "description": "Where the school keeps the signed form",
+                    "type": "string"
+                  },
+                  "kind": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "givenBy",
+                  "evidence"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/classes/{id}/consent": {
+      "get": {
+        "tags": [
+          "compliance"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/data-requests": {
+      "post": {
+        "tags": [
+          "compliance"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "subjectKind": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "student"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "class"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "tenant"
+                        ]
+                      }
+                    ]
+                  },
+                  "subjectId": {
+                    "type": "string"
+                  },
+                  "kind": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "enum": [
+                          "export"
+                        ]
+                      },
+                      {
+                        "type": "string",
+                        "enum": [
+                          "delete"
+                        ]
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "subjectKind",
+                  "subjectId",
+                  "kind"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "compliance"
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/data-requests/{id}": {
+      "get": {
+        "tags": [
+          "compliance"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "path",
+            "name": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    },
+    "/v1/audit": {
+      "get": {
+        "tags": [
+          "compliance"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "minimum": 1,
+              "maximum": 500,
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "limit",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Default Response"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ]
+}
