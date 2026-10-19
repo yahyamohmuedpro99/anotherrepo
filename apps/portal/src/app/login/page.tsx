@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, Field, Input, Notice } from '@rihla/ui';
+import { ApiError } from '@rihla/api-client';
 import { useLang } from '@/components/LangProvider';
 import { useSession } from '@/components/Session';
 
@@ -9,7 +10,7 @@ export default function Login() {
   const { t } = useLang();
   const { login } = useSession();
   const router = useRouter();
-  const [err, setErr] = useState(false);
+  const [err, setErr] = useState<null | 'login.error' | 'login.unreachable'>(null);
   const [busy, setBusy] = useState(false);
   return (
     <div className="r-stack" style={{ maxInlineSize: 440, marginInline: 'auto' }}>
@@ -20,12 +21,13 @@ export default function Login() {
           e.preventDefault();
           const f = new FormData(e.currentTarget);
           setBusy(true);
-          setErr(false);
+          setErr(null);
           try {
             await login(String(f.get('email')), String(f.get('password')));
             router.push('/app');
-          } catch {
-            setErr(true);
+          } catch (e) {
+            // only a 401 means the credentials are wrong; anything else is the server (e.g. a host waking up)
+            setErr(e instanceof ApiError && e.status === 401 ? 'login.error' : 'login.unreachable');
           } finally {
             setBusy(false);
           }
@@ -37,7 +39,7 @@ export default function Login() {
         <Field label={t('login.password')}>
           <Input name="password" type="password" autoComplete="current-password" required dir="ltr" />
         </Field>
-        {err ? <Notice error>{t('login.error')}</Notice> : null}
+        {err ? <Notice error>{t(err)}</Notice> : null}
         <Button type="submit" tone="primary" disabled={busy}>
           {t('login.submit')}
         </Button>
