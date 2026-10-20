@@ -16,7 +16,8 @@ import { createDatabase, type Database } from './db/client.js';
 import { memberships, tenants, users } from './db/schema.js';
 import { hashPassword } from './auth/passwords.js';
 
-const ROOT = new URL('../../../', import.meta.url).pathname;
+// the pack folders; bundled deployments (serverless) ship them elsewhere and say so through PACKS_SOURCE_DIR
+const PACKS = process.env.PACKS_SOURCE_DIR ?? new URL('../../../packs', import.meta.url).pathname;
 export const DEMO_PASSWORD = process.env.SEED_PASSWORD ?? 'rihla-demo-2026';
 
 export async function seed(database: Database, config = loadConfig()) {
@@ -47,12 +48,12 @@ export async function seed(database: Database, config = loadConfig()) {
   // packs
   const out = mkdtempSync(path.join(tmpdir(), 'rihla-seed-'));
   for (const id of ['giza-plateau', 'solar-system']) {
-    const built = await buildPack(path.join(ROOT, 'packs', id), out);
+    const built = await buildPack(path.join(PACKS, id), out);
     const bundle = JSON.parse(readFileSync(built.bundlePath, 'utf8'));
     const teacher: Record<string, string> = {};
     for (const doc of ['lesson-plan', 'worksheet', 'answer-key']) {
       try {
-        teacher[doc] = readFileSync(path.join(ROOT, 'packs', id, 'teacher', `${doc}.md`), 'utf8');
+        teacher[doc] = readFileSync(path.join(PACKS, id, 'teacher', `${doc}.md`), 'utf8');
       } catch {
         /* optional */
       }

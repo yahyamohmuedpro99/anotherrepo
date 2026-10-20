@@ -128,3 +128,19 @@ Short records: date, decision, options considered, why. Newest last. Anything ma
     `FORCE ROW LEVEL SECURITY`, so policies still apply; tested with an owner that has no `CREATEROLE`.
 - Jobs run inside the API (`INLINE_WORKER=1`) because background workers are paid. Free services sleep after
   ~15 idle minutes (first request then takes about a minute) and the free database expires after 30 days.
+
+## ADR-0022 · 2026-10-20 · Vercel demo: player + API in one project, portal in another, no live rooms
+- **Founder moved the live demo from Render to Vercel.** Vercel runs functions, not long-lived processes, so:
+  - `tools/vercel/build.mjs` writes Build Output API v3: the player and the built packs as static files, and the
+    API bundled into one Node function at `/api` (and `/s/*` for printed short links) on the same domain;
+  - each function instance boots once: migrations and the demo seed run under a Postgres advisory lock, packs are
+    rebuilt into `/tmp`, and learning events are folded into results when a teacher or publisher reads them
+    (no worker process);
+  - with no secrets configured, the instance generates its signing secrets once and keeps them in
+    `instance_secrets`, readable by the owner role only. Configured environment variables always win;
+  - the database is Neon from the Vercel Marketplace (free tier); the API prefers its unpooled URL because
+    `SET ROLE` needs a session;
+  - the portal is a normal Next.js project whose `/api` proxy reads `API_URL` at runtime.
+- **Not available on Vercel:** live class trips (Colyseus needs a long-lived WebSocket server). The trips, QR links,
+  class join, reports, publisher area and admin all work. Retention jobs only run when a request triggers them.
+- Demo data only, as in ADR-0021.

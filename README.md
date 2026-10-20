@@ -60,6 +60,18 @@ docker compose -f infra/compose.yaml --env-file .env --profile demo up --build
 Player <http://localhost:8080> · portal <http://localhost:3000> · API <http://localhost:4000>. The `demo` profile seeds
 the same demo data; leave it off in production.
 
+### Live demo on Vercel
+
+Two projects from this repository (ADR-0022), on the branch that has `vercel.json`:
+
+1. **rihla** (root directory: the repository root). `vercel.json` builds the player, the packs and the API. In the
+   project's **Storage** tab add **Neon** (free) and connect it. Nothing else to set: the API migrates, seeds the
+   demo data and creates its own secrets on first request.
+2. **rihla-portal** (root directory `apps/portal`, Next.js). Set `API_URL` to `https://<rihla domain>/api` and
+   `NEXT_PUBLIC_PLAYER_URL` to `https://<rihla domain>`.
+
+Live class trips need a WebSocket server and are not available on Vercel.
+
 ### Live demo on Render
 
 `render.yaml` is a Render Blueprint for the whole platform with demo data (ADR-0021): in Render choose
